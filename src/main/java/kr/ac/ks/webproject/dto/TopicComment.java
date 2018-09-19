@@ -1,11 +1,13 @@
 package kr.ac.ks.webproject.dto;
 
+import java.util.Date;
+
 public class TopicComment {
 	private int id;
 	private String content;
 	private int agree_flag;
 	private int topicId;
-	private String createDate;
+	private Date createDate;
 
 	public int getId() {
 		return id;
@@ -39,18 +41,18 @@ public class TopicComment {
 		this.topicId = topicId;
 	}
 
-	public String getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
 	@Override
 	public String toString() {
 		return "TopicComment [id=" + id + ", content=" + content + ", agree_flag=" + agree_flag + ", topicId=" + topicId
-				+ ", createDate=" + createDate + "]";
+				+ "]";
 	}
 
 }

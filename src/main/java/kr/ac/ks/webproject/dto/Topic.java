@@ -1,5 +1,6 @@
 package kr.ac.ks.webproject.dto;
 
+import java.util.Date;
 import java.util.List;
 
 public class Topic {
@@ -7,6 +8,7 @@ public class Topic {
 	private String content;
 	private int likeCount;
 	private int dislikeCount;
+	private Date createDate;
 	private List<TopicComment> commentList;
 
 	public int getId() {
@@ -39,6 +41,14 @@ public class Topic {
 
 	public void setDislikeCount(int dislikeCount) {
 		this.dislikeCount = dislikeCount;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public List<TopicComment> getCommentList() {

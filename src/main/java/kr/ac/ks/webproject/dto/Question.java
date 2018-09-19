@@ -1,11 +1,16 @@
 package kr.ac.ks.webproject.dto;
 
+import java.util.Date;
+import java.util.List;
+
 public class Question {
 	private int id;
 	private String title;
 	private String content;
 	private int userId;
-	private String createDate;
+	private Date createDate;
+
+	private List<Answer> answerList;
 
 	public int getId() {
 		return id;
@@ -39,18 +44,26 @@ public class Question {
 		this.userId = userId;
 	}
 
-	public String getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public List<Answer> getAnswerList() {
+		return answerList;
+	}
+
+	public void setAnswerList(List<Answer> answerList) {
+		this.answerList = answerList;
 	}
 
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", title=" + title + ", content=" + content + ", userId=" + userId
-				+ ", createDate=" + createDate + "]";
+				+ ", createDate=" + createDate + ", answerList=" + answerList + "]";
 	}
 
 }

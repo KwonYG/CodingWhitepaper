@@ -1,10 +1,12 @@
 package kr.ac.ks.webproject.dto;
 
-public class serviceUser {
+import java.util.Date;
+
+public class ServiceUser {
 	private int id;
 	private String name;
 	private String email;
-	private String createDate;
+	private Date createDate;
 
 	public int getId() {
 		return id;
@@ -30,11 +32,11 @@ public class serviceUser {
 		this.email = email;
 	}
 
-	public String getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
