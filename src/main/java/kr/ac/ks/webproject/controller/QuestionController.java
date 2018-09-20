@@ -1,4 +1,4 @@
-package kr.ac.ks.webproject.Controller;
+package kr.ac.ks.webproject.controller;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import kr.ac.ks.webproject.dto.Question;
 import kr.ac.ks.webproject.service.QuestionService;
 
 @Controller
-public class QuestionContorller {
+public class QuestionController {
 	@Autowired
 	QuestionService questionService;
 	
@@ -22,7 +22,7 @@ public class QuestionContorller {
 		
 		model.addAttribute("questionList",questionList);
 		
-		return "mainpage";
+		return "list";
 	}
 
 }
