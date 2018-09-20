@@ -8,7 +8,7 @@
 <title>TestPage</title>
 </head>
 <body>
-	<h1>TestPage</h1><br><br><br>
+	<h1>TEST PAGE</h1><br><br><br>
 	
 	<c:forEach items="${questionList}" var="question">
 	${question.id}<br>

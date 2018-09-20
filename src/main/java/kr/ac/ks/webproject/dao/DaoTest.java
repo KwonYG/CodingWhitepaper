@@ -1,6 +1,7 @@
 package kr.ac.ks.webproject.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,16 +15,24 @@ public class DaoTest {
 		
 		AnswerDao answerDao = ac.getBean(AnswerDao.class);
 		
-		Answer answer = new Answer();
+		/*Answer answer = new Answer();
 		
-		answer.setUserName("정영훈");
-		answer.setUserEmail("yh@gmail.com");
-		answer.setContent("그거 이렇게 하면 됩니다.");
+		answer.setUserName("윤수운");
+		answer.setUserEmail("sooun@gmail.com");
+		answer.setContent("저는 이렇게 푸는게 맞는거 같은데요?");
 		answer.setQuestionId(3);
 		answer.setCreateDate(new Date());
 		
 		Long id = answerDao.insert(answer);
-		System.out.println(id);
+		System.out.println(id);*/
+		
+		
+		List<Answer> list = answerDao.selectAnswers(3);
+		
+		for(Answer answers : list) {
+			System.out.println(answers);
+		}
+		
 		
 		/*QuestionDao questionDao = ac.getBean(QuestionDao.class);
 		

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Topic {
 	private int id;
+	private String title;
 	private String content;
 	private int likeCount;
 	private int dislikeCount;
@@ -17,6 +18,14 @@ public class Topic {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getContent() {
@@ -61,8 +70,9 @@ public class Topic {
 
 	@Override
 	public String toString() {
-		return "Topic [id=" + id + ", content=" + content + ", likeCount=" + likeCount + ", dislikeCount="
-				+ dislikeCount + ", commentList=" + commentList + "]";
+		return "Topic [id=" + id + ", title=" + title + ", content=" + content + ", likeCount=" + likeCount
+				+ ", dislikeCount=" + dislikeCount + ", createDate=" + createDate + ", commentList=" + commentList
+				+ "]";
 	}
 
 }

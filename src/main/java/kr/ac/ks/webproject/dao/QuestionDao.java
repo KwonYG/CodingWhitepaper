@@ -42,7 +42,6 @@ public class QuestionDao {
 		return jdbc.query(SELECT_PAGING, params, rowMapper);
 	}
 	
-	
 	public Question selectQeustionById(Integer questionId) {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("questionId",questionId);

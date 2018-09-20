@@ -10,6 +10,9 @@ public class Question {
 	private int userId;
 	private Date createDate;
 
+	private String userName;
+	private String userEmail;
+
 	private List<Answer> answerList;
 
 	public int getId() {
@@ -52,6 +55,22 @@ public class Question {
 		this.createDate = createDate;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
 	public List<Answer> getAnswerList() {
 		return answerList;
 	}
@@ -63,7 +82,8 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", title=" + title + ", content=" + content + ", userId=" + userId
-				+ ", createDate=" + createDate + ", answerList=" + answerList + "]";
+				+ ", createDate=" + createDate + ", userName=" + userName + ", userEmail=" + userEmail + ", answerList="
+				+ answerList + "]";
 	}
 
 }

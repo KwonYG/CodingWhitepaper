@@ -8,6 +8,8 @@ public class TopicComment {
 	private int agree_flag;
 	private int topicId;
 	private Date createDate;
+	private String userName;
+	private String userEmail;
 
 	public int getId() {
 		return id;
@@ -49,10 +51,26 @@ public class TopicComment {
 		this.createDate = createDate;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
 	@Override
 	public String toString() {
 		return "TopicComment [id=" + id + ", content=" + content + ", agree_flag=" + agree_flag + ", topicId=" + topicId
-				+ "]";
+				+ ", createDate=" + createDate + ", userName=" + userName + ", userEmail=" + userEmail + "]";
 	}
 
 }
