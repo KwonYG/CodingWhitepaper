@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Question {
-	private int id;
+	private Long id;
 	private String title;
 	private String content;
 	private int userId;
@@ -15,11 +15,11 @@ public class Question {
 
 	private List<Answer> answerList;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

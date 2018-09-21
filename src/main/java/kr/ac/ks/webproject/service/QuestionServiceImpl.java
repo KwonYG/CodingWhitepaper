@@ -1,5 +1,6 @@
 package kr.ac.ks.webproject.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,20 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
+	@Transactional
 	public Question getOneQuestion(Integer questionId) {
 		Question question = questionDao.selectQeustionById(questionId);
 		question.setAnswerList(answerDao.selectAnswers(questionId));
+		
+		return question;
+	}
+
+	@Override
+	@Transactional
+	public Question addQuestion(Question question) {
+		question.setCreateDate(new Date());
+		Long id = questionDao.insert(question);
+		question.setId(id);
 		
 		return question;
 	}

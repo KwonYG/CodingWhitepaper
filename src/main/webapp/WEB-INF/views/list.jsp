@@ -17,5 +17,7 @@
 	${question.createDate}<br>
 	<br><br>
 	</c:forEach>
+	
+	<a href="qregister">글쓰기</a>
 </body>
 </html>

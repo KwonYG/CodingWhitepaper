@@ -1,6 +1,6 @@
 package kr.ac.ks.webproject.service;
 
-import java.util.List;
+import java.util.Date;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,14 +14,14 @@ public class ServiceTest {
 		
 		QuestionService questionService = ac.getBean(QuestionService.class);
 		
-		/*Question question = questionService.getOneQuestion(3);
 		
-		System.out.println(question);*/
+		Question question = new Question();
+		question.setTitle("헬프미");
+		question.setContent("아 이거 구현 안되요 ㅡㅡ");
+		question.setCreateDate(new Date());
+		question.setUserId(2);
 		
-		List<Question> list = questionService.getQuestions(0);
-		
-		for(Question question : list) {
-			System.out.println(question);
-		}
+		Question result = questionService.addQuestion(question);
+		System.out.println(result);
 	}
 }

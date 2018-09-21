@@ -3,16 +3,16 @@ package kr.ac.ks.webproject.dto;
 import java.util.Date;
 
 public class ServiceUser {
-	private int id;
+	private Long id;
 	private String name;
 	private String email;
 	private Date createDate;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -42,7 +42,7 @@ public class ServiceUser {
 
 	@Override
 	public String toString() {
-		return "serviceUser [id=" + id + ", name=" + name + ", email=" + email + ", createDate=" + createDate + "]";
+		return "ServiceUser [id=" + id + ", name=" + name + ", email=" + email + ", createDate=" + createDate + "]";
 	}
 
 }
