@@ -7,7 +7,7 @@ public class Question {
 	private Long id;
 	private String title;
 	private String content;
-	private int userId;
+	private Long userId;
 	private Date createDate;
 
 	private String userName;
@@ -39,11 +39,11 @@ public class Question {
 		this.content = content;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

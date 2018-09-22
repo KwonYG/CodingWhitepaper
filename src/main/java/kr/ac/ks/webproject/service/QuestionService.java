@@ -7,6 +7,7 @@ import kr.ac.ks.webproject.dto.Question;
 public interface QuestionService {
 	public static final Integer LIMIT = 5;
 	public List<Question> getQuestions(Integer start);
-	public Question getOneQuestion(Integer questionId);
+	public Question getOneQuestion(Long questionId);
 	public Question addQuestion(Question question);
+	public int getCount();
 }

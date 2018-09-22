@@ -8,16 +8,20 @@
 <title>TestPage</title>
 </head>
 <body>
-	<h1>TEST PAGE</h1><br><br><br>
+	<h1>TEST LIST PAGE</h1><br><br><br>
 	
 	<c:forEach items="${questionList}" var="question">
 	${question.id}<br>
-	${question.title}<br>
+	<a href="question?id=${question.id}">${question.title}</a><br>
 	${question.userName}<br>
 	${question.createDate}<br>
 	<br><br>
 	</c:forEach>
 	
+	<c:forEach items="${pageStartList}" var="pageIndex" varStatus="status">
+		<a href="list?start=${pageIndex}">${status.index + 1}</a> &nbsp; &nbsp;
+	</c:forEach>
+	<br><br>
 	<a href="qregister">글쓰기</a>
 </body>
 </html>

@@ -34,8 +34,8 @@ public class AnswerDao {
 		return insertAction.executeAndReturnKey(params).longValue();
 	}
 
-	public List<Answer> selectAnswers(Integer questionId) {
-		Map<String, Integer> params = new HashMap<>();
+	public List<Answer> selectAnswers(Long questionId) {
+		Map<String, Long> params = new HashMap<>();
 
 		params.put("questionId", questionId);
 

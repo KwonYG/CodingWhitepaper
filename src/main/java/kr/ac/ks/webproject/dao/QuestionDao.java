@@ -1,8 +1,7 @@
 package kr.ac.ks.webproject.dao;
 
-import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_PAGING;
-import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_QUESTION_BY_ID;
-
+import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.*;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,10 +41,14 @@ public class QuestionDao {
 		return jdbc.query(SELECT_PAGING, params, rowMapper);
 	}
 	
-	public Question selectQeustionById(Integer questionId) {
-		Map<String, Integer> params = new HashMap<>();
+	public Question selectQeustionById(Long questionId) {
+		Map<String, Long> params = new HashMap<>();
 		params.put("questionId",questionId);
 		
 		return jdbc.queryForObject(SELECT_QUESTION_BY_ID, params, rowMapper);
 	}
+	
+	public int selectCount() {
+        return jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
+    }
 }

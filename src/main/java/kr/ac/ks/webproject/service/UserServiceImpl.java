@@ -1,5 +1,7 @@
 package kr.ac.ks.webproject.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional(readOnly = false)
 	public ServiceUser addUser(ServiceUser user) {
+		user.setCreateDate(new Date());
 		Long id = userDao.insert(user);
 		user.setId(id);
 		

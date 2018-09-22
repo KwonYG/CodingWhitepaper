@@ -15,6 +15,8 @@ public class DaoTest {
 		AnswerDao answerDao = ac.getBean(AnswerDao.class);
 		QuestionDao questionDao = ac.getBean(QuestionDao.class);
 		
+		System.out.println(questionDao.selectCount());
+		
 		/*Answer answer = new Answer();
 		
 		answer.setUserName("정영훈");

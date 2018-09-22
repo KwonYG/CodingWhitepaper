@@ -29,7 +29,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	@Transactional
-	public Question getOneQuestion(Integer questionId) {
+	public Question getOneQuestion(Long questionId) {
 		Question question = questionDao.selectQeustionById(questionId);
 		question.setAnswerList(answerDao.selectAnswers(questionId));
 		
@@ -44,6 +44,11 @@ public class QuestionServiceImpl implements QuestionService {
 		question.setId(id);
 		
 		return question;
+	}
+
+	@Override
+	public int getCount() {
+		return questionDao.selectCount();
 	}
 
 }
