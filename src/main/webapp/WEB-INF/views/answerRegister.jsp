@@ -8,15 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>QuestionRegister TEST </h1>
+	<h1>AnswerRegister TEST </h1>
 	
-	<form method="post" action="writequestion">
-        name : <input type="text" name="name"><br>
-        email : <input type="text" name="email"><br>
-        title : <input type="text" name="title"><br>
+	<form method="post" action="writeanswer?id=${param.id}">
+        name : <input type="text" name="userName"><br>
+        email : <input type="text" name="userEmail"><br>
         <textarea name="content" cols="60" rows="6"></textarea>
         <br> <input type="submit" value="등록">
     </form>
-	
 </body>
 </html>

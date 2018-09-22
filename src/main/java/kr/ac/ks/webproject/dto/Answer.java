@@ -3,18 +3,18 @@ package kr.ac.ks.webproject.dto;
 import java.util.Date;
 
 public class Answer {
-	private int id;
+	private Long id;
 	private String content;
-	private int questionId;
+	private Long questionId;
 	private Date createDate;
 	private String userName;
 	private String userEmail;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -26,11 +26,11 @@ public class Answer {
 		this.content = content;
 	}
 
-	public int getQuestionId() {
+	public Long getQuestionId() {
 		return questionId;
 	}
 
-	public void setQuestionId(int questionId) {
+	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
 	}
 

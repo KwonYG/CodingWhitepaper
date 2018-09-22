@@ -16,6 +16,17 @@
 	${question.createDate}<br>
 	<br><br>
 	
-	<a>답변달기</a>
+	<a href="aregister?id=${question.id}">답변달기</a><br>
+	====================Answers===================<br><br>
+
+	<c:forEach items="${answerList}" var="answer">
+		${answer.id}<br>
+		${answer.content}<br>
+		${answer.userName}<br>
+		${answer.userEmail}<br>
+		${answer.createDate}<br>
+		<br><br>
+	</c:forEach>
+	
 </body>
 </html>

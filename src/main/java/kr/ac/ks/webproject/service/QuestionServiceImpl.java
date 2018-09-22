@@ -13,13 +13,13 @@ import kr.ac.ks.webproject.dto.Question;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-	
+
 	@Autowired
 	QuestionDao questionDao;
-	
+
 	@Autowired
 	AnswerDao answerDao;
-	
+
 	@Override
 	@Transactional
 	public List<Question> getQuestions(Integer start) {
@@ -32,17 +32,18 @@ public class QuestionServiceImpl implements QuestionService {
 	public Question getOneQuestion(Long questionId) {
 		Question question = questionDao.selectQeustionById(questionId);
 		question.setAnswerList(answerDao.selectAnswers(questionId));
-		
+
 		return question;
 	}
 
 	@Override
 	@Transactional
-	public Question addQuestion(Question question) {
+	public Question addQuestion(Question question, Long userId) {
 		question.setCreateDate(new Date());
+		question.setUserId(userId);
 		Long id = questionDao.insert(question);
 		question.setId(id);
-		
+
 		return question;
 	}
 
