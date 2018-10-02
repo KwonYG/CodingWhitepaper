@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="prism/prism.css">
+</head>
+<body>
+<div class="container">
+  <pre>
+    <code class="language-java">
+      package kr.or.connect.reservation.config;
+
+  import javax.sql.DataSource;
+
+  import org.apache.commons.dbcp2.BasicDataSource;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.context.annotation.Bean;
+  import org.springframework.context.annotation.ComponentScan;
+  import org.springframework.context.annotation.Configuration;
+  import org.springframework.context.annotation.PropertySource;
+  import org.springframework.core.env.Environment;
+  import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+  import org.springframework.transaction.PlatformTransactionManager;
+  import org.springframework.transaction.annotation.EnableTransactionManagement;
+  import org.springframework.transaction.annotation.TransactionManagementConfigurer;
+
+  @Configuration
+  @EnableTransactionManagement
+  @PropertySource(value = { "classpath:application.properties" })
+  public class DBConfig implements TransactionManagementConfigurer {
+
+  	@Autowired
+      private Environment environment;
+
+  	//첨부해주신 url을 바탕으로 아래 주석처리한 부분대로 만들어 보았는데 500에러가 뜹니다.
+  	//직접 멤버에 집어 넣는 방식은 잘 실행이 되지만 메서드로 가져오면 안되네요..
+  	//똑같이 String 타입으로 반환받는데 안되는 이유를 찾지 못했습니다.
+  	/*private PropertiesRead proper=new PropertiesRead("src/main/resources/application.properties");
+
+  	private String driverClassName=proper.read("spring.datasource.driver-class-name");
+  	private String url=proper.read("spring.datasource.url");
+  	private String username=proper.read("spring.datasource.username");
+  	private String password=proper.read("spring.datasource.password");*/
+
+  	@Bean
+  	public DataSource dataSource() {
+  		BasicDataSource dataSource = new BasicDataSource();
+
+  		dataSource.setDriverClassName(environment.getProperty("spring.datasource.driver-class-name"));
+  		dataSource.setUrl(environment.getProperty("spring.datasource.url"));
+  		dataSource.setUsername(environment.getProperty("spring.datasource.username"));
+  		dataSource.setPassword(environment.getProperty("spring.datasource.password"));
+      <div style="margin: 4px 8px;height:50px; background-color: rgb(0, 255, 179);">여기 코멘트~~</div>
+
+  		return dataSource;
+  	}
+
+  	@Override
+  	public PlatformTransactionManager annotationDrivenTransactionManager() {
+  		return transactionManger();
+  	}
+
+  	@Bean
+  	public PlatformTransactionManager transactionManger() {
+  		return new DataSourceTransactionManager(dataSource());
+  	}
+
+  }
+    </code>
+  </pre>
+</div>
+  <script src="prism/prism.js"></script>
+</body>
+</html>
