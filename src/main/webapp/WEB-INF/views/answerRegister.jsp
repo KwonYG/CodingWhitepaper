@@ -13,8 +13,13 @@
 	<form method="post" action="writeanswer?id=${param.id}">
         name : <input type="text" name="userName"><br>
         email : <input type="text" name="userEmail"><br>
-        <textarea name="content" cols="60" rows="6"></textarea>
+        <textarea name="content" id = "content" cols="60" rows="6"></textarea>
         <br> <input type="submit" value="등록">
     </form>
+    
+	<script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script>
+	<script>
+		CKEDITOR.replace('content');
+	</script>
 </body>
 </html>
