@@ -10,7 +10,9 @@
 #content{
 	border : 3px solid black;
 }
+
 </style>
+<link rel="stylesheet" href="resources/prism/prism.css">
 </head>
 <body>
 	<h1>TEST QnA PAGE</h1><br><br><br>
@@ -35,6 +37,6 @@
 		${answer.createDate}<br>
 		<br><br>
 	</c:forEach>
-	
+	<script src="resources/prism/prism.js"></script>
 </body>
 </html>
