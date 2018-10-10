@@ -6,27 +6,28 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.Answer;
+import kr.ac.ks.webproject.dto.Question;
+import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.Source;
 
 public class ServiceTest {
 	public static void main(String[] args) {
+		// http://swlock.blogspot.com/2017/01/jericho-htmlparser.html
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		
+
 		QuestionService questionService = ac.getBean(QuestionService.class);
-		AnswerService answerService = ac.getBean(AnswerService.class);
+		Question q = questionService.getOneQuestion((long) 8);
+
+		String s = q.getContent();
+		Source source = new Source(s);
+		List<Element> els = source.getAllElements("code");
+		System.out.println("size : " + els.size());
 		
-		List<Answer> list = answerService.getAnswers((long)3);
-		
-		for(Answer answer : list) {
-			System.out.println(answer);
+		for (int i = 0; i < els.size(); i++) {
+			Element el = els.get(i);
+			System.out.println(el.getName() + " class:" + el.getAttributeValue("class") + " content:" + el.getContent());
+			System.out.println("====================================================");
 		}
-		/*Question question = new Question();
-		question.setTitle("헬프미");
-		question.setContent("아 이거 구현 안되요 ㅡㅡ");
-		question.setCreateDate(new Date());
-		question.setUserId((long)2);
-		
-		Question result = questionService.addQuestion(question);
-		System.out.println(result);*/
+		// System.out.println(s);
 	}
 }

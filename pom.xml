@@ -93,6 +93,13 @@
             <artifactId>jackson-datatype-jdk8</artifactId>
             <version>${jackson2.version}</version>
         </dependency>
+        
+        <!-- jericho parser -->
+		<dependency>
+		    <groupId>net.htmlparser.jericho</groupId>
+		    <artifactId>jericho-html</artifactId>
+		    <version>3.4</version>
+		</dependency>
     </dependencies>
   <build>
     <finalName>webproject</finalName>
