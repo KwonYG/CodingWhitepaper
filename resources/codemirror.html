@@ -13,17 +13,36 @@
 </head>
 
 <body>
-  <code></code>
+  <textarea name="name" rows="8" cols="80">
+    $(document).ready(function() {
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "text/html",
+        lineNumbers: true,
+    });
+
+    $("#insert").click(function(){
+    	var content = $("#content").val();
+    	editor.setValue(content)
+    });
+});
+  </textarea>
   <button id="commentBtn">Add comment</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/mode/javascript/javascript.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/mode/clike/clike.js"></script>
   <script>
-    var editor = CodeMirror(document.getElementsByTagName('code')[0], {
+
+  var editor = CodeMirror.fromTextArea(document.getElementsByTagName('textarea')[0], {
+    mode: "text/x-java",
+    lineNumbers: true
+  });
+
+    /*var editor = CodeMirror(document.getElementsByTagName('textarea')[0], {
+      parserfile: ["Answer.java"],
       mode: "text/x-java",
       lineNumbers: true
-    });
+    });*/
 
     var btn = document.getElementById('commentBtn');
     btn.addEventListener('click', function() {
@@ -33,6 +52,7 @@
       para.appendChild(t); // Append the text to <p>
       editor.addLineWidget(editor.getCursor().line, para);
     });
+
   </script>
 </body>
 
