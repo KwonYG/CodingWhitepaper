@@ -26,6 +26,9 @@
     });
 });
   </textarea>
+  <textarea name="editor" id="editor" class="ckeditor" rows="100" cols="80">
+
+  </textarea>
   <button id="commentBtn">Add comment</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
@@ -48,11 +51,16 @@
     btn.addEventListener('click', function() {
       var para = document.createElement("DIV"); // Create a <p> element
       para.setAttribute("style", "margin: 4px 8px;height:50px; background-color: rgb(0, 255, 179);");
-      var t = document.createTextNode("여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~<br>여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~여기 코멘트~~"); // Create a text node
+      var t = document.createTextNode(CKEDITOR.instances.editor.getData()); // Create a text node
       para.appendChild(t); // Append the text to <p>
       editor.addLineWidget(editor.getCursor().line, para);
     });
 
+  </script>
+
+  <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+  <script>
+  CKEDITOR.replace('editor');
   </script>
 </body>
 

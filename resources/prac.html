@@ -1,56 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>getElementsByTagName example</title>
-  <script>
-    function getAllParaElems() {
-      var allParas = document.getElementsByTagName('p');
-      var num = allParas.length;
-      alert('There are ' + num + ' paragraph in this document');
-    }
+<meta charset="UTF-8">
+<title>TestPage</title>
+<style>
+#content{
+	border : 3px solid black;
+}
 
-    function div1ParaElems() {
-      var div1 = document.getElementById('div1');
-      var div1Paras = div1.getElementsByTagName('p');
-      var num = div1Paras.length;
-      alert('There are ' + num + ' paragraph in #div1');
-    }
-
-    function div2ParaElems() {
-      var div2 = document.getElementById('div2');
-      var div2Paras = div2.getElementsByTagName('p');
-      var num = div2Paras.length;
-      alert('There are ' + num + ' paragraph in #div2');
-    }
-  </script>
+</style>
+<link rel="stylesheet" href="prism/prism.css">
 </head>
-<body style="border: solid green 3px">
-  <p>Some outer text</p>
-  <p>Some outer text</p>
+<body>
+	<h1>TEST QnA PAGE</h1><br><br><br>
+	4<br>
+	도와주세요<br>
+	<div id="content">
+    <a href="www.naver.com">
+	<pre>
+<code class="language-java">package kr.ac.ks.webproject.config;
 
-  <div id="div1" style="border: solid blue 3px">
-    <p>Some div1 text</p>
-    <p>Some div1 text</p>
-    <p>Some div1 text</p>
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-    <div id="div2" style="border: solid red 3px">
-      <p>Some div2 text</p>
-      <p>Some div2 text</p>
-    </div>
-  </div>
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = { "kr.ac.ks.webproject.controller" })
+public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	}
 
-  <p>Some outer text</p>
-  <p>Some outer text</p>
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
 
-  <button onclick="getAllParaElems();">
-    show all p elements in document</button><br />
+	@Override
+	public void addViewControllers(final ViewControllerRegistry registry) {
+		System.out.println("addViewControllers가 호출됩니다. ");
+		registry.addViewController("/").setViewName("mainpage");
+	}
 
-  <button onclick="div1ParaElems();">
-    show all p elements in div1 element</button><br />
+	@Bean
+	public InternalResourceViewResolver getInternalResourceViewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 
-  <button onclick="div2ParaElems();">
-    show all p elements in div2 element</button>
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".jsp");
 
+		return resolver;
+	}
+
+}</code></pre></a>
+
+<p>ㄹㄴㅇㅁㄹㅇㄴㅁㄹㄴㅁㄹ</p>
+<br>
+	</div>
+	2018-10-14 15:11:44.0<br>
+	<br><br>
+
+	<a href="aregister?id=4">답변달기</a><br>
+	====================Answers===================<br><br>
+
+
+	<script src="prism/prism.js"></script>
 </body>
 </html>
