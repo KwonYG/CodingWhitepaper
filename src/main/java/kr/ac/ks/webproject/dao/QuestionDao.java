@@ -1,6 +1,7 @@
 package kr.ac.ks.webproject.dao;
 
 import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.*;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -51,4 +52,9 @@ public class QuestionDao {
 	public int selectCount() {
         return jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
     }
+	
+	public int update(Question question) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(question);
+		return jdbc.update(UPDATE,params);
+	}
 }

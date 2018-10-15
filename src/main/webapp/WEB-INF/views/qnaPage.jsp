@@ -17,13 +17,14 @@
 <body>
 	<h1>TEST QnA PAGE</h1><br><br><br>
 	${question.id}<br>
+	${question.userName}<br>
 	${question.title}<br>
 	<div id="content">
 	${question.content}<br>
 	</div>
 	${question.createDate}<br>
 	<br><br>
-
+	<a href="update?id=${question.id}">질문 수정</a><br>
 	<a href="aregister?id=${question.id}">답변달기</a><br>
 	====================Answers===================<br><br>
 

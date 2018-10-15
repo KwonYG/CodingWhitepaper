@@ -85,5 +85,13 @@ public class QuestionController {
 
 		return "redirect:list";
 	}
+	
+	@GetMapping(path="/update") // 수정기능
+	public String getUpdateEditor(@RequestParam(name = "id", required = true) Long questionId, ModelMap model) {
+		Question question = questionService.getOneQuestion(questionId);
+		model.addAttribute("question",question);
+		
+		return "questionUpdate";
+	}
 
 }
