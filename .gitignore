@@ -1,3 +1,8 @@
-pom.properties
-/src/main/resources/application.properties target .classpath .project .settings
-/target/
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Maven
+log/
+target/
