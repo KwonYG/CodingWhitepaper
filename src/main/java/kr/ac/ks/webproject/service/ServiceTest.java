@@ -13,7 +13,7 @@ import net.htmlparser.jericho.Source;
 public class ServiceTest {
 	public static void main(String[] args) {
 		// http://swlock.blogspot.com/2017/01/jericho-htmlparser.html
-		/*ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
 		QuestionService questionService = ac.getBean(QuestionService.class);
 		Question q = questionService.getOneQuestion((long) 8);
@@ -27,14 +27,14 @@ public class ServiceTest {
 			Element el = els.get(i);
 			System.out.println(el.getName() + " class:" + el.getAttributeValue("class") + " content:" + el.getContent());
 			System.out.println("====================================================");
-		}*/
+		}
 		// System.out.println(s);
 		
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+/*		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
 		QuestionService questionService = ac.getBean(QuestionService.class);
 		Question q = questionService.getOneQuestion((long) 6);
 		
-		System.out.println(q);
+		System.out.println(q);*/
 	}
 }

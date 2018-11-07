@@ -31,7 +31,8 @@
 	<c:forEach items="${answerList}" var="answer">
 		${answer.id}<br>
 		<div id="content">
-		${answer.content}<br>
+		<pre><code>${answer.content}<br>
+		</code></pre>
 		</div>
 		${answer.userName}<br>
 		${answer.userEmail}<br>
