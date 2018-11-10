@@ -1,0 +1,59 @@
+nav {
+    padding: 10px 230px 0px 230px;
+   background-color: slategray;
+}
+
+section, footer {
+    margin: 10px 200px;
+}
+
+section {
+    padding : 20px 0px;
+    /*background-color: burlywood;*/
+
+}
+
+article {
+    /*background-color: antiquewhite;*/
+    padding: 15px 20px;
+    text-align: left;
+    border-radius: 3px;
+}
+
+td {
+    border: 3px solid lightskyblue;
+    padding: 10px 15px;
+}
+
+
+footer {
+    /*background-color: gainsboro;*/
+    padding: 13px;
+    text-align: center;
+}
+
+.main {
+    line-height: 260%;
+    padding: 0px 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+.right {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    text-align: right;
+}
