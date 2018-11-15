@@ -13,6 +13,7 @@
 
 </style>
 <link rel="stylesheet" href="resources/prism/prism.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
 </head>
 <body>
 	<h1>TEST QnA PAGE</h1><br><br><br>
@@ -30,9 +31,7 @@
 
 	<c:forEach items="${answerList}" var="answer">
 		${answer.id}<br>
-		<div id="content">
-		<pre><code>${answer.content}<br>
-		</code></pre>
+		<div id="content">${answer.content}<br>
 		</div>
 		${answer.userName}<br>
 		${answer.userEmail}<br>

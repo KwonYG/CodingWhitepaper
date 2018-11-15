@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
+import kr.ac.ks.webproject.dto.Answer;
 import kr.ac.ks.webproject.dto.Question;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
@@ -15,8 +16,8 @@ public class ServiceTest {
 		// http://swlock.blogspot.com/2017/01/jericho-htmlparser.html
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
-		QuestionService questionService = ac.getBean(QuestionService.class);
-		Question q = questionService.getOneQuestion((long) 8);
+		/*QuestionService questionService = ac.getBean(QuestionService.class);
+		Question q = questionService.getOneQuestion((long) 19);
 
 		String s = q.getContent();
 		Source source = new Source(s);
@@ -29,12 +30,20 @@ public class ServiceTest {
 			System.out.println("====================================================");
 		}
 		// System.out.println(s);
-		
+*/		
 /*		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
 		QuestionService questionService = ac.getBean(QuestionService.class);
 		Question q = questionService.getOneQuestion((long) 6);
 		
 		System.out.println(q);*/
+		
+		AnswerService answerService = ac.getBean(AnswerService.class);
+		List<Answer> answerList = answerService.getAnswers((long)21);
+		
+		for(Answer answer : answerList) {
+			System.out.println(answer.getContent());
+			System.out.println("============================================================");
+		}
 	}
 }

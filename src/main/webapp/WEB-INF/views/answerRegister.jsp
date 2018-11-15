@@ -22,15 +22,18 @@
 				email : <input type="text" name="userEmail"><br>
 				
 				<c:forEach items="${codes}" var="code">
-					<textarea name="content" rows="8" cols="80" id="CodeMirrorEditor">${code.content}
+					<textarea id="CodeMirrorEditor">${code.content}
 					</textarea>
 				</c:forEach>
-				<br> <input type="submit" value="등록">
+				<br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>
+				<textarea name="content" rows="8" cols="80" id="postTextArea">
+					</textarea>
 			</form>
 				<br>
-				<textarea name="editor" id="commentEditor" rows="30" cols="100"></textarea>
+				<textarea name="editor" id="commentEditor" rows="10" cols="100"></textarea>
 				<br>
-				<button id="commentBtn">Add comment</button>
+				<button id="commentBtn">Add comment</button><br>
+				
 			
 
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
@@ -40,7 +43,6 @@
 					lineNumbers: true
 				});
 
-
 				var btn = document.getElementById('commentBtn');
 				btn.addEventListener('click', function() {
 					var textArea = document.getElementById('commentEditor');
@@ -49,8 +51,29 @@
 					var t = document.createTextNode(textArea.value); // Create a text node
 					para.appendChild(t); // Append the text to <p>
 					editor.addLineWidget(editor.getCursor().line, para);
-					document.getElementById("CodeMirrorEditor").value = editor.getValue(); // 될까?
 				});
+				
+				var parsingContent = function(){
+					var el = document.createElement("div");
+				
+					var content = document.getElementsByClassName('cm-s-default');
+					
+					el.appendChild(content[0]);
+					
+					document.getElementById("postTextArea").value = el.innerHTML;
+
+					console.log(content[0]);
+					debugger;
+					console.log(document.getElementById("postTextArea").value);
+					debugger;
+				};
+				
+				/* var submitBtn = document.getElementById('submitBtn');
+				submitBtn.addEventListener('click', function() {
+					parsingContent();
+				}); */
+				
+				
 			</script>
 		</body>
 
