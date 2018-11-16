@@ -39,5 +39,6 @@
 		<br><br>
 	</c:forEach>
 	<script src="resources/prism/prism.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
 </body>
 </html>

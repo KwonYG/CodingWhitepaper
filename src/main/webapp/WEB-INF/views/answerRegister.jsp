@@ -26,8 +26,7 @@
 					</textarea>
 				</c:forEach>
 				<br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>
-				<textarea name="content" rows="8" cols="80" id="postTextArea">
-					</textarea>
+				<textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea>
 			</form>
 				<br>
 				<textarea name="editor" id="commentEditor" rows="10" cols="100"></textarea>
@@ -40,7 +39,8 @@
 			<script>
 				var editor = CodeMirror.fromTextArea(document.getElementById("CodeMirrorEditor"), {
 					mode: "text/x-java",
-					lineNumbers: true
+					lineNumbers: true,
+					readOnly: true
 				});
 
 				var btn = document.getElementById('commentBtn');

@@ -39,7 +39,7 @@ public class ServiceTest {
 		System.out.println(q);*/
 		
 		AnswerService answerService = ac.getBean(AnswerService.class);
-		List<Answer> answerList = answerService.getAnswers((long)21);
+		List<Answer> answerList = answerService.getAnswers((long)23);
 		
 		for(Answer answer : answerList) {
 			System.out.println(answer.getContent());
