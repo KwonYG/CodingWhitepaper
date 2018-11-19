@@ -47,8 +47,6 @@ public class QuestionServiceImpl implements QuestionService {
 		return question;
 	}
 	
-	
-
 	@Override
 	public int getCount() {
 		return questionDao.selectCount();
