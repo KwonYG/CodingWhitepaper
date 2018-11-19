@@ -1,11 +1,12 @@
-drop table if exists service_group;
-drop table if exists service_user;
+
 drop table if exists answer;
+drop table if exists service_group_answer;
 drop table if exists question;
+drop table if exists service_group_question;
+drop table if exists service_user;
+drop table if exists service_group;
 drop table if exists topic;
 drop table if exists topic_comment;
-drop table if exists service_group_question;
-drop table if exists service_group_answer;
 
 /*바꿀 DB*/
 
