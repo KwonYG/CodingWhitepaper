@@ -1,10 +1,23 @@
+drop table if exists service_group;
+drop table if exists service_user;
 drop table if exists answer;
 drop table if exists question;
 drop table if exists topic;
 drop table if exists topic_comment;
-drop table if exists service_user;
+drop table if exists service_group_question;
+drop table if exists service_group_answer;
 
 /*바꿀 DB*/
+
+-- -----------------------------------------------------
+-- Table `service_group`
+-- -----------------------------------------------------
+
+CREATE TABLE `service_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
 -- Table `service_user`
@@ -16,8 +29,10 @@ CREATE TABLE `service_user` (
   `user_service_password` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `service_group_id` int(11) DEFAULT '0',
   `create_date` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`service_group_id`) REFERENCES `service_group` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
@@ -32,6 +47,22 @@ CREATE TABLE `question` (
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- -----------------------------------------------------
+-- Table `service_group_question`
+-- -----------------------------------------------------
+
+CREATE TABLE `service_group_question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `content` text,
+  `service_group_id` int(11) NOT NULL, 
+  `user_id` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`),
+  FOREIGN KEY (`service_group_id`) REFERENCES `service_group` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
@@ -50,6 +81,24 @@ CREATE TABLE `answer` (
   FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`) ,
   FOREIGN KEY (`question_id`) REFERENCES `question` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- -----------------------------------------------------
+-- Table `service_group_answer`
+-- -----------------------------------------------------
+
+CREATE TABLE `service_group_answer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text NOT NULL,
+  `service_group_question_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  /*`user_name` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,*/
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`) ,
+  FOREIGN KEY (`service_group_question_id`) REFERENCES `service_group_question` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
 
 /*
 CREATE TABLE `topic` (
