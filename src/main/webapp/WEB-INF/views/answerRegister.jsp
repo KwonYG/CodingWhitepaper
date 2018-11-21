@@ -12,6 +12,12 @@
 				body {
 					background-color: #eee;
 				}
+				
+				.CodeMirror {
+					  border: 1px solid #eee;
+					  height: auto;
+				}
+									
 			</style>
 		</head>
 
@@ -46,22 +52,24 @@
 				var btn = document.getElementById('commentBtn');
 				btn.addEventListener('click', function() {
 					var textArea = document.getElementById('commentEditor');
-					var para = document.createElement("DIV"); // Create a <p> element
-					para.setAttribute("style", "margin: 4px 8px;height:30px; background-color: rgb(0, 255, 179);");
+					
+					var widget = document.createElement("DIV"); // Create a <p> element
+					widget.setAttribute("style", "margin: 4px 8px;height:30px; background-color: rgb(0, 255, 179);");
+					
 					var t = document.createTextNode(textArea.value); // Create a text node
-					para.appendChild(t); // Append the text to <p>
-					editor.addLineWidget(editor.getCursor().line, para);
+					console.log(t)
+					widget.appendChild(t); // Append the text to <p>
+					editor.addLineWidget(editor.getCursor().line, widget);
 				});
 				
 				var parsingContent = function(){
 					var el = document.createElement("div");
-				
+					
 					var content = document.getElementsByClassName('cm-s-default');
 					
 					el.appendChild(content[0]);
 					
 					document.getElementById("postTextArea").value = el.innerHTML;
-
 					console.log(content[0]);
 					debugger;
 					console.log(document.getElementById("postTextArea").value);

@@ -31,8 +31,13 @@
 
 	<c:forEach items="${answerList}" var="answer">
 		${answer.id}<br>
-		<div id="content">${answer.content}<br>
-		</div>
+		<div id="content">
+			<div class="code_wrap">
+				<div class="code_area" style="height:100%; top:0;">
+					<div class="code_box">${answer.content}</div>
+				</div>
+			</div>
+		</div><br>
 		${answer.userName}<br>
 		${answer.userEmail}<br>
 		${answer.createDate}<br>

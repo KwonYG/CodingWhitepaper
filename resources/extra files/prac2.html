@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
+    <style>
+        body {
+					background-color: #eee;
+				}
+			</style>
+</head>
+
+<body>
+    <h1>AnswerRegister TEST </h1>
+    <form method="post" action="writeanswer?id=${param.id}">
+        name : <input type="text" name="userName"><br>
+        email : <input type="text" name="userEmail"><br>
+
+        <c:forEach items="${codes}" var="code">
+            <textarea id="CodeMirrorEditor">${code.content}
+					</textarea>
+        </c:forEach>
+        <br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>
+        <textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea>
+    </form>
+    <br>
+    <textarea name="editor" id="commentEditor" rows="10" cols="100"></textarea>
+    <br>
+    <button id="commentBtn">Add comment</button><br>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("CodeMirrorEditor"), {
+            mode: "text/x-java",
+            lineNumbers: true,
+            readOnly: true
+        });
+
+        var btn = document.getElementById('commentBtn');
+        btn.addEventListener('click', function () {
+            var textArea = document.getElementById('commentEditor');
+
+            var widget = document.createElement("DIV"); // Create a <p> element
+            widget.setAttribute("style", "margin: 4px 8px;height:30px; background-color: rgb(0, 255, 179);");
+
+            var t = document.createTextNode(textArea.value); // Create a text node
+            console.log(t)
+            widget.appendChild(t); // Append the text to <p>
+            editor.addLineWidget(editor.getCursor().line, widget);
+        });
+        
+        var parsingContent = function () {
+            var el = document.createElement("div");
+
+            el.innerHTML = '<div class="CodeMirror cm-s-default"> <div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 128.563px; left: 34px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div> <div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px;"> <div style="min-width: 1px; height: 1196px;"></div> </div> <div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"> <div style="height: 100%; min-height: 1px; width: 0px;"></div> </div> <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div> <div class="CodeMirror-gutter-filler" cm-not-content="true"></div> <div class="CodeMirror-scroll" tabindex="-1"> <div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: -21px; border-right-width: 9px; min-height: 1196px; min-width: 787px; padding-right: 21px; padding-bottom: 0px;"> <div style="position: relative; top: 414.563px;"> <div class="CodeMirror-lines" role="presentation"> <div role="presentation" style="position: relative; outline: none;"> <div class="CodeMirror-measure"> <div style="position: relative;"></div> </div> <div class="CodeMirror-measure"> <pre class="CodeMirror-line" role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span>return "Answer [id=" + id + ", content=" + content + ", questionId=" + questionId + ", createDate=" + createDate</span></pre> </div> <div style="position: relative; z-index: 1;"></div> <div class="CodeMirror-cursors" style="visibility: hidden;"> <div class="CodeMirror-cursor" style="left: 4px; top: 285px; height: 15px;">&nbsp;</div> </div> <div class="CodeMirror-code" role="presentation" style=""> </div> </div> </div> </div> </div> <div style="position: absolute; height: 9px; width: 1px; border-bottom: 0px solid transparent; top: 1196px;"></div> <div class="CodeMirror-gutters" style="height: 1205px;"> <div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div> </div> </div> </div> ';
+            /* var content = document.getElementsByClassName('cm-s-default');
+        	
+            el.appendChild(content[0]);
+        	
+            document.getElementById("postTextArea").value = el.innerHTML;
+        	
+            console.log(content[0]);
+            debugger;
+            console.log(document.getElementById("postTextArea").value);
+            debugger; */
+        };
+
+				/* var submitBtn = document.getElementById('submitBtn');
+				submitBtn.addEventListener('click', function() {
+					parsingContent();
+				}); */
+
+
+    </script>
+</body>
+
+</html>
