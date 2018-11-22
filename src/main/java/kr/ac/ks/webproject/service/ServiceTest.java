@@ -16,7 +16,7 @@ public class ServiceTest {
 		// http://swlock.blogspot.com/2017/01/jericho-htmlparser.html
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
-		/*QuestionService questionService = ac.getBean(QuestionService.class);
+		QuestionService questionService = ac.getBean(QuestionService.class);
 		Question q = questionService.getOneQuestion((long) 26);
 
 		String s = q.getContent();
@@ -30,7 +30,7 @@ public class ServiceTest {
 			System.out.println("====================================================");
 		}
 		// System.out.println(s);
-*/		
+		
 /*		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
 		QuestionService questionService = ac.getBean(QuestionService.class);
@@ -38,12 +38,12 @@ public class ServiceTest {
 		
 		System.out.println(q);*/
 		
-		AnswerService answerService = ac.getBean(AnswerService.class);
+		/*AnswerService answerService = ac.getBean(AnswerService.class);
 		List<Answer> answerList = answerService.getAnswers((long)16);
 		
 		for(Answer answer : answerList) {
 			System.out.println(answer.getContent());
 			System.out.println("============================================================");
-		}
+		}*/
 	}
 }

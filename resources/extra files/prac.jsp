@@ -13,10 +13,11 @@
 					background-color: #eee;
 				}
 				
-		.CodeMirror {
+				.CodeMirror {
 					  border: 1px solid #eee;
 					  height: auto;
-				}					
+				}
+									
 	</style>
 </head>
 
@@ -27,9 +28,10 @@
         email : <input type="text" name="userEmail"><br>
 
         <c:forEach items="${codes}" var="code">
-            <textarea class="codeMirrorTargetEditor">${code.content}</textarea><br>
-            <textarea name="editor" id="commentEditor" rows="10" cols="100"></textarea><br>
-            <div id="commentBtn">Add comment</div><br>
+            <textarea class="CodeMirrorEditor">${code.content}
+					</textarea><br>
+            <textarea name="editor" id="commentEditor" rows="10" cols="100"></textarea><br><br>
+            <button id="commentBtn">Add comment</button><br>
             <br>
         </c:forEach>
         <textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea><br>
@@ -37,49 +39,46 @@
         <br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>
     </form>
     <br>
+    <textarea name="editor" id="commentEditor" rows="10" cols="100"></textarea>
+    <br>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
     <script>
-    	var editors = document.getElementsByClassName("codeMirrorTargetEditor");
-        for(var i = 0; i < editors.length; i++){
-        	var cm = CodeMirror.fromTextArea(editors.item(i),{
-        		mode: "text/x-java",
-                lineNumbers: true,
-                lineWrapping: true,
-                readOnly: true
-        	});
-        }
+        var editor = CodeMirror.fromTextArea(document.getElementById("CodeMirrorEditor"), {
+            mode: "text/x-java",
+            lineNumbers: true,
+            readOnly: true
+        });
 
         var btn = document.getElementById('commentBtn');
         btn.addEventListener('click', function () {
-            var commentTextArea = document.getElementById('commentEditor');
+            var textArea = document.getElementById('commentEditor');
 
             var widget = document.createElement("DIV"); // Create a <p> element
             widget.setAttribute("style", "margin: 4px 8px;height:30px; background-color: rgb(0, 255, 179);");
 
-            var contentText = document.createTextNode(commentTextArea.value); // Create a text node
-            console.log(contentText)
-            widget.appendChild(contentText); // Append the text to <p>
-            
-           	/* console.log(cm.getCursor().line);
-           	console.log(cm[1].getCursor().line);
-           	debugger;
-           	 */
-           	 
-            for(var i = 0; i < editors.length; i++){
-            	//if(editors[i].getCursor().line)
-            		cm.addLineWidget(cm.getCursor().line, widget); // 에디터 파싱 해결...
-            }
+            var t = document.createTextNode(textArea.value); // Create a text node
+            console.log(t)
+            widget.appendChild(t); // Append the text to <p>
+            editor.addLineWidget(editor.getCursor().line, widget);
         });
 
         var parsingContent = function () {
             var el = document.createElement("div");
+
             var content = document.getElementsByClassName('cm-s-default');
-            
+
             el.appendChild(content[0]);
+
             document.getElementById("postTextArea").value = el.innerHTML;
         };
+
+				/* var submitBtn = document.getElementById('submitBtn');
+				submitBtn.addEventListener('click', function() {
+					parsingContent();
+				}); */
+
 
     </script>
 </body>

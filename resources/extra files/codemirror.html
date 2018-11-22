@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <textarea name="name" rows="8" cols="80" id="CodeMirrorEditor">
+  <textarea name="name" rows="8" cols="80" id="CodeMirrorEditor1">
     $(document).ready(function() {
     var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         mode: "text/html",
@@ -26,6 +26,23 @@
     });
 });
 </textarea>
+
+
+<br>==========================================================<br>
+<textarea name="name" rows="8" cols="80" id="CodeMirrorEditor2">
+  $(document).ready(function() {
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      mode: "text/html",
+      lineNumbers: true,
+  });
+
+  $("#insert").click(function(){
+    var content = $("#content").val();
+    editor.setValue(content)
+  });
+});
+</textarea>
+
 <br>
   <textarea name="editor" id="answerEditor" rows="3" cols="100">
   </textarea>
@@ -35,7 +52,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
 
   <script>
-  var editor = CodeMirror.fromTextArea(document.getElementById("CodeMirrorEditor"), {
+  var editor = CodeMirror.fromTextArea(document.getElementById("CodeMirrorEditor1"), {
+    mode: "text/x-java",
+    lineNumbers: true
+  });
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("CodeMirrorEditor2"), {
     mode: "text/x-java",
     lineNumbers: true
   });

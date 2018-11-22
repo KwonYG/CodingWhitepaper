@@ -30,13 +30,13 @@ public class AnswerController {
 		
 		Question q = questionService.getOneQuestion((long) questionId);
 
-		String s = q.getContent();
-		Source source = new Source(s);
-		List<Element> els = source.getAllElements("code");
-		System.out.println("size : " + els.size());
+		String questionContent = q.getContent();
+		Source source = new Source(questionContent);
+		List<Element> codes = source.getAllElements("code");
+		System.out.println("size : " + codes.size());
 		
-		model.addAttribute("codes", els);
-		
+		model.addAttribute("codes", codes);
+	
 		return "answerRegister";
 	}
 
