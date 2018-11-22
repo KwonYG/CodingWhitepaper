@@ -36,6 +36,7 @@ public class AnswerController {
 		System.out.println("size : " + codes.size());
 		
 		model.addAttribute("codes", codes);
+		model.addAttribute("codeCount", codes.size());
 	
 		return "answerRegister";
 	}

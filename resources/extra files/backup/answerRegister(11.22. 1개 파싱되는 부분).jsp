@@ -23,14 +23,13 @@
 
 		<body>
 			<h1>AnswerRegister TEST </h1>
+			<c:forEach items="${codes}" var="code">
+					<textarea id="CodeMirrorEditor">${code.content}
+					</textarea>
+			</c:forEach>
 			<form method="post" action="writeanswer?id=${param.id}">
 				name : <input type="text" name="userName"><br> 
 				email : <input type="text" name="userEmail"><br>
-				
-				<c:forEach items="${codes}" var="code">
-					<textarea id="CodeMirrorEditor">${code.content}
-					</textarea>
-				</c:forEach>
 				<br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>
 				<textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea>
 			</form>
