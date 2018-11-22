@@ -28,8 +28,8 @@
 
         <c:forEach items="${codes}" var="code">
             <textarea class="codeMirrorTargetEditor">${code.content}</textarea><br>
-            <textarea name="editor" id="commentEditor" rows="10" cols="100"></textarea><br>
-            <div id="commentBtn">Add comment</div><br>
+            <textarea name="editor" class="commentEditor" rows="10" cols="100"></textarea><br>
+            <div id="commentBtn" style="background:white;width:150px;padding:8px;cursor:pointer">Add comment</div><br>
             <br>
         </c:forEach>
         <textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea><br>
@@ -41,9 +41,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
     <script>
+    	var cm = {};
     	var editors = document.getElementsByClassName("codeMirrorTargetEditor");
         for(var i = 0; i < editors.length; i++){
-        	var cm = CodeMirror.fromTextArea(editors.item(i),{
+        	cm[i] = CodeMirror.fromTextArea(editors.item(i),{
         		mode: "text/x-java",
                 lineNumbers: true,
                 lineWrapping: true,
@@ -53,7 +54,7 @@
 
         var btn = document.getElementById('commentBtn');
         btn.addEventListener('click', function () {
-            var commentTextArea = document.getElementById('commentEditor');
+            var commentTextArea = document.getElementsByClassName('commentEditor');
 
             var widget = document.createElement("DIV"); // Create a <p> element
             widget.setAttribute("style", "margin: 4px 8px;height:30px; background-color: rgb(0, 255, 179);");
@@ -62,14 +63,18 @@
             console.log(contentText)
             widget.appendChild(contentText); // Append the text to <p>
             
-           	/* console.log(cm.getCursor().line);
+           	console.log(cm[0].getCursor().line);
            	console.log(cm[1].getCursor().line);
+           	console.log(cm[2].getCursor().line);
            	debugger;
-           	 */
+           	 
            	 
             for(var i = 0; i < editors.length; i++){
-            	//if(editors[i].getCursor().line)
-            		cm.addLineWidget(cm.getCursor().line, widget); // 에디터 파싱 해결...
+            	if(cm[i].getCursor().line !== 0){
+            		cm[i].addLineWidget(cm[i].getCursor().line, widget); // 에디터 파싱 해결...
+            		cm[i].focus()
+            		cm[i].setCursor(0,0);
+            	}
             }
         });
 
