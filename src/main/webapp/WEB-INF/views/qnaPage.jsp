@@ -6,14 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>TestPage</title>
-<style>
-#content{
-	border : 3px solid black;
-}
-
-</style>
 <link rel="stylesheet" href="resources/prism/prism.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
+<style>
+	#content{
+		border : 3px solid black;
+		position: relative;
+	}
+
+</style>
 </head>
 <body>
 	<h1>TEST QnA PAGE</h1><br><br><br>
