@@ -7,15 +7,20 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
 import kr.ac.ks.webproject.dto.Answer;
+import kr.ac.ks.webproject.dto.AnswerCode;
 
 public class DaoTest {
 	public static void main(String[] args) {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		
-		AnswerDao answerDao = ac.getBean(AnswerDao.class);
-		QuestionDao questionDao = ac.getBean(QuestionDao.class);
+		AnswerCodeDao answerCodeDao = ac.getBean(AnswerCodeDao.class);
+		AnswerCode answerCode = new AnswerCode();
+		answerCode.setAnswerId((long)46);
+		answerCode.setContent("코오옹오오오오오오오오드");
 		
-		System.out.println(questionDao.selectCount());
+		Long id = answerCodeDao.insert(answerCode);
+		System.out.println(id);
+		System.out.println(answerCodeDao.selectAnswerCodes((long)46));
 		
 		/*Answer answer = new Answer();
 		

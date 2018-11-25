@@ -30,8 +30,8 @@
     <h1>AnswerRegister TEST </h1>
 
     <c:forEach items="${codes}" var="code" varStatus="status">
-        <button type="button" class="btn btn-info btn-lg codeBtn" data-toggle="modal" data-target="#myModal${status.count}">Open
-            Modal</button><br>
+        <button type="button" class="btn btn-info btn-lg codeBtn" data-toggle="modal" data-target="#myModal${status.count}" style="margin:10px;">Open
+            코드 ${status.count}</button><br>
     </c:forEach>
     
     <div class="code_box">
@@ -68,6 +68,8 @@
 
         <br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>
     </form>
+    
+    <form method="post" action="">
     <br>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>

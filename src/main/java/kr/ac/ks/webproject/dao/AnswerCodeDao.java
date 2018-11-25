@@ -1,6 +1,7 @@
 package kr.ac.ks.webproject.dao;
 
-import static kr.ac.ks.webproject.sqls.AnswerDaoSqls.*;
+import static kr.ac.ks.webproject.sqls.AnswerCodeDaoSqls.*;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,37 +17,30 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import kr.ac.ks.webproject.dto.Answer;
+import kr.ac.ks.webproject.dto.AnswerCode;
 
 @Repository
-public class AnswerDao {
+public class AnswerCodeDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
-	private RowMapper<Answer> rowMapper = BeanPropertyRowMapper.newInstance(Answer.class);
-
-	public AnswerDao(DataSource dataSource) {
+	private RowMapper<AnswerCode> rowMapper = BeanPropertyRowMapper.newInstance(AnswerCode.class);
+	
+	public AnswerCodeDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("answer").usingGeneratedKeyColumns("id");
-	}
-
-	public Long insert(Answer answer) {
-		SqlParameterSource params = new BeanPropertySqlParameterSource(answer);
-		return insertAction.executeAndReturnKey(params).longValue();
-	}
-
-	public List<Answer> selectAnswers(Long questionId) {
-		Map<String, Long> params = new HashMap<>();
-
-		params.put("questionId", questionId);
-
-		return jdbc.query(SELECT_ANSWERS_BY_QUESTION_ID, params, rowMapper);
+		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("answer_code").usingGeneratedKeyColumns("id");
 	}
 	
-	public Answer selectOneAnswer(Long answerId) {
+	public Long insert(AnswerCode answerCode) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(answerCode);
+		return insertAction.executeAndReturnKey(params).longValue();
+	}
+	
+	public List<AnswerCode> selectAnswerCodes(Long answerId) {
 		Map<String, Long> params = new HashMap<>();
 
 		params.put("answerId", answerId);
 
-		return jdbc.queryForObject(SELECT_ONE_ANSWER_BY_ANSWER_ID, params, rowMapper);
+		return jdbc.query(SELECT_ANSWER_CODES_BY_ANSWER_ID, params, rowMapper);
 	}
+
 }

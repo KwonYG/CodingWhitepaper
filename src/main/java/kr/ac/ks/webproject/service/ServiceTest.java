@@ -1,15 +1,10 @@
 package kr.ac.ks.webproject.service;
 
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.Answer;
-import kr.ac.ks.webproject.dto.Question;
-import net.htmlparser.jericho.Element;
-import net.htmlparser.jericho.Source;
+import kr.ac.ks.webproject.dto.AnswerCode;
 
 public class ServiceTest {
 	public static void main(String[] args) {
@@ -31,20 +26,26 @@ public class ServiceTest {
 		}*/
 		// System.out.println(s);
 		
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+/*		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
-		/*QuestionService questionService = ac.getBean(QuestionService.class);
-		Question q = questionService.getOneQuestion((long) 6);
+		QuestionService questionService = ac.getBean(QuestionService.class);
+		Question q = questionService.getOneQuestion((long) 18);
 		
-		System.out.println(q);*/
-		
-		AnswerService answerService = ac.getBean(AnswerService.class);
+		System.out.println(q.getAnswerList());
+		*/
+		/*AnswerService answerService = ac.getBean(AnswerService.class);
 		List<Answer> answerList = answerService.getAnswers((long)30);
 		
 		for(Answer answer : answerList) {
 			System.out.print(answer.getContent());
 			System.out.println("end!!!");
 			System.out.println("============================================================");
-		}
+		}*/
+		
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		AnswerCodeService answerCodeService = ac.getBean(AnswerCodeService.class);
+		
+	
+
 	}
 }

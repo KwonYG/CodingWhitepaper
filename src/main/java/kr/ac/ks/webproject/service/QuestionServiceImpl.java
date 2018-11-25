@@ -27,6 +27,7 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionList;
 	}
 
+	//여기 메소드를 참고해서 답변별 코드 내용 출력 작성
 	@Override
 	@Transactional
 	public Question getOneQuestion(Long questionId) {

@@ -1,6 +1,7 @@
 package kr.ac.ks.webproject.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Answer {
 	private Long id;
@@ -9,6 +10,8 @@ public class Answer {
 	private Date createDate;
 	private String userName;
 	private String userEmail;
+	
+	private List<AnswerCode> codeList;
 
 	public Long getId() {
 		return id;
@@ -58,10 +61,18 @@ public class Answer {
 		this.userEmail = userEmail;
 	}
 
+	public List<AnswerCode> getCodeList() {
+		return codeList;
+	}
+
+	public void setCodeList(List<AnswerCode> codeList) {
+		this.codeList = codeList;
+	}
+
 	@Override
 	public String toString() {
 		return "Answer [id=" + id + ", content=" + content + ", questionId=" + questionId + ", createDate=" + createDate
-				+ ", userName=" + userName + ", userEmail=" + userEmail + "]";
+				+ ", userName=" + userName + ", userEmail=" + userEmail + ", codeList=" + codeList + "]";
 	}
 
 }

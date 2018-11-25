@@ -1,4 +1,4 @@
-drop table if exists code;
+drop table if exists answer_code;
 drop table if exists answer;
 drop table if exists service_group_answer;
 drop table if exists question;
@@ -35,6 +35,7 @@ CREATE TABLE `question` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+
 -- -----------------------------------------------------
 -- Table `answer`
 -- -----------------------------------------------------
@@ -48,4 +49,16 @@ CREATE TABLE `answer` (
   `user_email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`question_id`) REFERENCES `question` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- -----------------------------------------------------
+-- Table `answer_code`
+-- -----------------------------------------------------
+
+CREATE TABLE `answer_code` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text NOT NULL,
+  `answer_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
