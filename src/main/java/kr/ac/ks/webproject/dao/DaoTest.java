@@ -1,12 +1,9 @@
 package kr.ac.ks.webproject.dao;
 
-import java.util.Date;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.Answer;
 import kr.ac.ks.webproject.dto.AnswerCode;
 
 public class DaoTest {

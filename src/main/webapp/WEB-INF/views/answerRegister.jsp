@@ -21,8 +21,8 @@
 		.CodeMirror {
 					  border: 1px solid #eee;
 					  height: auto;
-					  
-				}					
+				}
+		
 	</style>
 </head>
 
@@ -72,17 +72,25 @@
     <form method="post" action="">
     <br>
 
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/display/autorefresh.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/selection/active-line.js"></script>
+    
     <script>
         var cm = {};
         var editors = document.getElementsByClassName("codeMirrorTargetEditor");
         for (var i = 0; i < editors.length; i++) {
             cm[i] = CodeMirror.fromTextArea(editors.item(i), {
                 mode: "text/x-java",
+                styleActiveLine: true,
                 lineNumbers: true,
                 lineWrapping: true,
                 readOnly: true,
-                autoRefresh:true
+                autoRefresh:true,
+                lineWrapping: true,
+                styleActiveLine: true,
+                styleActiveSelected: true
             });
         }
 
@@ -93,13 +101,17 @@
                 commentEvent();
             }
         }, false);
-
+        
+        
+		// 댓글 등록 이벤트
         var commentEvent = function () {
             var commentTextArea = document.getElementsByClassName('commentEditor');
 
+            // 댓글 위젯 생성
             var widget = document.createElement("DIV"); // Create a <p> element
             widget.setAttribute("style", "margin: 4px 8px;height:30px; background-color: rgb(0, 255, 179);");
 
+            //댓글 위젯 생성
             for (var i = 0; i < commentTextArea.length; i++) {
                 if (commentTextArea[i].value != "") {
                     var contentText = document.createTextNode(commentTextArea[i].value); // Create a text node
@@ -109,6 +121,7 @@
                 }
             }
 
+            // 댓글 부착
             for (var i = 0; i < editors.length; i++) {
                 if (cm[i].getCursor().line !== 0) {
                     cm[i].addLineWidget(cm[i].getCursor().line, widget); // 에디터 파싱 해결...
@@ -126,15 +139,6 @@
             el.appendChild(content[0]);
             document.getElementById("postTextArea").value = el.innerHTML.trim();
         };
-        
-        //코드미러 리프레쉬
-        var codeBtn = document.querySelector('.codeBtn');
-        codeBtn.addEventListener('click',function(){
-        	for (var i = 0; i < editors.length; i++) {
-                cm[i].refresh();
-            }
-        });
-        
         
     </script>
 </body>
