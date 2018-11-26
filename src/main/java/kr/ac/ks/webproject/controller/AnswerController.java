@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.ks.webproject.dto.Answer;
 import kr.ac.ks.webproject.dto.Question;
+import kr.ac.ks.webproject.service.AnswerCodeService;
 import kr.ac.ks.webproject.service.AnswerService;
 import kr.ac.ks.webproject.service.QuestionService;
 import net.htmlparser.jericho.Element;
@@ -25,6 +26,8 @@ public class AnswerController {
 	@Autowired
 	AnswerService answerService;
 
+	@Autowired
+	AnswerCodeService answerCodeService;
 	@GetMapping(path = "/aregister")
 	public String getRegisterForm(@RequestParam(name = "id", required = true) int questionId, Model model) {
 		
@@ -43,7 +46,20 @@ public class AnswerController {
 
 	@PostMapping(path = "/writeanswer")
 	public String postAnswer(@RequestParam(name = "id") int questionId, @ModelAttribute Answer answer) {
-		answerService.addAnswer(answer, (long) questionId);
+		Answer tempAnswer = answerService.addAnswer(answer, (long) questionId);
+		System.out.println(tempAnswer.getId());
+		//answerService.getOneAnswer(answer.getId());
+		
+		String answerContent = tempAnswer.getContent();
+		Source source = new Source(answerContent);
+		List<Element> codes = source.getAllElementsByClass("cm-s-default");
+		System.out.println("size : " + codes.size());
+		
+		//여기서 문제 발생
+		for(int i = 0; i < codes.size(); i++) {
+			answerCodeService.addAnswerCode(codes.get(i).toString(), tempAnswer.getId());
+		}
+		
 		return "redirect:question?id=" + questionId;
 	}
 }

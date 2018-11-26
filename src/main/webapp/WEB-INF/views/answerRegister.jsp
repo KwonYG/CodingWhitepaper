@@ -102,6 +102,15 @@
             }
         }, false);
         
+        //node를 문자열로 변환
+        var nodeToString = function(node) {
+        	   var tmpNode = document.createElement( "div" );
+        	   tmpNode.appendChild( node.cloneNode( true ) );
+        	   var str = tmpNode.innerHTML;
+        	   tmpNode = node = null;
+        	   return str;
+        	}
+        
         
 		// 댓글 등록 이벤트
         var commentEvent = function () {
@@ -133,11 +142,19 @@
 
         // Answer 내용 파싱
         var parsingContent = function () {
-            var el = document.createElement("div");
-            var content = document.getElementsByClassName('cm-s-default');
+            var temp = document.createElement("div");
+            var postContent = document.createElement("div");
+            
+            var codes = document.getElementsByClassName('cm-s-default');
+            console.log(codes.length);
 
-            el.appendChild(content[0]);
-            document.getElementById("postTextArea").value = el.innerHTML.trim();
+            var codesLength = codes.length;
+            for(var i = 0; i < codesLength; i++){
+            	document.getElementById("postTextArea").value += nodeToString(codes[i]);
+            }
+            console.log(document.getElementById("postTextArea").value); // 반드시 클릭해야 파싱이됨. 어떻게 해결할지 고민
+            debugger;
+            //document.getElementById("postTextArea").value = temp.innerHTML.trim();
         };
         
     </script>

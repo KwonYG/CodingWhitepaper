@@ -1,14 +1,15 @@
 package kr.ac.ks.webproject.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kr.ac.ks.webproject.dao.AnswerCodeDao;
 import kr.ac.ks.webproject.dao.AnswerDao;
 import kr.ac.ks.webproject.dto.AnswerCode;
 
+@Service
 public class AnserCodeServiceImpl implements AnswerCodeService {
 
 	@Autowired
@@ -26,14 +27,14 @@ public class AnserCodeServiceImpl implements AnswerCodeService {
 
 	//여기까지함
 	@Override
-	public AnswerCode addAnswerCode(AnswerCode answerCode, Long answerId) {
-		
+	public AnswerCode addAnswerCode(String answerCodeContent, Long answerId) {
+		AnswerCode answerCode = new AnswerCode();
 		answerCode.setAnswerId(answerId);
+		answerCode.setContent(answerCodeContent);
 		Long id = answerCodeDao.insert(answerCode);
 		answerCode.setId(id);
 
 		return answerCode;
-		
 	}
 
 }

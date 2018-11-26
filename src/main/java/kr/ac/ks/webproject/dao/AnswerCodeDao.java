@@ -2,7 +2,6 @@ package kr.ac.ks.webproject.dao;
 
 import static kr.ac.ks.webproject.sqls.AnswerCodeDaoSqls.*;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,17 +23,17 @@ public class AnswerCodeDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
 	private RowMapper<AnswerCode> rowMapper = BeanPropertyRowMapper.newInstance(AnswerCode.class);
-	
+
 	public AnswerCodeDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("answer_code").usingGeneratedKeyColumns("id");
 	}
-	
+
 	public Long insert(AnswerCode answerCode) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(answerCode);
 		return insertAction.executeAndReturnKey(params).longValue();
 	}
-	
+
 	public List<AnswerCode> selectAnswerCodes(Long answerId) {
 		Map<String, Long> params = new HashMap<>();
 

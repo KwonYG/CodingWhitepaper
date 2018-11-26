@@ -29,7 +29,7 @@ CREATE TABLE `service_user` (
 CREATE TABLE `question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `content` text,
+  `content` longtext,
   `user_id` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -42,7 +42,7 @@ CREATE TABLE `question` (
 
 CREATE TABLE `answer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content` text NOT NULL,
+  `content` longtext  NOT NULL,
   `question_id` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   `user_name` varchar(255) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `answer` (
 
 CREATE TABLE `answer_code` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content` text NOT NULL,
+  `content` longtext NOT NULL,
   `answer_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`)

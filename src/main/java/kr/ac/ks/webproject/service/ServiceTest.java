@@ -1,9 +1,12 @@
 package kr.ac.ks.webproject.service;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
+import kr.ac.ks.webproject.dto.Answer;
 import kr.ac.ks.webproject.dto.AnswerCode;
 
 public class ServiceTest {
@@ -41,11 +44,33 @@ public class ServiceTest {
 			System.out.println("end!!!");
 			System.out.println("============================================================");
 		}*/
+		/*
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		AnswerService answerService = ac.getBean(AnswerService.class);
+		
+		Answer answer = answerService.getOneAnswer((long)109);
+		
+		String answerContent = answer.getContent();
+		Source source = new Source(answerContent);
+		List<Element> codes = source.getAllElementsByClass("cm-s-default");
+		System.out.println("size : " + codes.size());
+		
+		for(int i = 0; i < codes.size(); i++) {
+			System.out.print(codes.get(i).getContent().toString());
+			System.out.println("end!!!");
+			System.out.println("============================================================");
+		}*/
 		
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		AnswerCodeService answerCodeService = ac.getBean(AnswerCodeService.class);
+		AnswerService answerService = ac.getBean(AnswerService.class);
 		
-	
-
+		Answer answer = answerService.getOneAnswer((long)108);
+		
+		List<AnswerCode> list = answer.getCodeList();
+		for(AnswerCode code: list) {
+			System.out.print(code.getContent());
+			System.out.println("end!!!");
+			System.out.println("============================================================");
+		}
 	}
 }
