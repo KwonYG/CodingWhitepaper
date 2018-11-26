@@ -16,11 +16,13 @@ drop table if exists topic_comment;
 
 CREATE TABLE `service_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `service_id` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
 -- Table `question`
@@ -34,7 +36,7 @@ CREATE TABLE `question` (
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
 -- Table `answer`
@@ -49,7 +51,7 @@ CREATE TABLE `answer` (
   `user_email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`question_id`) REFERENCES `question` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
 -- Table `answer_code`
@@ -61,4 +63,4 @@ CREATE TABLE `answer_code` (
   `answer_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

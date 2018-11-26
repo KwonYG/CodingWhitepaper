@@ -18,10 +18,10 @@
             <a class="nav-link active" href="#">BOARD</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" style="color: white">Link</a>
+            <a class="nav-link" href="loginForm" style="color: white">로그인</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="#" style="color: white">Disabled</a>
+            <a class="nav-link " href="joinForm" style="color: white">회원가입</a>
         </li>
     </ul>
 </nav>

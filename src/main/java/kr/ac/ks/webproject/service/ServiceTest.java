@@ -1,13 +1,10 @@
 package kr.ac.ks.webproject.service;
 
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.Answer;
-import kr.ac.ks.webproject.dto.AnswerCode;
+import kr.ac.ks.webproject.dto.ServiceUser;
 
 public class ServiceTest {
 	public static void main(String[] args) {
@@ -62,6 +59,12 @@ public class ServiceTest {
 		}*/
 		
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		UserService userService = ac.getBean(UserService.class);
+		
+		ServiceUser user = userService.getOneUser("fdsafa");
+		
+		System.out.println(user);
+		/*ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		AnswerService answerService = ac.getBean(AnswerService.class);
 		
 		Answer answer = answerService.getOneAnswer((long)108);
@@ -71,6 +74,6 @@ public class ServiceTest {
 			System.out.print(code.getContent());
 			System.out.println("end!!!");
 			System.out.println("============================================================");
-		}
+		}*/
 	}
 }

@@ -4,13 +4,18 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.AnswerCode;
+import kr.ac.ks.webproject.dto.ServiceUser;
 
 public class DaoTest {
 	public static void main(String[] args) {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		UserDao userDao = ac.getBean(UserDao.class);
 		
-		AnswerCodeDao answerCodeDao = ac.getBean(AnswerCodeDao.class);
+		ServiceUser user = userDao.selectOneUserByServiceId("feafa");
+		System.out.println(user);
+		
+		
+		/*AnswerCodeDao answerCodeDao = ac.getBean(AnswerCodeDao.class);
 		AnswerCode answerCode = new AnswerCode();
 		answerCode.setAnswerId((long)46);
 		answerCode.setContent("코오옹오오오오오오오오드");
@@ -18,7 +23,7 @@ public class DaoTest {
 		Long id = answerCodeDao.insert(answerCode);
 		System.out.println(id);
 		System.out.println(answerCodeDao.selectAnswerCodes((long)46));
-		
+		*/
 		/*Answer answer = new Answer();
 		
 		answer.setUserName("정영훈");

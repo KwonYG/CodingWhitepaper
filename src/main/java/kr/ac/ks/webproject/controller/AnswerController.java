@@ -55,7 +55,6 @@ public class AnswerController {
 		List<Element> codes = source.getAllElementsByClass("cm-s-default");
 		System.out.println("size : " + codes.size());
 		
-		//여기서 문제 발생
 		for(int i = 0; i < codes.size(); i++) {
 			answerCodeService.addAnswerCode(codes.get(i).toString(), tempAnswer.getId());
 		}
