@@ -18,10 +18,24 @@
             <a class="nav-link active" href="#">BOARD</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="loginForm" style="color: white">로그인</a>
+        	<c:choose>
+        		<c:when test="${sessionScope.isUser == 'true'}">
+        			<a class="nav-link" href="logOut" style="color: white">로그아웃</a>
+        		</c:when>
+        		<c:otherwise>
+        			<a class="nav-link" href="loginForm" style="color: white">로그인</a>
+        		</c:otherwise>
+        	</c:choose>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="joinForm" style="color: white">회원가입</a>
+        	<c:choose>
+        		<c:when test="${sessionScope.isUser == 'true'}">
+        			<a class="nav-link" href="" style="color: white">프로필 수정 넣을까?</a>
+        		</c:when>
+        		<c:otherwise>
+            		<a class="nav-link " href="joinForm" style="color: white">회원가입</a>
+        		</c:otherwise>
+        	</c:choose>
         </li>
     </ul>
 </nav>
