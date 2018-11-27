@@ -1,13 +1,13 @@
 drop table if exists answer_code;
 drop table if exists answer;
+drop table if exists code;
 drop table if exists service_group_answer;
 drop table if exists question;
 drop table if exists service_group_question;
-drop table if exists service_user;
 drop table if exists service_group;
+drop table if exists service_user;
 drop table if exists topic_comment;
 drop table if exists topic;
-
 
 
 -- -----------------------------------------------------
@@ -44,13 +44,13 @@ CREATE TABLE `question` (
 
 CREATE TABLE `answer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content` longtext  NOT NULL,
   `question_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content` longtext  NOT NULL,
   `create_date` datetime NOT NULL,
-  `user_name` varchar(255) NOT NULL,
-  `user_email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`question_id`) REFERENCES `question` (`id`)
+  FOREIGN KEY (`question_id`) REFERENCES `question` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------

@@ -5,12 +5,14 @@ import java.util.List;
 
 public class Answer {
 	private Long id;
+	private Long userId;
 	private String content;
 	private Long questionId;
 	private Date createDate;
+
 	private String userName;
 	private String userEmail;
-	
+
 	private List<AnswerCode> codeList;
 
 	public Long getId() {
@@ -19,6 +21,14 @@ public class Answer {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getContent() {
@@ -71,8 +81,9 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer [id=" + id + ", content=" + content + ", questionId=" + questionId + ", createDate=" + createDate
-				+ ", userName=" + userName + ", userEmail=" + userEmail + ", codeList=" + codeList + "]";
+		return "Answer [id=" + id + ", userId=" + userId + ", content=" + content + ", questionId=" + questionId
+				+ ", createDate=" + createDate + ", userName=" + userName + ", userEmail=" + userEmail + ", codeList="
+				+ codeList + "]";
 	}
 
 }

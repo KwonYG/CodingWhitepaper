@@ -15,5 +15,7 @@
         
         <br> <input type="submit" value="로그인">
     </form>
+    <br>
+    ${failMessage}
 </body>
 </html>

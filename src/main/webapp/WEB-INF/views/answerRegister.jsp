@@ -61,9 +61,6 @@
 
 
     <form method="post" action="writeanswer?id=${param.id}">
-        name : <input type="text" name="userName"><br>
-        email : <input type="text" name="userEmail"><br>
-
         <textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea><br>
 
         <br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>

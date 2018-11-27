@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ac.ks.webproject.config.HttpSessionUtils;
 import kr.ac.ks.webproject.dto.ServiceUser;
@@ -23,15 +24,17 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(String serviceId, String password, HttpSession session) {
+	public String login(String serviceId, String password, HttpSession session, RedirectAttributes redirectAttr) {
 		ServiceUser user = userService.getOneUser(serviceId);
 
 		if (user == null) {
+			redirectAttr.addFlashAttribute("failMessage", "아이가 존재하지 않습니다.");
 			System.out.println("존재하지 않는 아이디");
 			return "redirect:/loginForm";
 		}
 
 		if (!user.isMatchPassword(password)) {
+			redirectAttr.addFlashAttribute("failMessage", "암호가 틀렸습니다.");
 			System.out.println("비밀번호 틀림");
 			return "redirect:/loginForm";
 		}

@@ -8,5 +8,5 @@ import kr.ac.ks.webproject.dto.Question;
 public interface AnswerService {
 	public List<Answer> getAnswers(Long questionId);
 	public Answer getOneAnswer(Long answerId);
-	public Answer addAnswer(Answer answer, Long questionId);
+	public Answer addAnswer(Answer answer, Long questionId, Long userId);
 }

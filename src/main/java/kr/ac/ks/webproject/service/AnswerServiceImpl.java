@@ -37,9 +37,10 @@ public class AnswerServiceImpl implements AnswerService {
 	
 	@Override
 	@Transactional(readOnly = false)
-	public Answer addAnswer(Answer answer, Long questionId) {
+	public Answer addAnswer(Answer answer, Long questionId , Long userId) {
 		answer.setCreateDate(new Date());
 		answer.setQuestionId(questionId);
+		answer.setUserId(userId);
 		Long id = answerDao.insert(answer);
 		answer.setId(id);
 
