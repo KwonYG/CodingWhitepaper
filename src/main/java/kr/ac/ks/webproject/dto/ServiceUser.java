@@ -17,6 +17,13 @@ public class ServiceUser {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public boolean isMatchPassword(String newPassword) {
+		if(newPassword == null)
+			return false;
+		
+		return newPassword.equals(this.password);
+	}
 
 	public String getServiceId() {
 		return serviceId;

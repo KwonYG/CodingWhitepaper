@@ -3,7 +3,7 @@ package kr.ac.ks.webproject.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.ac.ks.webproject.config.HttpSessionUtils;
 import kr.ac.ks.webproject.dto.Answer;
 import kr.ac.ks.webproject.dto.Question;
 import kr.ac.ks.webproject.dto.ServiceUser;
@@ -69,28 +70,35 @@ public class QuestionController {
 	}
 
 	@GetMapping(path = "/qregister")
-	public String getRegisterForm() {
+	public String getRegisterForm(HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return "loginForm";
+		}
+
 		return "questionRegister";
 	}
 
 	@PostMapping(path = "/writequestion")
-	public String postQuestion(@ModelAttribute Question question, @ModelAttribute ServiceUser user,
-			HttpServletRequest request) {
+	public String postQuestion(@ModelAttribute Question question, HttpSession session) {
 		/* String clientIp = request.getRemoteAddr(); */
 		// ip 뽑아오는 코드, 사용여부는 의논
 		// user 부분 현재 DB 다시 고민
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return "loginForm";
+		}
+		
+		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
 
-		userService.addUser(user);
 		questionService.addQuestion(question, user.getId());
 
 		return "redirect:list";
 	}
-	
-	@GetMapping(path="/update") // 수정기능
+
+	@GetMapping(path = "/update") // 수정기능, 미완
 	public String getUpdateEditor(@RequestParam(name = "id", required = true) Long questionId, ModelMap model) {
 		Question question = questionService.getOneQuestion(questionId);
-		model.addAttribute("question",question);
-		
+		model.addAttribute("question", question);
+
 		return "questionUpdate";
 	}
 

@@ -11,8 +11,6 @@
 	<h1>QuestionRegister TEST </h1>
 	
 	<form method="post" action="writequestion">
-        name : <input type="text" name="name"><br>
-        email : <input type="text" name="email"><br>
         title : <input type="text" name="title"><br>
         <textarea name="content" id="content" cols="60" rows="6"></textarea>
         <br> <input type="submit" value="등록">
