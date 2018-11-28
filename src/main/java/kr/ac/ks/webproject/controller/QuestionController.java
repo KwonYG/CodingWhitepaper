@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.ks.webproject.config.HttpSessionUtils;
 import kr.ac.ks.webproject.dto.Answer;
+import kr.ac.ks.webproject.dto.AnswerCode;
 import kr.ac.ks.webproject.dto.Question;
 import kr.ac.ks.webproject.dto.ServiceUser;
+import kr.ac.ks.webproject.service.AnswerCodeService;
 import kr.ac.ks.webproject.service.AnswerService;
 import kr.ac.ks.webproject.service.QuestionService;
 import kr.ac.ks.webproject.service.UserService;
@@ -32,6 +34,9 @@ public class QuestionController {
 
 	@Autowired
 	AnswerService answerService;
+	
+	@Autowired
+	AnswerCodeService answerCodeService;
 
 	@GetMapping(path = "/list")
 	public String questionList(@RequestParam(name = "start", required = false, defaultValue = "0") int start,
@@ -62,11 +67,14 @@ public class QuestionController {
 
 		Question question = questionService.getOneQuestion(questionId);
 		List<Answer> answerList = answerService.getAnswers(questionId);
+		
+		//answer ID를 가져올 방안 모색
+		//List<AnswerCode> codeList = answerCodeService.getAnswerCodes()
 
 		model.addAttribute("question", question);
 		model.addAttribute("answerList", answerList);
 
-		return "qnaPage";
+		return "qnaPage2";
 	}
 
 	@GetMapping(path = "/qregister")
