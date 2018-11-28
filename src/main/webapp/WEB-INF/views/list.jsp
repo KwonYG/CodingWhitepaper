@@ -23,7 +23,7 @@
         			<a class="nav-link" href="logOut" style="color: white">로그아웃</a>
         		</c:when>
         		<c:otherwise>
-        			<a class="nav-link" href="loginForm" style="color: white">로그인</a>
+        			<a class="nav-link" style="color: white" href="loginForm" data-target="#theModal" data-toggle="modal">로그인</a>
         		</c:otherwise>
         	</c:choose>
         </li>
@@ -82,6 +82,11 @@
         footer
     </footer>
 
+	<div class="modal fade text-center" id="theModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	    </div>
+	  </div>
+	</div>
 </body>
-
 </html>
