@@ -36,6 +36,7 @@ public class UserDao {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("start", start);
 		params.put("limit", limit);
+
 		return jdbc.query(USER_ORDER_BY_QUESTION_COUNT, params, rowMapper);
 	}
 
@@ -43,6 +44,7 @@ public class UserDao {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("start", start);
 		params.put("limit", limit);
+
 		return jdbc.query(USER_ORDER_BY_ANSWER_COUNT, params, rowMapper);
 	}
 

@@ -26,7 +26,8 @@ public class AnswerCodeDao {
 
 	public AnswerCodeDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("answer_code").usingGeneratedKeyColumns("id");
+		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("answer_code")
+				.usingGeneratedKeyColumns("id");
 	}
 
 	public Long insert(AnswerCode answerCode) {

@@ -20,7 +20,7 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Autowired
 	AnswerCodeDao answerCodeDao;
-	
+
 	@Override
 	public List<Answer> getAnswers(Long questionId) {
 		return answerDao.selectAnswers(questionId);
@@ -29,15 +29,15 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public Answer getOneAnswer(Long answerId) {
 		Answer answer = answerDao.selectOneAnswer(answerId);
-		List<AnswerCode> codeList= answerCodeDao.selectAnswerCodes(answerId);
+		List<AnswerCode> codeList = answerCodeDao.selectAnswerCodes(answerId);
 		answer.setCodeList(codeList);
-		
+
 		return answer;
 	}
-	
+
 	@Override
 	@Transactional(readOnly = false)
-	public Answer addAnswer(Answer answer, Long questionId , Long userId) {
+	public Answer addAnswer(Answer answer, Long questionId, Long userId) {
 		answer.setCreateDate(new Date());
 		answer.setQuestionId(questionId);
 		answer.setUserId(userId);

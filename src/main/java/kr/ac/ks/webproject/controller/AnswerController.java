@@ -27,7 +27,7 @@ import net.htmlparser.jericho.Source;
 public class AnswerController {
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	QuestionService questionService;
 
@@ -38,12 +38,13 @@ public class AnswerController {
 	AnswerCodeService answerCodeService;
 
 	@GetMapping(path = "/aregister")
-	public String getRegisterForm(@RequestParam(name = "id", required = true) int questionId, Model model, HttpSession session) {
-		if(!HttpSessionUtils.isLoginUser(session)) {
+	public String getRegisterForm(@RequestParam(name = "id", required = true) int questionId, Model model,
+			HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "loginForm";
 		}
-		
-		//질문에서 코드 가져오는 로직
+
+		// 질문에서 코드 가져오는 로직
 		Question q = questionService.getOneQuestion((long) questionId);
 
 		String questionContent = q.getContent();
@@ -58,19 +59,19 @@ public class AnswerController {
 	}
 
 	@PostMapping(path = "/writeanswer")
-	public String postAnswer(@RequestParam(name = "id") int questionId, @ModelAttribute Answer answer, HttpSession session) {
-		if(!HttpSessionUtils.isLoginUser(session)) {
+	public String postAnswer(@RequestParam(name = "id") int questionId, @ModelAttribute Answer answer,
+			HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "loginForm";
 		}
-		
+
 		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
-		
-		
+
 		Answer tempAnswer = answerService.addAnswer(answer, (long) questionId, user.getId());
 		System.out.println(tempAnswer.getId());
 		// answerService.getOneAnswer(answer.getId());
 
-		//질문 콘텐트에 있는 코드들을 파싱해서 answerCode에 집어넣는다. 이 로직은 왠지 service 로직으로 만들어야할거 같은..
+		// 질문 콘텐트에 있는 코드들을 파싱해서 answerCode에 집어넣는다. 이 로직은 왠지 service 로직으로 만들어야할거 같은..
 		String answerContent = tempAnswer.getContent();
 		Source source = new Source(answerContent);
 		List<Element> codes = source.getAllElementsByClass("cm-s-default");

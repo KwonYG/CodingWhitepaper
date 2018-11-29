@@ -37,6 +37,9 @@
         		</c:otherwise>
         	</c:choose>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="rank" style="color: white">Rank</a>
+        </li>
     </ul>
 </nav>
 

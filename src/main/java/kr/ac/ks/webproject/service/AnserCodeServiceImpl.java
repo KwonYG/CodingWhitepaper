@@ -14,18 +14,18 @@ public class AnserCodeServiceImpl implements AnswerCodeService {
 
 	@Autowired
 	AnswerDao answerDao;
-	
+
 	@Autowired
 	AnswerCodeDao answerCodeDao;
-	
+
 	@Override
 	public List<AnswerCode> getAnswerCodes(Long answerId) {
 		List<AnswerCode> codeList = answerCodeDao.selectAnswerCodes(answerId);
-		
+
 		return codeList;
 	}
 
-	//여기까지함
+	// 여기까지함
 	@Override
 	public AnswerCode addAnswerCode(String answerCodeContent, Long answerId) {
 		AnswerCode answerCode = new AnswerCode();

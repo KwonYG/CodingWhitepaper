@@ -13,60 +13,50 @@ public class DaoTest {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		
 		UserDao userDao = ac.getBean(UserDao.class);	
+		
+/*
+		ServiceUser user = new ServiceUser((long) 1, "jkljkl1", "1234", "사람 1", "abc@gmail.com", 321,424, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 2, "jkljkl2", "1234", "사람 1", "abc@gmail.com", 23,4, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 3, "jkljkl3", "1234", "사람 2", "abc@gmail.com", 2212,44, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 4, "jkljkl4", "1234", "사람 3", "abc@gmail.com", 64,43, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 5, "jkljkl5", "1234", "사람 4", "abc@gmail.com", 34,1, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 6, "jkljkl6", "1234", "사람 5", "abc@gmail.com", 31,4534, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 7, "jkljkl7", "1234", "사람 6", "abc@gmail.com", 2,44, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 8, "jkljkl8", "1234", "사람 7", "abc@gmail.com", 71,324, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 9, "jkljkl9", "1234", "사람 8", "abc@gmail.com", 31,824, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 10, "jkljkl10", "1234", "사람 9", "abc@gmail.com", 11,54, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 11, "jkljkl11", "1234", "사람 10", "abc@gmail.com", 32,4, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 12, "jkljkl12", "1234", "사람 11", "abc@gmail.com", 77,46, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 13, "jkljkl13", "1234", "사람 12", "abc@gmail.com", 96,44, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 14, "jkljkl14", "1234", "사람 13", "abc@gmail.com", 21,62, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 15, "jkljkl15", "1234", "사람 14", "abc@gmail.com", 1151,324, new Date());
+		userDao.insert(user);
+		user = new ServiceUser((long) 16, "jkljkl16", "1234", "사람 15", "abc@gmail.com", 61,174, new Date());
+		userDao.insert(user);*/
+		
+		
 	
-		List<ServiceUser> list = userDao.selectAllByQuestionCount(0, 4);
+		List<ServiceUser> list = userDao.selectAllByAnswerCount(3,10); // 3위~10위까지, userDao.selectAllByAnswerCount(0,3) 1~3위까지
 		
 		for(ServiceUser user : list) {
 			System.out.println(user);
 		}
 		
-		/*AnswerCodeDao answerCodeDao = ac.getBean(AnswerCodeDao.class);
-		AnswerCode answerCode = new AnswerCode();	
-		answerCode.setAnswerId((long)46);
-		answerCode.setContent("코오옹오오오오오오오오드");
 		
-		Long id = answerCodeDao.insert(answerCode);
-		System.out.println(id);
-		System.out.println(answerCodeDao.selectAnswerCodes((long)46));
-		*/
-		/*Answer answer = new Answer();
-		
-		answer.setUserName("정영훈");
-		answer.setUserEmail("yh@naver.com");
-		answer.setContent("이렇게 고치세요");
-		answer.setQuestionId(4);
-		answer.setCreateDate(new Date());
-		
-		Long id = answerDao.insert(answer);
-		System.out.println(id);*/
-		
-		
-		/*List<Answer> list = answerDao.selectAnswers(3);
-		
-		for(Answer answers : list) {
-			System.out.println(answers);
-		}*/
-		
-		
-		
-		/*List<Question> list = questionDao.selectAll(0, 5);
-		
-		for(Question question : list) {
-			System.out.println(question);
-		}*/
-		
-		/*Question question = questionDao.selectQeustionById(3);
-		
-		System.out.println(question);	//현재 question dto에 이름에 대한 필드이 존재 x	*/
-		
-		/*Question question = new Question();
-		question.setTitle("나도 답변 달아줘요");
-		question.setContent("가르쳐주세요");
-		question.setCreateDate(new Date());
-		question.setUserId(4);
-		Long id = questionDao.insert(question); // 외래키 존재함. 
-		System.out.println("id : " + id);
-		*/
 		/*UserDao userDao = ac.getBean(UserDao.class);
 		
 		ServiceUser user = new ServiceUser();

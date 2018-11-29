@@ -6,8 +6,8 @@ public class UserDaoSqls {
 	
 	public final static String DELETE_USER_BY_USER_ID = "DELETE FROM service_user WHERE id = :userId;";
 	
-	public final static String USER_ORDER_BY_QUESTION_COUNT = "SELECT id, service_id, name, email, question_count, answer_count FROM service_user ORDER BY question_count DESC LIMIT :start, :limit;";
-	public final static String USER_ORDER_BY_ANSWER_COUNT = "SELECT id, service_id, name, email, question_count, answer_count FROM service_user ORDER BY answer_count DESC LIMIT :start, :limit;";
+	public final static String USER_ORDER_BY_QUESTION_COUNT = "SELECT id, service_id, name, email, question_count, answer_count FROM service_user ORDER BY question_count DESC limit :start, :limit;";
+	public final static String USER_ORDER_BY_ANSWER_COUNT = "SELECT id, service_id, name, email, question_count, answer_count FROM service_user ORDER BY answer_count DESC limit :start, :limit;";
 	
 	public final static String UPDATE_QUESTION_COUNT_BY_ID = "UPDATE service_user SET question_count = :count WHERE id = :userId;";
 	public final static String UPDATE_ANSWER_COUNT_BY_ID = "UPDATE service_user SET answer_count = :count WHERE id = :userId;";

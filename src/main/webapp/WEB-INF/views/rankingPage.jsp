@@ -23,13 +23,13 @@
     <nav>
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link active" href="#">MAIN</a>
+                <a class="nav-link active" href="list">MAIN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Q&A</a>
+                <a class="nav-link" href="list">Q&A</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Rank</a>
+                <a class="nav-link" href="rank">Rank</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">OTHER</a>
@@ -38,14 +38,13 @@
     </nav>
 
     <hr>
-
-
+    
     <section>
         <h2>Ranking</h2>
         <article>
             <div class="winner">
                 <div style="font-size: 14px">
-                    <img src="person1.png">
+                    <img src="resources/img/person1.png">
                     ${winner.serviceId}<br>
                     ${winner.name}
                 </div>
@@ -55,7 +54,7 @@
             <c:forEach items="${secondToThird}" var="semiWinner">
                 <div class="bord1">
                     <div style="font-size: 14px">
-                        <img src="person1.png">
+                        <img src="resources/img/person1.png">
                         ${semiWinner.serviceId }<br>
                         ${semiWinner.name }
                     </div>
@@ -66,7 +65,7 @@
             <c:forEach items="${restRankers}" var="rest">
                 <div class="bord2">
                     <div style="font-size: 14px">
-                        <img src="person1.png">
+                        <img src="resources/img/person1.png">
                         ${rest.serviceId }<br>
                         ${rest.name }
                     </div>

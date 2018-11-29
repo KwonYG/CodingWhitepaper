@@ -1,6 +1,7 @@
 package kr.ac.ks.webproject.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,8 +57,18 @@ public class UserServiceImpl implements UserService {
 	public int plusAnswerCount(long userId) {
 		int answerCount = userDao.selectOneUserByUserId(userId).getAnswerCount();
 		userDao.updateAnswerCountById(userId, answerCount + 1);
-		
+
 		return 1;
+	}
+
+	@Override
+	public List<ServiceUser> getUserByQuestionCount(int start, int limit) {
+		return userDao.selectAllByQuestionCount(start, limit);
+	}
+
+	@Override
+	public List<ServiceUser> getUserByAnswerCount(int start, int limit) {
+		return userDao.selectAllByAnswerCount(start, limit);
 	}
 
 }

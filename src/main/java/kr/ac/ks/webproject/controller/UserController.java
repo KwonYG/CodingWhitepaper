@@ -42,8 +42,8 @@ public class UserController {
 		System.out.println("로그인 성공!");
 
 		session.setAttribute(HttpSessionUtils.USER_LOGIN_STATUS, "true");
-		//여기에 setAttribute로 유저 정보 저장해보기
-		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY,user);
+		// 여기에 setAttribute로 유저 정보 저장해보기
+		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
 
 		return "redirect:/list";
 	}

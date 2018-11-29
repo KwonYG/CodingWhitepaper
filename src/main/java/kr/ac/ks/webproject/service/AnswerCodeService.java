@@ -6,6 +6,6 @@ import kr.ac.ks.webproject.dto.AnswerCode;
 
 public interface AnswerCodeService {
 	public List<AnswerCode> getAnswerCodes(Long answerId);
-	//public Answer getOneAnswerCode(Long questionId);
+	// public Answer getOneAnswerCode(Long questionId);
 	public AnswerCode addAnswerCode(String answerCodeContent, Long answerId);
 }

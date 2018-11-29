@@ -12,6 +12,23 @@ public class ServiceUser {
 	private int answerCount;
 	private Date createDate;
 
+	// 인자가 있는 생성자를 쓸 경우 기본 생성자 필수
+	public ServiceUser() {
+
+	}
+
+	public ServiceUser(Long id, String serviceId, String password, String name, String email, int questionCount,
+			int answerCount, Date createDate) {
+		this.id = id;
+		this.serviceId = serviceId;
+		this.password = password;
+		this.name = name;
+		this.email = email;
+		this.questionCount = questionCount;
+		this.answerCount = answerCount;
+		this.createDate = createDate;
+	}
+
 	public Long getId() {
 		return id;
 	}

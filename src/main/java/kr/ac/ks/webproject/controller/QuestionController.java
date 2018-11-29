@@ -34,7 +34,7 @@ public class QuestionController {
 
 	@Autowired
 	AnswerService answerService;
-	
+
 	@Autowired
 	AnswerCodeService answerCodeService;
 
@@ -67,9 +67,9 @@ public class QuestionController {
 
 		Question question = questionService.getOneQuestion(questionId);
 		List<Answer> answerList = answerService.getAnswers(questionId);
-		
-		//answer ID를 가져올 방안 모색
-		//List<AnswerCode> codeList = answerCodeService.getAnswerCodes()
+
+		// answer ID를 가져올 방안 모색
+		// List<AnswerCode> codeList = answerCodeService.getAnswerCodes()
 
 		model.addAttribute("question", question);
 		model.addAttribute("answerList", answerList);
@@ -94,7 +94,7 @@ public class QuestionController {
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "loginForm";
 		}
-		
+
 		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
 
 		questionService.addQuestion(question, user.getId());

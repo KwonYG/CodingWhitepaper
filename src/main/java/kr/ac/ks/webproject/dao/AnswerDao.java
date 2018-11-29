@@ -41,7 +41,7 @@ public class AnswerDao {
 
 		return jdbc.query(SELECT_ANSWERS_BY_QUESTION_ID, params, rowMapper);
 	}
-	
+
 	public Answer selectOneAnswer(Long answerId) {
 		Map<String, Long> params = new HashMap<>();
 
