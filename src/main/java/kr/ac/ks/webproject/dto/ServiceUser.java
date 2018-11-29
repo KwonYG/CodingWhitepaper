@@ -8,6 +8,8 @@ public class ServiceUser {
 	private String password;
 	private String name;
 	private String email;
+	private int questionCount;
+	private int answerCount;
 	private Date createDate;
 
 	public Long getId() {
@@ -17,11 +19,11 @@ public class ServiceUser {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public boolean isMatchPassword(String newPassword) {
-		if(newPassword == null)
+		if (newPassword == null)
 			return false;
-		
+
 		return newPassword.equals(this.password);
 	}
 
@@ -57,6 +59,22 @@ public class ServiceUser {
 		this.email = email;
 	}
 
+	public int getQuestionCount() {
+		return questionCount;
+	}
+
+	public void setQuestionCount(int questionCount) {
+		this.questionCount = questionCount;
+	}
+
+	public int getAnswerCount() {
+		return answerCount;
+	}
+
+	public void setAnswerCount(int answerCount) {
+		this.answerCount = answerCount;
+	}
+
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -68,7 +86,8 @@ public class ServiceUser {
 	@Override
 	public String toString() {
 		return "ServiceUser [id=" + id + ", serviceId=" + serviceId + ", password=" + password + ", name=" + name
-				+ ", email=" + email + ", createDate=" + createDate + "]";
+				+ ", email=" + email + ", questionCount=" + questionCount + ", answerCount=" + answerCount
+				+ ", createDate=" + createDate + "]";
 	}
 
 }

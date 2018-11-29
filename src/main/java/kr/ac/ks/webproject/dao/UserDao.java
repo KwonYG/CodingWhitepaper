@@ -1,7 +1,9 @@
 package kr.ac.ks.webproject.dao;
 
-import static kr.ac.ks.webproject.sqls.UserDaoSqls.SELECT_ONE_USER_BY_SERVICE_ID;
+import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_QUESTION_BY_ID;
+import static kr.ac.ks.webproject.sqls.UserDaoSqls.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,10 +37,22 @@ public class UserDao {
 		return insertAction.executeAndReturnKey(params).longValue();
 	}
 
+	public int deleteById(long userId) {
+		Map<String, ?> params = Collections.singletonMap("userId", userId);
+		return jdbc.update(DELETE_USER_BY_USER_ID, params);
+	}
+
+	public ServiceUser selectOneUserByUserId(Long userId) {
+		Map<String, Long> params = new HashMap<>();
+		params.put("userId", userId);
+
+		return jdbc.queryForObject(SELELCT_ONE_USER_BY_USER_ID, params, rowMapper);
+	}
+
 	public ServiceUser selectOneUserByServiceId(String serviceId) {
 		Map<String, String> params = new HashMap<>();
 		params.put("serviceId", serviceId);
-		
+
 		try {
 			return jdbc.queryForObject(SELECT_ONE_USER_BY_SERVICE_ID, params, rowMapper);
 		} catch (EmptyResultDataAccessException e) {

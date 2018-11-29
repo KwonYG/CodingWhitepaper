@@ -25,10 +25,10 @@ public class UserController {
 
 	@PostMapping("/login")
 	public String login(String serviceId, String password, HttpSession session, RedirectAttributes redirectAttr) {
-		ServiceUser user = userService.getOneUser(serviceId);
+		ServiceUser user = userService.getOneUserByServiceId(serviceId);
 
 		if (user == null) {
-			redirectAttr.addFlashAttribute("failMessage", "아이가 존재하지 않습니다.");
+			redirectAttr.addFlashAttribute("failMessage", "아이디가 존재하지 않습니다.");
 			System.out.println("존재하지 않는 아이디");
 			return "redirect:/loginForm";
 		}

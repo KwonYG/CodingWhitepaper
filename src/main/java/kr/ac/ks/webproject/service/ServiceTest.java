@@ -1,12 +1,10 @@
 package kr.ac.ks.webproject.service;
 
-import java.util.Date;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.Answer;
+import kr.ac.ks.webproject.dto.ServiceUser;
 
 public class ServiceTest {
 	public static void main(String[] args) {
@@ -59,27 +57,13 @@ public class ServiceTest {
 			System.out.println("end!!!");
 			System.out.println("============================================================");
 		}*/
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		UserService userService = ac.getBean(UserService.class);
+		ServiceUser user = userService.getOneUserByUserId((long)7);
 		
-		/*ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		AnswerService answerService = ac.getBean(AnswerService.class);
-		Answer answer = new Answer();
-		answer.setUserId((long)2);
-		answer.setCreateDate(new Date());
-		answer.setContent("저거저거");
-		answerService.addAnswer(answer, (long)1, (long)2);
+		System.out.println("호출 전 : " + user);
+		userService.plusAnswerCount(user);
+		System.out.println("호출 후 : " + user);
 		
-		System.out.println(answerService.getOneAnswer((long)1));
-		*/
-		/*ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		AnswerService answerService = ac.getBean(AnswerService.class);
-		
-		Answer answer = answerService.getOneAnswer((long)108);
-		
-		List<AnswerCode> list = answer.getCodeList();
-		for(AnswerCode code: list) {
-			System.out.print(code.getContent());
-			System.out.println("end!!!");
-			System.out.println("============================================================");
-		}*/
 	}
 }

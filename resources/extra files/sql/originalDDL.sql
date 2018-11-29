@@ -20,6 +20,8 @@ CREATE TABLE `service_user` (
   `password` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `question_count` int(11) DEFAULT '0',
+  `answer_count` int(11) DEFAULT '0',
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

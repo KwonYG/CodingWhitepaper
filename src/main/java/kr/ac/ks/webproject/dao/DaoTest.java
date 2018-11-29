@@ -1,30 +1,22 @@
 package kr.ac.ks.webproject.dao;
 
-import java.util.Date;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.Answer;
-import kr.ac.ks.webproject.dto.Question;
+import kr.ac.ks.webproject.dto.ServiceUser;
 
 public class DaoTest {
 	public static void main(String[] args) {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		
-		AnswerDao answerDao = ac.getBean(AnswerDao.class);
+		UserDao userDao = ac.getBean(UserDao.class);	
+	
+		/*ServiceUser user1 = userDao.selectOneUserByServiceId("jkljkl1793");
+		System.out.println(user1);*/
 		
-		Answer answer = new Answer();
-		
-		answer.setContent("시발시발시발");
-		answer.setQuestionId((long)6);
-		answer.setUserId((long)2);
-		answer.setCreateDate(new Date());
-		long answerId = answerDao.insert(answer);
-		answer.setId(answerId);
-		System.out.println(answerDao.selectOneAnswer(answerId));
-		
+		ServiceUser user2 = userDao.selectOneUserByUserId((long)6);
+		System.out.println(user2);
 		
 		/*AnswerCodeDao answerCodeDao = ac.getBean(AnswerCodeDao.class);
 		AnswerCode answerCode = new AnswerCode();
