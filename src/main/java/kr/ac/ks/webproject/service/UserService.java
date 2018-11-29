@@ -7,6 +7,6 @@ public interface UserService {
 	public int removeUser(Long userId);
 	public ServiceUser getOneUserByUserId(Long userId);
 	public ServiceUser getOneUserByServiceId(String serviceId);
-	public int plusQuestionCount(ServiceUser user);
-	public int plusAnswerCount(ServiceUser user);
+	public int plusQuestionCount(long userId);
+	public int plusAnswerCount(long userId);
 }

@@ -57,13 +57,7 @@ public class ServiceTest {
 			System.out.println("end!!!");
 			System.out.println("============================================================");
 		}*/
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		UserService userService = ac.getBean(UserService.class);
-		ServiceUser user = userService.getOneUserByUserId((long)7);
 		
-		System.out.println("호출 전 : " + user);
-		userService.plusAnswerCount(user);
-		System.out.println("호출 후 : " + user);
 		
 	}
 }

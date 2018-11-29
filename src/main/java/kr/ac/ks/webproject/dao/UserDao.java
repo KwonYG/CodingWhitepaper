@@ -1,10 +1,10 @@
 package kr.ac.ks.webproject.dao;
 
-import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_QUESTION_BY_ID;
 import static kr.ac.ks.webproject.sqls.UserDaoSqls.*;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -32,6 +32,20 @@ public class UserDao {
 				.usingGeneratedKeyColumns("id");
 	}
 
+	public List<ServiceUser> selectAllByQuestionCount(Integer start, Integer limit) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("start", start);
+		params.put("limit", limit);
+		return jdbc.query(USER_ORDER_BY_QUESTION_COUNT, params, rowMapper);
+	}
+
+	public List<ServiceUser> selectAllByAnswerCount(Integer start, Integer limit) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("start", start);
+		params.put("limit", limit);
+		return jdbc.query(USER_ORDER_BY_ANSWER_COUNT, params, rowMapper);
+	}
+
 	public Long insert(ServiceUser serviceUser) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(serviceUser);
 		return insertAction.executeAndReturnKey(params).longValue();
@@ -40,6 +54,22 @@ public class UserDao {
 	public int deleteById(long userId) {
 		Map<String, ?> params = Collections.singletonMap("userId", userId);
 		return jdbc.update(DELETE_USER_BY_USER_ID, params);
+	}
+
+	public int updateQuestionCountById(long userId, int count) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("count", count);
+		params.put("userId", userId);
+
+		return jdbc.update(UPDATE_QUESTION_COUNT_BY_ID, params);
+	}
+
+	public int updateAnswerCountById(long userId, int count) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("count", count);
+		params.put("userId", userId);
+
+		return jdbc.update(UPDATE_ANSWER_COUNT_BY_ID, params);
 	}
 
 	public ServiceUser selectOneUserByUserId(Long userId) {

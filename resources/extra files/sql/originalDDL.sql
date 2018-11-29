@@ -8,8 +8,7 @@ drop table if exists service_group;
 drop table if exists service_user;
 drop table if exists topic_comment;
 drop table if exists topic;
-
-
+  
 -- -----------------------------------------------------
 -- Table `service_user`
 -- -----------------------------------------------------

@@ -44,20 +44,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public int plusQuestionCount(ServiceUser user) {
-		int questionCount = user.getQuestionCount();
-		user.setQuestionCount(questionCount + 1);
-		userDao.deleteById(user.getId());
-		userDao.insert(user);
+	public int plusQuestionCount(long userId) {
+		int questionCount = userDao.selectOneUserByUserId(userId).getQuestionCount();
+		userDao.updateQuestionCountById(userId, questionCount + 1);
+
 		return 1;
 	}
 
 	@Override
-	public int plusAnswerCount(ServiceUser user) {
-		int answerCount = user.getAnswerCount();
-		user.setAnswerCount(answerCount + 1);
-		userDao.deleteById(user.getId());
-		userDao.insert(user);
+	@Transactional
+	public int plusAnswerCount(long userId) {
+		int answerCount = userDao.selectOneUserByUserId(userId).getAnswerCount();
+		userDao.updateAnswerCountById(userId, answerCount + 1);
+		
 		return 1;
 	}
 

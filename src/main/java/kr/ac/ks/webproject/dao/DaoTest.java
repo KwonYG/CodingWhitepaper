@@ -1,5 +1,7 @@
 package kr.ac.ks.webproject.dao;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -12,14 +14,14 @@ public class DaoTest {
 		
 		UserDao userDao = ac.getBean(UserDao.class);	
 	
-		/*ServiceUser user1 = userDao.selectOneUserByServiceId("jkljkl1793");
-		System.out.println(user1);*/
+		List<ServiceUser> list = userDao.selectAllByQuestionCount(0, 4);
 		
-		ServiceUser user2 = userDao.selectOneUserByUserId((long)6);
-		System.out.println(user2);
+		for(ServiceUser user : list) {
+			System.out.println(user);
+		}
 		
 		/*AnswerCodeDao answerCodeDao = ac.getBean(AnswerCodeDao.class);
-		AnswerCode answerCode = new AnswerCode();
+		AnswerCode answerCode = new AnswerCode();	
 		answerCode.setAnswerId((long)46);
 		answerCode.setContent("코오옹오오오오오오오오드");
 		
