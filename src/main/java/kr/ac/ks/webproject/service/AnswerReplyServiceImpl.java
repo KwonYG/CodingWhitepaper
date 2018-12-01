@@ -14,8 +14,8 @@ public class AnswerReplyServiceImpl implements AnswerReplyService {
 	AnswerReplyDao answerReplyDao;
 
 	@Override
-	public List<AnswerReply> getAllAnswerReplies() {
-		return answerReplyDao.selectAllReplies();
+	public List<AnswerReply> getAllAnswerReplies(Long answerId) {
+		return answerReplyDao.selectAllReplies(answerId);
 	}
 
 	@Override

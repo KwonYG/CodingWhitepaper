@@ -57,7 +57,7 @@
                 ${answer.createDate}
             </div>
             <hr>
-            <div><a href="review?id=${answer.id}">리뷰 보러가기</a></div>
+            <div>${answer.content}</div>
         </div>
         </c:forEach>
     </article>

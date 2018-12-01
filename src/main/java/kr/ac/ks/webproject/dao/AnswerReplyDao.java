@@ -35,8 +35,9 @@ public class AnswerReplyDao {
 		return insertAction.executeAndReturnKey(params).longValue();
 	}
 
-	public List<AnswerReply> selectAllReplies() {
+	public List<AnswerReply> selectAllReplies(Long answerId) {
 		Map<String, Long> params = new HashMap<>();
+		params.put("answerId", answerId);
 
 		return jdbc.query(SELECT_ALL_ANSWER_REPLIES, params, rowMapper);
 	}

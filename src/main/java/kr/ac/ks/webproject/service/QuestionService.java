@@ -10,5 +10,4 @@ public interface QuestionService {
 	public Question getOneQuestion(Long questionId);
 	public Question addQuestion(Question question, Long userId);;
 	public int getCount();
-
 }

@@ -51,19 +51,9 @@ public class DaoTest {
 		
 		AnswerReplyDao answerReplyDao = ac.getBean(AnswerReplyDao.class);
 		
-		AnswerReply answerReply = new AnswerReply();
 		
-		answerReply.setId((long)1);
-		answerReply.setAnswerId((long)1);
-		answerReply.setUserId((long)1);
-		answerReply.setContent("다행이네요");
-		answerReply.setCreateDate(new Date());
 		
-		answerReplyDao.insert(answerReply);
-		
-		System.out.println("완료!");
-		
-		List<AnswerReply> list = answerReplyDao.selectAllReplies();
+		List<AnswerReply> list = answerReplyDao.selectAllReplies((long)1);
 		
 		for(AnswerReply answer : list) {
 			System.out.println(answer);

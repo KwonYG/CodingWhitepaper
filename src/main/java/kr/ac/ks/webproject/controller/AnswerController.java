@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -57,11 +58,12 @@ public class AnswerController {
 
 		return "answerRegister";
 	}
-	
-	//리뷰 페이지
-		public String getReviewPage(@RequestParam(name="id", required = true) int answerId, Model model) {
-			return "reviewPage";
-		}
+
+	// 리뷰 페이지
+	@GetMapping(path="/review")
+	public String getReviewPage(@RequestParam(name = "id") Long answerId) {
+		return "reviewPage";
+	}
 
 	@PostMapping(path = "/writeanswer")
 	public String postAnswer(@RequestParam(name = "id") int questionId, @ModelAttribute Answer answer,
@@ -85,8 +87,8 @@ public class AnswerController {
 		for (int i = 0; i < codes.size(); i++) {
 			answerCodeService.addAnswerCode(codes.get(i).toString(), tempAnswer.getId());
 		}
-		
-		//answerCount + 1
+
+		// answerCount + 1
 		userService.plusAnswerCount(user.getId());
 
 		return "redirect:question?id=" + questionId;

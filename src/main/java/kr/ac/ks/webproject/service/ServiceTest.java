@@ -68,14 +68,14 @@ public class ServiceTest {
 		AnswerReply answerReply = new AnswerReply();
 		
 		answerReply.setId((long)1);
-		answerReply.setAnswerId((long)1);
+		answerReply.setAnswerId((long)2);
 		answerReply.setUserId((long)1);
-		answerReply.setContent("키야..");
+		answerReply.setContent("2번 다시 질문..");
 		answerReply.setCreateDate(new Date());
 		
 		answerReplyService.addAnswerReply(answerReply);
 		
-		List<AnswerReply> list = answerReplyService.getAllAnswerReplies();
+		List<AnswerReply> list = answerReplyService.getAllAnswerReplies((long)2);
 		
 		for(AnswerReply answer : list) {
 			System.out.println(answer);

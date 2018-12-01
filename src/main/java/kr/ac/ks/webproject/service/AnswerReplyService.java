@@ -5,6 +5,6 @@ import java.util.List;
 import kr.ac.ks.webproject.dto.AnswerReply;
 
 public interface AnswerReplyService {
-	public List<AnswerReply> getAllAnswerReplies();
+	public List<AnswerReply> getAllAnswerReplies(Long answerId);
 	public Long addAnswerReply(AnswerReply answerReply);
 }
