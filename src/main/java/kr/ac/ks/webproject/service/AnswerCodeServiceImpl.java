@@ -10,7 +10,7 @@ import kr.ac.ks.webproject.dao.AnswerDao;
 import kr.ac.ks.webproject.dto.AnswerCode;
 
 @Service
-public class AnserCodeServiceImpl implements AnswerCodeService {
+public class AnswerCodeServiceImpl implements AnswerCodeService {
 
 	@Autowired
 	AnswerDao answerDao;

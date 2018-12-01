@@ -1,11 +1,13 @@
 package kr.ac.ks.webproject.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
+import kr.ac.ks.webproject.dto.AnswerReply;
 import kr.ac.ks.webproject.dto.ServiceUser;
 
 public class ServiceTest {
@@ -60,5 +62,23 @@ public class ServiceTest {
 			System.out.println("============================================================");
 		}*/
 		
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		AnswerReplyService answerReplyService = ac.getBean(AnswerReplyService.class);
+		
+		AnswerReply answerReply = new AnswerReply();
+		
+		answerReply.setId((long)1);
+		answerReply.setAnswerId((long)1);
+		answerReply.setUserId((long)1);
+		answerReply.setContent("키야..");
+		answerReply.setCreateDate(new Date());
+		
+		answerReplyService.addAnswerReply(answerReply);
+		
+		List<AnswerReply> list = answerReplyService.getAllAnswerReplies();
+		
+		for(AnswerReply answer : list) {
+			System.out.println(answer);
+		}
 	}
 }

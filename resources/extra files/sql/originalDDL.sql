@@ -1,3 +1,4 @@
+drop table if exists answer_reply;
 drop table if exists answer_code;
 drop table if exists answer;
 drop table if exists code;
@@ -64,4 +65,19 @@ CREATE TABLE `answer_code` (
   `answer_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- -----------------------------------------------------
+-- Table `answer_reply`
+-- -----------------------------------------------------
+
+CREATE TABLE `answer_reply` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `answer_id` int(11) NOT NULL,
+  `content` longtext NOT NULL,
+  `create_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

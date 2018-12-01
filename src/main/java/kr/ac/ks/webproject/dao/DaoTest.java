@@ -1,12 +1,13 @@
 package kr.ac.ks.webproject.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.ServiceUser;
+import kr.ac.ks.webproject.dto.AnswerReply;
 
 public class DaoTest {
 	public static void main(String[] args) {
@@ -48,15 +49,25 @@ public class DaoTest {
 		user = new ServiceUser((long) 16, "jkljkl16", "1234", "사람 15", "abc@gmail.com", 61,174, new Date());
 		userDao.insert(user);*/
 		
+		AnswerReplyDao answerReplyDao = ac.getBean(AnswerReplyDao.class);
 		
-	
-		List<ServiceUser> list = userDao.selectAllByAnswerCount(3,10); // 3위~10위까지, userDao.selectAllByAnswerCount(0,3) 1~3위까지
+		AnswerReply answerReply = new AnswerReply();
 		
-		for(ServiceUser user : list) {
-			System.out.println(user);
+		answerReply.setId((long)1);
+		answerReply.setAnswerId((long)1);
+		answerReply.setUserId((long)1);
+		answerReply.setContent("다행이네요");
+		answerReply.setCreateDate(new Date());
+		
+		answerReplyDao.insert(answerReply);
+		
+		System.out.println("완료!");
+		
+		List<AnswerReply> list = answerReplyDao.selectAllReplies();
+		
+		for(AnswerReply answer : list) {
+			System.out.println(answer);
 		}
-		
-		
 		/*UserDao userDao = ac.getBean(UserDao.class);
 		
 		ServiceUser user = new ServiceUser();

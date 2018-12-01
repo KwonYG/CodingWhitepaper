@@ -57,6 +57,11 @@ public class AnswerController {
 
 		return "answerRegister";
 	}
+	
+	//리뷰 페이지
+		public String getReviewPage(@RequestParam(name="id", required = true) int answerId, Model model) {
+			return "reviewPage";
+		}
 
 	@PostMapping(path = "/writeanswer")
 	public String postAnswer(@RequestParam(name = "id") int questionId, @ModelAttribute Answer answer,
@@ -80,6 +85,9 @@ public class AnswerController {
 		for (int i = 0; i < codes.size(); i++) {
 			answerCodeService.addAnswerCode(codes.get(i).toString(), tempAnswer.getId());
 		}
+		
+		//answerCount + 1
+		userService.plusAnswerCount(user.getId());
 
 		return "redirect:question?id=" + questionId;
 	}
