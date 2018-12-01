@@ -20,6 +20,8 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <style>
+    	body{
+    	}
         .active {
             background: lightgrey;
             color: #000;
@@ -62,14 +64,14 @@
 </head>
 
 <body>
-    <center>
+	<center>
         <nav>
             <ul class="nav justify-content-center" style="font-size: 20px; margin: 10px 10px 10px 27px;">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">MAIN</a>
+                    <a class="nav-link" href="list">MAIN</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Q&A</a>
+                    <a class="nav-link" href="list">Q&A</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">OTHER</a>
@@ -81,19 +83,22 @@
         <div class="jumbotron" style="background-color: white; width: 1000px; position:center;  border: solid 2px;">
             <ul class="nav nav-tabs">
                 <li class="nav-item" style="font-size: 50px; position: relative; left: 10%;">
-                    <a href="#" class="nav active" style=" padding: 10px 100px">review</a>
+                    <a href="#" class="nav active" style=" padding: 10px 100px">리뷰</a>
                 <li class="nav-item" style="font-size: 50px; position: relative; left: 20%;">
-                    <a class=" main " href="#" style=" padding: 10px 100px">댓글</a>
+                    <a  href="#" class="nav" style=" padding: 10px 100px">댓글</a>
                 </li>
             </ul>
 
             <section>
-                <article class="content_box">
-
+                <article>
+	                <div class="content_box">
+	                
+	                </div>
                 </article>
             </section>
         </div>
     </center>
+
 
     <script type="teplate" id="review-template">
         <div class="code_box">
@@ -107,7 +112,15 @@
 	</script>
 
     <script type="template" id="reply-template">
-	<div class="reply_box">
+<div class="reply_box">
+	<div class="reply_editor_box">
+		<form method="post" action="" onsubmit="return false;">
+			<textarea class="form-control" rows="5" placeholder="댓글을 입력하세요"></textarea>
+        	<button type="submit" class="btn btn-outline-primary" style="margin:10px;">등록</button>
+		</form>
+    </div>
+
+	<div class="reply_wrap">
         {{#if answerReplies}} {{#each answerReplies}} 
             <div class="bord1 review_reply">
                     <div style="font-size: 14px">
@@ -121,12 +134,13 @@
                 <br>
         {{/each}} {{/if}}
 	</div>
+</div>
       </script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script>
         var replyTemplate = document.querySelector("#reply-template").innerText;
         var bindReplies = Handlebars.compile(replyTemplate); //bindReplies는 메서드다.
@@ -134,6 +148,7 @@
         var reviewTemplate = document.querySelector("#review-template").innerText;
         var bindReviews = Handlebars.compile(reviewTemplate); 
 
+        //리뷰 AJAX
         var sendReviewAjax = function (url) {
             var oReq = new XMLHttpRequest();
             oReq.addEventListener("load", function () {
@@ -147,13 +162,16 @@
             oReq.send();
         }
 
+        // 리뷰 API 가져오기
         var getReviews = function () {
             var urlParams = new URLSearchParams(window.location.search);
             var id = urlParams.get('id');
             console.log(id);
             sendReviewAjax("api/answer/reviewCodes/" + id);
-        }					
+        }		
         
+        
+        // 댓글 AJAX
         var sendReplyAjax = function (url) {
             var oReq = new XMLHttpRequest();
             oReq.addEventListener("load", function () {
@@ -166,13 +184,48 @@
             oReq.send();
         }
 
+        // 댓글 API 불러오기
         var getReplies = function () {
             var urlParams = new URLSearchParams(window.location.search);
             var id = urlParams.get('id');
             console.log(id);
-            sendReplyAjax("api/answer/answerReplies/" + id);
+            sendReplyAjax("api/answer/replies/" + id);
         }
-
+        
+      	// nav active 함수
+        var navActivate = function(clickedTarget) {
+          var tap = clickedTarget;
+          tap.parentNode.setAttribute("class", "nav active");
+        }
+      	
+      	// nav 탭 메뉴 클릭 이벤트
+      	var navTabButton = document.querySelector(".jumbotron");
+      	
+      	navTabButton.addEventListener("click",function(evt){
+      		var target;
+      		document.getElementsByClassName("active")[0].setAttribute("class", "nav");
+      		
+      		if (evt.target.className == "nav-tabs") {
+      	      target = evt.target.firstChild.firstChild;
+      	    } else if (evt.target.className == "nav-item") {
+      	      target = evt.target.firstChild;
+      	    } else if (evt.target.className == "nav") {
+      	      target = evt.target;
+      	    }
+      		
+      		navActivate(target);
+      		
+      		if(target.innerText == "댓글"){
+      			var item = document.getElementsByClassName("code_box");
+      		    item[0].parentNode.removeChild(item[0]);
+          		getReplies();	
+      		}else if(target.innerText == "리뷰"){
+      			var item = document.getElementsByClassName("reply_box");
+      		    item[0].parentNode.removeChild(item[0]);
+      			getReviews();
+      		}
+      	});
+      
         getReviews();
     </script>
 </body>

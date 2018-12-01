@@ -16,34 +16,34 @@ import kr.ac.ks.webproject.service.AnswerCodeService;
 import kr.ac.ks.webproject.service.AnswerReplyService;
 
 @RestController
-@RequestMapping(path="/api/answer")
+@RequestMapping(path = "/api/answer")
 public class AnswerApiController {
-	
+
 	@Autowired
 	private AnswerCodeService AnswerCodeService;
-	
+
 	@Autowired
-	AnswerReplyService answerReplyService;	
-	
-	//코드 리뷰 데이터
+	AnswerReplyService answerReplyService;
+
+	// 코드 리뷰 데이터
 	@GetMapping("/reviewCodes/{answerId}")
-	public Map<String, Object> getAnswerCodes(@PathVariable(name = "answerId") Long answerId){
+	public Map<String, Object> getAnswerCodes(@PathVariable(name = "answerId") Long answerId) {
 		List<AnswerCode> reviewCodeList = AnswerCodeService.getAnswerCodes(answerId);
-		
+
 		Map<String, Object> map = new HashMap<>();
 		map.put("reviewCodes", reviewCodeList);
-		
+
 		return map;
 	}
-	
-	//댓글 데이터
+
+	// 댓글 데이터
 	@GetMapping("/replies/{answerId}")
-	public Map<String, Object> getAnswerReplies(@PathVariable(name="answerId") Long answerId){
+	public Map<String, Object> getAnswerReplies(@PathVariable(name = "answerId") Long answerId) {
 		List<AnswerReply> answerReplyList = answerReplyService.getAllAnswerReplies(answerId);
-		
+
 		Map<String, Object> map = new HashMap<>();
 		map.put("answerReplies", answerReplyList);
-		
+
 		return map;
 	}
 }

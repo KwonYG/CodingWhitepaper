@@ -8,8 +8,8 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,12 +83,12 @@
                 <li class="nav-item" style="font-size: 50px; position: relative; left: 10%;">
                     <a href="#" class="nav active" style=" padding: 10px 100px">review</a>
                 <li class="nav-item" style="font-size: 50px; position: relative; left: 20%;">
-                    <a class=" main " href="#" style=" padding: 10px 100px">댓글</a>
+                    <a  href="#" class="nav" style=" padding: 10px 100px">댓글</a>
                 </li>
             </ul>
 
             <section>
-                <article>
+                <article class="content_box">
 
                 </article>
             </section>
@@ -96,19 +96,18 @@
     </center>
 
     <script type="teplate" id="review-template">
-		<h3 style="text-align: left;">code 1 :</h3>
-{{#if reviewCodes}} 
-	{{#each reviewCodes}}
-		{{content}}
-	{{/each}}
-{{/if}}
         <div class="code_box">
-					
-</div>
+			{{#if reviewCodes}} 
+				{{#each reviewCodes}}
+					<h3 style="text-align: left;">code 1 :</h3>
+					{{content}}
+				{{/each}}	
+			{{/if}}
+		</div>
 	</script>
 
     <script type="template" id="reply-template">
-<div class="reply_box">
+	<div class="reply_box">
         {{#if answerReplies}} {{#each answerReplies}} 
             <div class="bord1 review_reply">
                     <div style="font-size: 14px">
@@ -121,23 +120,47 @@
                 </div>
                 <br>
         {{/each}} {{/if}}
-<div>
+	</div>
       </script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script>
         var replyTemplate = document.querySelector("#reply-template").innerText;
         var bindReplies = Handlebars.compile(replyTemplate); //bindReplies는 메서드다.
+        
+        var reviewTemplate = document.querySelector("#review-template").innerText;
+        var bindReviews = Handlebars.compile(reviewTemplate); 
 
+        var sendReviewAjax = function (url) {
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", function () {
+                var data = JSON.parse(oReq.responseText);
+                console.log(data);
+                resultHTML = bindReviews(data);
+                console.log(resultHTML);
+                document.querySelector('.content_box').insertAdjacentHTML('beforeend', resultHTML);
+            });
+            oReq.open("GET", url);
+            oReq.send();
+        }
+
+        var getReviews = function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var id = urlParams.get('id');
+            console.log(id);
+            sendReviewAjax("api/answer/reviewCodes/" + id);
+        }					
+        
         var sendReplyAjax = function (url) {
             var oReq = new XMLHttpRequest();
             oReq.addEventListener("load", function () {
                 var data = JSON.parse(oReq.responseText);
                 console.log(data);
                 resultHTML = bindReplies(data);
-
+                document.querySelector('.content_box').insertAdjacentHTML('beforeend', resultHTML);
             });
             oReq.open("GET", url);
             oReq.send();
@@ -147,10 +170,33 @@
             var urlParams = new URLSearchParams(window.location.search);
             var id = urlParams.get('id');
             console.log(id);
-            sendReplyAjax("api/answer/reviewCodes/" + id);
+            sendReplyAjax("api/answer/answerReplies/" + id);
         }
-
-        getReplies();
+        
+      	// nav active 함수
+        var navActivate = function(clickedTarget) {
+          var tap = clickedTarget;
+          tap.parentNode.setAttribute("class", "nav active");
+        }
+      	
+      	// nav 탭 메뉴 클릭 이벤트
+      	var navTabButton = document.querySelector(".jumbotron");
+      	
+      	navTabButton.addEventListener("click",function(evt){
+      		document.getElementsByClassName("active")[0].setAttribute("class", "nav");
+      		
+      		if (evt.target.className == "nav-tabs") {
+      	      target = evt.target.firstChild.firstChild;
+      	    } else if (evt.target.className == "nav-item") {
+      	      target = evt.target.firstChild;
+      	    } else if (evt.target.className == "nav") {
+      	      target = evt.target;
+      	    }
+      	});
+      	
+      
+      
+        getReviews();
     </script>
 </body>
 
