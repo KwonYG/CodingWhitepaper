@@ -79,8 +79,6 @@ public class AnswerController {
 		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
 
 		Answer tempAnswer = answerService.addAnswer(answer, (long) questionId, user.getId());
-		System.out.println(tempAnswer.getId());
-		// answerService.getOneAnswer(answer.getId());
 
 		// 질문 콘텐트에 있는 코드들을 파싱해서 answerCode에 집어넣는다. 이 로직은 왠지 service 로직으로 만들어야할거 같은..
 		String answerContent = tempAnswer.getContent();
@@ -91,7 +89,10 @@ public class AnswerController {
 		for (int i = 0; i < codes.size(); i++) {
 			answerCodeService.addAnswerCode(codes.get(i).toString(), tempAnswer.getId());
 		}
-
+		
+		
+		System.out.println(tempAnswer.getContent());
+		System.out.println(answerContent);
 		// answerCount + 1
 		userService.plusAnswerCount(user.getId());
 

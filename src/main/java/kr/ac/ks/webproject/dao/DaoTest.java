@@ -1,12 +1,12 @@
 package kr.ac.ks.webproject.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
+import kr.ac.ks.webproject.dto.AnswerCode;
 import kr.ac.ks.webproject.dto.AnswerReply;
 
 public class DaoTest {
@@ -49,13 +49,12 @@ public class DaoTest {
 		user = new ServiceUser((long) 16, "jkljkl16", "1234", "사람 15", "abc@gmail.com", 61,174, new Date());
 		userDao.insert(user);*/
 		
-		AnswerReplyDao answerReplyDao = ac.getBean(AnswerReplyDao.class);
+		AnswerCodeDao answerCodeDao = ac.getBean(AnswerCodeDao.class);
+		
+		List<AnswerCode> list = answerCodeDao.selectAnswerCodes((long)1);
 		
 		
-		
-		List<AnswerReply> list = answerReplyDao.selectAllReplies((long)1);
-		
-		for(AnswerReply answer : list) {
+		for(AnswerCode answer : list) {
 			System.out.println(answer);
 		}
 		/*UserDao userDao = ac.getBean(UserDao.class);

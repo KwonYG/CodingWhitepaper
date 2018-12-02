@@ -105,7 +105,7 @@
 			{{#if reviewCodes}} 
 				{{#each reviewCodes}}
 					<h3 style="text-align: left;">code 1 :</h3>
-					{{content}}
+					{{{content}}}
 				{{/each}}	
 			{{/if}}
 		</div>
