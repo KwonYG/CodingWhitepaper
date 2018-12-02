@@ -43,6 +43,7 @@ public class AnswerApiController {
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("answerReplies", answerReplyList);
+		map.put("answerId", answerId);
 
 		return map;
 	}

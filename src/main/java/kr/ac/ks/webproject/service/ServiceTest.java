@@ -61,24 +61,11 @@ public class ServiceTest {
 			System.out.println("end!!!");
 			System.out.println("============================================================");
 		}*/
-		
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		AnswerReplyService answerReplyService = ac.getBean(AnswerReplyService.class);
 		
 		AnswerReply answerReply = new AnswerReply();
-		
-		answerReply.setId((long)1);
-		answerReply.setAnswerId((long)2);
-		answerReply.setUserId((long)1);
-		answerReply.setContent("2번 다시 질문..");
+		answerReply.setContent("되라");
 		answerReply.setCreateDate(new Date());
-		
-		answerReplyService.addAnswerReply(answerReply);
-		
-		List<AnswerReply> list = answerReplyService.getAllAnswerReplies((long)2);
-		
-		for(AnswerReply answer : list) {
-			System.out.println(answer);
-		}
 	}
 }

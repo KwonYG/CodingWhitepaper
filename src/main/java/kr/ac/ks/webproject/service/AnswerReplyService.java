@@ -6,5 +6,5 @@ import kr.ac.ks.webproject.dto.AnswerReply;
 
 public interface AnswerReplyService {
 	public List<AnswerReply> getAllAnswerReplies(Long answerId);
-	public Long addAnswerReply(AnswerReply answerReply);
+	public AnswerReply addAnswerReply(AnswerReply answerReply,Long answerId ,Long userId);
 }

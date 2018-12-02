@@ -9,15 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.ks.webproject.config.HttpSessionUtils;
 import kr.ac.ks.webproject.dto.Answer;
+import kr.ac.ks.webproject.dto.AnswerReply;
 import kr.ac.ks.webproject.dto.Question;
 import kr.ac.ks.webproject.dto.ServiceUser;
 import kr.ac.ks.webproject.service.AnswerCodeService;
+import kr.ac.ks.webproject.service.AnswerReplyService;
 import kr.ac.ks.webproject.service.AnswerService;
 import kr.ac.ks.webproject.service.QuestionService;
 import kr.ac.ks.webproject.service.UserService;
@@ -37,6 +38,9 @@ public class AnswerController {
 
 	@Autowired
 	AnswerCodeService answerCodeService;
+	
+	@Autowired
+	AnswerReplyService answerReplyService;
 
 	@GetMapping(path = "/aregister")
 	public String getRegisterForm(@RequestParam(name = "id", required = true) int questionId, Model model,
@@ -92,5 +96,17 @@ public class AnswerController {
 		userService.plusAnswerCount(user.getId());
 
 		return "redirect:question?id=" + questionId;
+	}
+	
+	@PostMapping(path="/writeReply")
+	public String postReply(@RequestParam(name = "id") long answerId, @ModelAttribute AnswerReply answerReply, HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return "loginForm";
+		}
+		
+		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
+		answerReplyService.addAnswerReply(answerReply,answerId,user.getId());
+		
+		return "redirect:review?id=" + answerId;
 	}
 }

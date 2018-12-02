@@ -114,8 +114,8 @@
     <script type="template" id="reply-template">
 <div class="reply_box">
 	<div class="reply_editor_box">
-		<form method="post" action="" onsubmit="return false;">
-			<textarea class="form-control" rows="5" placeholder="댓글을 입력하세요"></textarea>
+		<form method="post" action="writeReply?id={{answerId}}">
+			<textarea name="content" class="form-control" rows="5" placeholder="댓글을 입력하세요"></textarea>
         	<button type="submit" class="btn btn-outline-primary" style="margin:10px;">등록</button>
 		</form>
     </div>
@@ -124,8 +124,8 @@
         {{#if answerReplies}} {{#each answerReplies}} 
             <div class="bord1 review_reply">
                     <div style="font-size: 14px">
-                        <img src="person1.png">
-                        {{name}}<br>
+                        <img src="resources/img/person1.png">
+                        {{userName}}<br>
                         {{createDate}}
                     </div>
                     <hr>
@@ -199,7 +199,7 @@
         }
       	
       	// nav 탭 메뉴 클릭 이벤트
-      	var navTabButton = document.querySelector(".jumbotron");
+      	var navTabButton = document.querySelector(".nav-tabs");
       	
       	navTabButton.addEventListener("click",function(evt){
       		var target;
