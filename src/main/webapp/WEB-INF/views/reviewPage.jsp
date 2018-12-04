@@ -114,9 +114,9 @@
     <script type="template" id="reply-template">
 <div class="reply_box">
 	<div class="reply_editor_box">
-		<form method="post" action="writeReply?id={{answerId}}">
+		<form method="post" id = "replyForm">
 			<textarea name="content" class="form-control" rows="5" placeholder="댓글을 입력하세요"></textarea>
-        	<button type="submit" class="btn btn-outline-primary" style="margin:10px;">등록</button>
+        	<button type="submit" class="btn btn-outline-primary" style="margin:10px;" onclick="postReply()">등록</button>
 		</form>
     </div>
 
@@ -169,7 +169,18 @@
             console.log(id);
             sendReviewAjax("api/answer/reviewCodes/" + id);
         }		
-        
+        //댓글 등록 AJAX
+        var postReplyAjax =function(url){
+        	var oReq = new XMLHttpRequest();
+        	var form = document.getElementById('replyForm');
+            var data = new FormData(form);
+            oReq.addEventListener("load", function () {
+                var data = JSON.parse(oReq.responseText);
+                
+            });
+            oReq.open("POST", url);
+            oReq.send();
+        }
         
         // 댓글 AJAX
         var sendReplyAjax = function (url) {
@@ -190,6 +201,15 @@
             var id = urlParams.get('id');
             console.log(id);
             sendReplyAjax("api/answer/replies/" + id);
+        }
+        
+        // 댓글 등록
+        var postReply = function(){
+        	var urlParams = new URLSearchParams(window.location.search);
+            var id = urlParams.get('id');
+            console.log(id);
+        	postReplyAjax("/api/answer/writeReply?id=" + id);
+        	getReplies();
         }
         
       	// nav active 함수

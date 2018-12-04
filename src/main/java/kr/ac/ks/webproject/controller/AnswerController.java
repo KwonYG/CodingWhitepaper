@@ -98,16 +98,4 @@ public class AnswerController {
 
 		return "redirect:question?id=" + questionId;
 	}
-	
-	@PostMapping(path="/writeReply")
-	public String postReply(@RequestParam(name = "id") long answerId, @ModelAttribute AnswerReply answerReply, HttpSession session) {
-		if (!HttpSessionUtils.isLoginUser(session)) {
-			return "loginForm";
-		}
-		
-		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
-		answerReplyService.addAnswerReply(answerReply,answerId,user.getId());
-		
-		return "redirect:review?id=" + answerId;
-	}
 }
