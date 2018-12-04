@@ -51,7 +51,7 @@ CREATE TABLE `answer` (
   `content` longtext  NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`question_id`) REFERENCES `question` (`id`),
+  FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE CASCADE,
   FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -64,7 +64,7 @@ CREATE TABLE `answer_code` (
   `content` longtext NOT NULL,
   `answer_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`)
+  FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
@@ -78,6 +78,6 @@ CREATE TABLE `answer_reply` (
   `content` longtext NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`),
+  FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`) ON DELETE CASCADE,
   FOREIGN KEY (`user_id`) REFERENCES `service_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

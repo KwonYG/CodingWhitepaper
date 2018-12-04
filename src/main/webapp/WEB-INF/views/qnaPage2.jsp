@@ -46,6 +46,7 @@
             <div>질문내용</div>
         </div>
         <br>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='delete/question?id=${question.id}'">삭제하기</button>
         <button type="button" class="btn btn-outline-primary" onclick="location.href='update?id=${question.id}'">질문수정</button>
         <button type="button" class="btn btn-outline-info" onclick="location.href='aregister?id=${question.id}'">답변하기</button>
         <br><br>

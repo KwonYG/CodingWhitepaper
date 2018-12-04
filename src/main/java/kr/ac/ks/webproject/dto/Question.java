@@ -12,6 +12,7 @@ public class Question {
 
 	private String userName;
 	private String userEmail;
+	private String userServiceId;
 
 	private List<Answer> answerList;
 
@@ -79,11 +80,19 @@ public class Question {
 		this.answerList = answerList;
 	}
 
+	public String getUserServiceId() {
+		return userServiceId;
+	}
+
+	public void setUserServiceId(String userServiceId) {
+		this.userServiceId = userServiceId;
+	}
+
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", title=" + title + ", content=" + content + ", userId=" + userId
-				+ ", createDate=" + createDate + ", userName=" + userName + ", userEmail=" + userEmail + ", answerList="
-				+ answerList + "]";
+				+ ", createDate=" + createDate + ", userName=" + userName + ", userEmail=" + userEmail
+				+ ", userServiceId=" + userServiceId + ", answerList=" + answerList + "]";
 	}
 
 }

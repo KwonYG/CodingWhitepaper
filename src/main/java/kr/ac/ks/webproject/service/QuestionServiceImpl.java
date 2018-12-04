@@ -52,4 +52,10 @@ public class QuestionServiceImpl implements QuestionService {
 	public int getCount() {
 		return questionDao.selectCount();
 	}
+
+	@Override
+	public int removeQuestion(Long questionId) {
+		int deleteCount = questionDao.deleteQuestionById(questionId);
+		return deleteCount;
+	}
 }

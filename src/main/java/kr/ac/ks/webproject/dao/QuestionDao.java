@@ -1,6 +1,10 @@
 package kr.ac.ks.webproject.dao;
 
-import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.*;
+import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.DELETE_QUESTION_BY_ID;
+import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_COUNT;
+import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_PAGING;
+import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_QUESTION_BY_ID;
+import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.UPDATE;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -51,6 +55,11 @@ public class QuestionDao {
 
 	public int selectCount() {
 		return jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
+	}
+	
+	public int deleteQuestionById(Long questionId) {
+		Map<String, ?> params = Collections.singletonMap("questionId", questionId);
+		return jdbc.update(DELETE_QUESTION_BY_ID, params);
 	}
 
 	public int update(Question question) {

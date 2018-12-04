@@ -102,6 +102,27 @@ public class QuestionController {
 		return "redirect:list";
 	}
 
+	@GetMapping(path = "/delete/question")
+	public String deleteQuestion(@RequestParam(name = "id", required = true) Long questionId, HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return "loginForm";
+		}
+
+		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
+		String userServiceId = user.getServiceId();
+		Question question = questionService.getOneQuestion(questionId);
+		String questionUserId = question.getUserServiceId();
+
+		if (!userServiceId.equals(questionUserId)) {
+			System.out.println("글 작성자만 삭제 가능합니다.");
+			return "redirect:/question?id=" + questionId;
+		}
+
+		questionService.removeQuestion(questionId);
+
+		return "redirect:/list";
+	}
+
 	@GetMapping(path = "/update") // 수정기능, 미완
 	public String getUpdateEditor(@RequestParam(name = "id", required = true) Long questionId, ModelMap model) {
 		Question question = questionService.getOneQuestion(questionId);
