@@ -171,35 +171,16 @@
             sendReviewAjax("api/answer/reviewCodes/" + id);
         }
         //댓글 등록 AJAX
-        var postReplyAjax = function () {
-        	$(".reply-write input[type=submit]").click(addAnswer);
+        var postReplyAjax = function (url) {
+            var oReq = new XMLHttpRequest();
+            var form = document.getElementById('replyForm');
+            var data = new FormData(form);
+            oReq.addEventListener("load", function () {
+                var data = JSON.parse(oReq.responseText);
 
-            function addAnswer(e) {
-                e.preventDefault();
-                console.log("clicked!!");
-
-                var queryString = $(".reply-write").serialize();
-                console.log("query : " + queryString);
-
-                var replyUrl = $(".reply-write").attr("action");
-                console.log("url : " + replyUrl)
-                $.ajax({
-                    type: 'post',
-                    url: replyUrl,
-                    data: queryString,
-                    dataType: 'json',
-                    error: onError,
-                    success: onSuccess
-                });
-            }
-            function onError() {
-
-            }
-            function onSuccess() {
-                var item = document.getElementsByClassName("reply_box");
-                item[0].parentNode.removeChild(item[0]);
-                getReplies();
-            }
+            });
+            oReq.open("POST", url);
+            oReq.send();
         }
 
         // 댓글 AJAX
@@ -210,8 +191,36 @@
                 console.log(data);
                 resultHTML = bindReplies(data);
                 document.querySelector('.content_box').insertAdjacentHTML('beforeend', resultHTML);
-                
-                postReplyAjax();
+
+                //ajax 댓글(제이쿼리)
+                $(".reply-write input[type=submit]").click(addAnswer);
+
+                function addAnswer(e) {
+                    e.preventDefault();
+                    console.log("clicked!!");
+
+                    var queryString = $(".reply-write").serialize();
+                    console.log("query : " + queryString);
+
+                    var replyUrl = $(".reply-write").attr("action");
+                    console.log("url : " + replyUrl)
+                    $.ajax({
+                        type: 'post',
+                        url: replyUrl,
+                        data: queryString,
+                        dataType: 'json',
+                        error: onError,
+                        success: onSuccess
+                    });
+                }
+                function onError() {
+
+                }
+                function onSuccess() {
+                    var item = document.getElementsByClassName("reply_box");
+                    item[0].parentNode.removeChild(item[0]);
+                    getReplies();
+                }
             });
             oReq.open("GET", url);
             oReq.send();

@@ -2,202 +2,152 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-
-<html lang="ko">
+<html>
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <style>
-        .active {
-            background: lightgrey;
-            color: #000;
-        }
-
-        .nav-link {
-            color: black;
-        }
-
-        article {
-            padding: 15px 20px;
-            text-align: left;
-            border-radius: 3px;
-        }
-
-        div {
-            line-height: 200%;
-        }
-
-        img {
-            float: left;
-            margin: 0px 11px 0px 5px;
-        }
-
-        .main {
-            line-height: 260%;
-            padding: 0px 30px;
-            color: #000;
-        }
-
-        .bord1 {
-            border: 1.5px solid #289AFF;
-            padding: 20px;
-        }
-
-        .CodeMirror-wrap {
-            height: auto;
-        }
-    </style>
+        body {
+					background-color: #eee;
+				}
+				
+		.CodeMirror {
+					  border: 1px solid #eee;
+					  height: auto;
+				}
+		
+	</style>
 </head>
 
 <body>
-    <center>
-        <nav>
-            <ul class="nav justify-content-center" style="font-size: 20px; margin: 10px 10px 10px 27px;">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">MAIN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Q&A</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">OTHER</a>
-                </li>
-            </ul>
-        </nav>
-        <hr>
+    <h1>AnswerRegister TEST </h1>
 
-        <div class="jumbotron" style="background-color: white; width: 1000px; position:center;  border: solid 2px;">
-            <ul class="nav nav-tabs">
-                <li class="nav-item" style="font-size: 50px; position: relative; left: 10%;">
-                    <a href="#" class="nav active" style=" padding: 10px 100px">review</a>
-                <li class="nav-item" style="font-size: 50px; position: relative; left: 20%;">
-                    <a  href="#" class="nav" style=" padding: 10px 100px">댓글</a>
-                </li>
-            </ul>
-
-            <section>
-                <article class="content_box">
-
-                </article>
-            </section>
-        </div>
-    </center>
-
-    <script type="teplate" id="review-template">
-        <div class="code_box">
-			{{#if reviewCodes}} 
-				{{#each reviewCodes}}
-					<h3 style="text-align: left;">code 1 :</h3>
-					{{content}}
-				{{/each}}	
-			{{/if}}
-		</div>
-	</script>
-
-    <script type="template" id="reply-template">
-	<div class="reply_box">
-        {{#if answerReplies}} {{#each answerReplies}} 
-            <div class="bord1 review_reply">
-                    <div style="font-size: 14px">
-                        <img src="person1.png">
-                        {{name}}<br>
-                        {{createDate}}
-                    </div>
-                    <hr>
-                    <div>{{content}}</div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <c:forEach items="${codes}" var="code" varStatus="status">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading${status.count}">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}"
+                            aria-expanded="true" aria-controls="collapse${status.count}">
+                            Collapsible Group Item ${status.count}
+                        </a>
+                    </h4>
                 </div>
-                <br>
-        {{/each}} {{/if}}
-	</div>
-      </script>
+                <div id="collapse${status.count}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading${status.count}">
+                    <div class="panel-body">
+                        <textarea class="codeMirrorTargetEditor">${code.content}</textarea><br>
+                        <textarea name="editor" class="commentEditor" rows="10" cols="100"></textarea><br>
+                        <div id="commentBtn" style="background:white;width:150px;padding:8px;cursor:pointer">Add
+                            comment</div><br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
+    <form method="post" action="writeanswer?id=${param.id}">
+        <textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea><br>
+
+        <br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>
+    </form>
+
+    <form method="post" action="">
+        <br>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script>
-        var replyTemplate = document.querySelector("#reply-template").innerText;
-        var bindReplies = Handlebars.compile(replyTemplate); //bindReplies는 메서드다.
-        
-        var reviewTemplate = document.querySelector("#review-template").innerText;
-        var bindReviews = Handlebars.compile(reviewTemplate); 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/display/autorefresh.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/selection/active-line.js"></script>
 
-        var sendReviewAjax = function (url) {
-            var oReq = new XMLHttpRequest();
-            oReq.addEventListener("load", function () {
-                var data = JSON.parse(oReq.responseText);
-                console.log(data);
-                resultHTML = bindReviews(data);
-                console.log(resultHTML);
-                document.querySelector('.content_box').insertAdjacentHTML('beforeend', resultHTML);
-            });
-            oReq.open("GET", url);
-            oReq.send();
-        }
+        <script>
+            var cm = {};
+            var editors = document.getElementsByClassName("codeMirrorTargetEditor");
+            for (var i = 0; i < editors.length; i++) {
+                cm[i] = CodeMirror.fromTextArea(editors.item(i), {
+                    mode: "text/x-java",
+                    styleActiveLine: true,
+                    lineNumbers: true,
+                    lineWrapping: true,
+                    readOnly: true,
+                    autoRefresh: true,
+                    lineWrapping: true,
+                    styleActiveLine: true,
+                    styleActiveSelected: true
+                });
+            }
 
-        var getReviews = function () {
-            var urlParams = new URLSearchParams(window.location.search);
-            var id = urlParams.get('id');
-            console.log(id);
-            sendReviewAjax("api/answer/reviewCodes/" + id);
-        }					
-        
-        var sendReplyAjax = function (url) {
-            var oReq = new XMLHttpRequest();
-            oReq.addEventListener("load", function () {
-                var data = JSON.parse(oReq.responseText);
-                console.log(data);
-                resultHTML = bindReplies(data);
-                document.querySelector('.content_box').insertAdjacentHTML('beforeend', resultHTML);
-            });
-            oReq.open("GET", url);
-            oReq.send();
-        }
+            // add코멘트 버튼 이벤트 , 이벤트 위임
+            var el = document.querySelector(".code_box");
+            el.addEventListener('click', function (evt) {
+                if (evt.target.id === "commentBtn") {
+                    commentEvent();
+                }
+            }, false);
 
-        var getReplies = function () {
-            var urlParams = new URLSearchParams(window.location.search);
-            var id = urlParams.get('id');
-            console.log(id);
-            sendReplyAjax("api/answer/answerReplies/" + id);
-        }
-        
-      	// nav active 함수
-        var navActivate = function(clickedTarget) {
-          var tap = clickedTarget;
-          tap.parentNode.setAttribute("class", "nav active");
-        }
-      	
-      	// nav 탭 메뉴 클릭 이벤트
-      	var navTabButton = document.querySelector(".jumbotron");
-      	
-      	navTabButton.addEventListener("click",function(evt){
-      		document.getElementsByClassName("active")[0].setAttribute("class", "nav");
-      		
-      		if (evt.target.className == "nav-tabs") {
-      	      target = evt.target.firstChild.firstChild;
-      	    } else if (evt.target.className == "nav-item") {
-      	      target = evt.target.firstChild;
-      	    } else if (evt.target.className == "nav") {
-      	      target = evt.target;
-      	    }
-      	});
-      	
-      
-      
-        getReviews();
-    </script>
+            //node를 문자열로 변환
+            var nodeToString = function (node) {
+                var tmpNode = document.createElement("div");
+                tmpNode.appendChild(node.cloneNode(true));
+                var str = tmpNode.innerHTML;
+                tmpNode = node = null;
+                return str;
+            }
+
+
+            // 댓글 등록 이벤트
+            var commentEvent = function () {
+                var commentTextArea = document.getElementsByClassName('commentEditor');
+
+                // 댓글 위젯 생성
+                var widget = document.createElement("DIV"); // Create a <p> element
+                widget.setAttribute("style", "margin: 4px 8px;height:30px; background-color: rgb(0, 255, 179);");
+
+                //댓글 위젯 생성
+                for (var i = 0; i < commentTextArea.length; i++) {
+                    if (commentTextArea[i].value != "") {
+                        var contentText = document.createTextNode(commentTextArea[i].value); // Create a text node
+                        console.log(contentText)
+                        widget.appendChild(contentText); // Append the text to <p>
+                        commentTextArea[i].value = "";
+                    }
+                }
+
+                // 댓글 부착
+                for (var i = 0; i < editors.length; i++) {
+                    if (cm[i].getCursor().line !== 0) {
+                        cm[i].addLineWidget(cm[i].getCursor().line, widget); // 에디터 파싱 해결...
+                        cm[i].focus()
+                        cm[i].setCursor(0, 0);
+                    }
+                }
+            }
+
+            // Answer 내용 파싱
+            var parsingContent = function () {
+                var temp = document.createElement("div");
+                var postContent = document.createElement("div");
+
+                var codes = document.getElementsByClassName('cm-s-default');
+                console.log(codes.length);
+
+                var codesLength = codes.length;
+                for (var i = 0; i < codesLength; i++) {
+                    document.getElementById("postTextArea").value += nodeToString(codes[i]);
+                }
+                console.log(document.getElementById("postTextArea").value); // 반드시 클릭해야 파싱이됨. 어떻게 해결할지 고민
+                debugger;
+                //document.getElementById("postTextArea").value = temp.innerHTML.trim();
+            };
+
+        </script>
 </body>
 
 </html>

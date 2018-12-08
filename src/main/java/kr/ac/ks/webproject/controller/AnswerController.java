@@ -38,10 +38,11 @@ public class AnswerController {
 
 	@Autowired
 	AnswerCodeService answerCodeService;
-	
+
 	@Autowired
 	AnswerReplyService answerReplyService;
 
+	// GET 답변 작성페이지
 	@GetMapping(path = "/aregister")
 	public String getRegisterForm(@RequestParam(name = "id", required = true) int questionId, Model model,
 			HttpSession session) {
@@ -63,12 +64,7 @@ public class AnswerController {
 		return "answerRegister";
 	}
 
-	// 리뷰 페이지
-	@GetMapping(path="/review")
-	public String getReviewPage(@RequestParam(name = "id") Long answerId) {
-		return "reviewPage";
-	}
-
+	// 답변 POST
 	@PostMapping(path = "/writeanswer")
 	public String postAnswer(@RequestParam(name = "id") int questionId, @ModelAttribute Answer answer,
 			HttpSession session) {
@@ -89,13 +85,32 @@ public class AnswerController {
 		for (int i = 0; i < codes.size(); i++) {
 			answerCodeService.addAnswerCode(codes.get(i).toString(), tempAnswer.getId());
 		}
-		
-		
+
 		System.out.println(tempAnswer.getContent());
 		System.out.println(answerContent);
 		// answerCount + 1
 		userService.plusAnswerCount(user.getId());
 
 		return "redirect:question?id=" + questionId;
+	}
+
+	// GET 리뷰 페이지
+	@GetMapping(path = "/review")
+	public String getReviewPage(@RequestParam(name = "id") Long answerId) {
+		return "reviewPage";
+	}
+
+	// POST 리뷰 댓글
+	@PostMapping(path = "/writeReply")
+	public String postReviewReply(@RequestParam(name = "id") long answerId, @ModelAttribute AnswerReply answerReply,
+			HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return "loginForm";
+		}
+
+		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
+		answerReplyService.addAnswerReply(answerReply, answerId, user.getId());
+
+		return "redirect:review?id=" + answerId;
 	}
 }

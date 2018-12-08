@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,7 +56,19 @@ public class AnswerApiController {
 		return map;
 	}
 	
-	// POST 데이터
+	// POST 댓글 데이터
+	@PostMapping(path = "/writeReply")
+	public AnswerReply postReviewReply(@RequestParam(name = "id") long answerId, @ModelAttribute AnswerReply answerReply,
+			HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return null;
+		}
+
+		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
+		return answerReplyService.addAnswerReply(answerReply, answerId, user.getId());
+	}
+	
+	/*// POST 데이터
 	@RequestMapping(value="/writeReply", method = {RequestMethod.GET, RequestMethod.POST})
 	public String postReply(@RequestParam(name = "id") long answerId, @ModelAttribute AnswerReply answerReply, HttpSession session) {
 		if (!HttpSessionUtils.isLoginUser(session)) {
@@ -67,5 +80,5 @@ public class AnswerApiController {
 		
 		return null;
 		//return "redirect:review?id=" + answerId;
-	}
+	}*/
 }
