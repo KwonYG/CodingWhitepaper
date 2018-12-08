@@ -84,12 +84,5 @@
     <footer>
         footer
     </footer>
-
-	<div class="modal fade text-center" id="theModal">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	    </div>
-	  </div>
-	</div>
 </body>
 </html>

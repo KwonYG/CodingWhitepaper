@@ -74,7 +74,7 @@ public class QuestionController {
 		model.addAttribute("question", question);
 		model.addAttribute("answerList", answerList);
 
-		return "qnaPage2";
+		return "qnaPage";
 	}
 
 	@GetMapping(path = "/qregister")
