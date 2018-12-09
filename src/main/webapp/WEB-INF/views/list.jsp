@@ -32,7 +32,7 @@
         		<c:otherwise>
         			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='loginForm'">LOGIN</button></div>
         		</c:otherwise>
-        	</c:choose>
+        </c:choose>
     </header>
     
     <hr class="mg0">

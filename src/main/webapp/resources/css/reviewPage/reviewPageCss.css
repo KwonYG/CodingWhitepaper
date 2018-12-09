@@ -1,6 +1,6 @@
 body{
 }
-ui{
+a{
 	cursor:pointer;
 }
 .active {
@@ -40,4 +40,8 @@ img {
 
 .CodeMirror-wrap {
     height: auto;
+}
+
+.jumbotron{
+	text-align : center;
 }

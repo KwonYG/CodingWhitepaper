@@ -12,23 +12,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.ac.ks.webproject.config.HttpSessionUtils;
+import kr.ac.ks.webproject.dto.Answer;
 import kr.ac.ks.webproject.dto.AnswerCode;
 import kr.ac.ks.webproject.dto.AnswerReply;
 import kr.ac.ks.webproject.dto.ServiceUser;
 import kr.ac.ks.webproject.service.AnswerCodeService;
 import kr.ac.ks.webproject.service.AnswerReplyService;
+import kr.ac.ks.webproject.service.AnswerService;
 
 @RestController
 @RequestMapping(path = "/api/answer")
 public class AnswerApiController {
-
 	@Autowired
-	private AnswerCodeService AnswerCodeService;
+	AnswerService answerService;
+	
+	@Autowired
+	AnswerCodeService AnswerCodeService;
 
 	@Autowired
 	AnswerReplyService answerReplyService;
@@ -37,9 +40,11 @@ public class AnswerApiController {
 	@GetMapping("/reviewCodes/{answerId}")
 	public Map<String, Object> getAnswerCodes(@PathVariable(name = "answerId") Long answerId) {
 		List<AnswerCode> reviewCodeList = AnswerCodeService.getAnswerCodes(answerId);
-
+		Answer answer = answerService.getOneAnswer(answerId);
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("reviewCodes", reviewCodeList);
+		map.put("answer", answer);
 
 		return map;
 	}

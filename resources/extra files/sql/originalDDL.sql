@@ -49,6 +49,7 @@ CREATE TABLE `answer` (
   `question_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `content` longtext  NOT NULL,
+  `sub_content` longtext NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE CASCADE,

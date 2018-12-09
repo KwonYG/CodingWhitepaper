@@ -7,6 +7,7 @@ public class Answer {
 	private Long id;
 	private Long userId;
 	private String content;
+	private String subContent;
 	private Long questionId;
 	private Date createDate;
 
@@ -37,6 +38,14 @@ public class Answer {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getSubContent() {
+		return subContent;
+	}
+
+	public void setSubContent(String subContent) {
+		this.subContent = subContent;
 	}
 
 	public Long getQuestionId() {
@@ -81,9 +90,9 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer [id=" + id + ", userId=" + userId + ", content=" + content + ", questionId=" + questionId
-				+ ", createDate=" + createDate + ", userName=" + userName + ", userEmail=" + userEmail + ", codeList="
-				+ codeList + "]";
+		return "Answer [id=" + id + ", userId=" + userId + ", content=" + content + ", subContent=" + subContent
+				+ ", questionId=" + questionId + ", createDate=" + createDate + ", userName=" + userName
+				+ ", userEmail=" + userEmail + ", codeList=" + codeList + "]";
 	}
 
 }

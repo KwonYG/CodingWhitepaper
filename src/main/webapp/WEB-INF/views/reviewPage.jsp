@@ -63,17 +63,27 @@
 					{{{content}}}
 				{{/each}}	
 			{{/if}}
+			<br>
+			<div class="sub_content_box">
+			<h5>추가 설명 :</h5>
+			<div style="border : dotted 1px black; padding:20px;">
+				{{answer.subContent}}
+			</div>
 		</div>
 	</script>
 
     <script type="template" id="reply-template">
 <div class="reply_box">
-	<div class="reply_editor_box">
-		<form class="reply-write" method="post" action="api/answer/writeReply?id={{answerId}}">
-			<textarea name="content" class="form-control" rows="5" placeholder="댓글을 입력하세요"></textarea>
-        	<input type="submit" class="btn btn-outline-primary" style="margin:10px;" value="등록">
-		</form>
-    </div>
+	<c:choose>
+   		<c:when test="${sessionScope.isUser == 'true'}">
+		<div class="reply_editor_box">
+			<form class="reply-write" method="post" action="api/answer/writeReply?id={{answerId}}">
+				<textarea name="content" class="form-control" rows="5" placeholder="댓글을 입력하세요"></textarea>
+				<input type="submit" class="btn btn-outline-primary" style="margin:10px;" value="등록">
+        	</form>
+    		</div>
+		</c:when>
+    </c:choose>
 
 	<div class="reply_wrap">
         {{#if answerReplies}} {{#each answerReplies}} 
