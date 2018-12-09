@@ -58,4 +58,11 @@ public class QuestionServiceImpl implements QuestionService {
 		int deleteCount = questionDao.deleteQuestionById(questionId);
 		return deleteCount;
 	}
+
+	@Override
+	@Transactional
+	public int editQuestionContent(long questionId, String title, String content) {
+		return questionDao.updateQuestionById(questionId, title, content);
+
+	}
 }

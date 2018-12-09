@@ -11,4 +11,5 @@ public interface QuestionService {
 	public Question addQuestion(Question question, Long userId);
 	public int removeQuestion(Long questionId);
 	public int getCount();
+	public int editQuestionContent(long questionId, String title, String content);
 }

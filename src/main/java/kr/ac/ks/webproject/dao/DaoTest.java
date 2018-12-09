@@ -13,9 +13,7 @@ public class DaoTest {
 	public static void main(String[] args) {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		
-		UserDao userDao = ac.getBean(UserDao.class);	
-		
-		System.out.println(userDao.selectCountUserByServiceId("jkljkl"));
+		QuestionDao questionDao = ac.getBean(QuestionDao.class);
 		
 /*
 		ServiceUser user = new ServiceUser((long) 1, "jkljkl1", "1234", "사람 1", "abc@gmail.com", 321,424, new Date());

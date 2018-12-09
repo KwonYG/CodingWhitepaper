@@ -129,5 +129,13 @@ public class QuestionController {
 
 		return "questionUpdate";
 	}
+	
+	@PostMapping(path = "/postUpdate") // 수정기능, 미완
+	public String postUpdate(@RequestParam(name = "id", required = true) Long questionId, @ModelAttribute Question question) {
+
+		questionService.editQuestionContent(questionId, question.getTitle() ,question.getContent());
+
+		return "redirect:/question?id=" + questionId;
+	}
 
 }

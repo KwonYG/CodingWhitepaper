@@ -4,7 +4,7 @@ import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.DELETE_QUESTION_BY_ID;
 import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_COUNT;
 import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_PAGING;
 import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.SELECT_QUESTION_BY_ID;
-import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.UPDATE;
+import static kr.ac.ks.webproject.sqls.QuestionDaoSqls.UPDATE_QUESTION_CONTENT_BY_QUETION_ID;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -62,8 +62,13 @@ public class QuestionDao {
 		return jdbc.update(DELETE_QUESTION_BY_ID, params);
 	}
 
-	public int update(Question question) {
-		SqlParameterSource params = new BeanPropertySqlParameterSource(question);
-		return jdbc.update(UPDATE, params);
+	public int updateQuestionById(long questionId, String title, String content) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("questionId", questionId);
+		params.put("title", title);
+		params.put("content", content);
+		
+		return jdbc.update(UPDATE_QUESTION_CONTENT_BY_QUETION_ID, params);
 	}
+
 }
