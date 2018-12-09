@@ -48,6 +48,20 @@ public class UserDao {
 		return jdbc.query(USER_ORDER_BY_ANSWER_COUNT, params, rowMapper);
 	}
 
+	public int selectCountUserByServiceId(String serviceId) {
+		Map<String, String> params = new HashMap<>();
+		params.put("serviceId", serviceId);
+
+		return jdbc.queryForObject(GET_COUNT_USER_BY_SERVICE_ID, params, Integer.class);
+	}
+
+	public int slectCountUserByEmail(String email) {
+		Map<String, String> params = new HashMap<>();
+		params.put("email", email);
+
+		return jdbc.queryForObject(GET_COUNT_USER_EMAIL_BY_EMAIL, params, Integer.class);
+	}
+
 	public Long insert(ServiceUser serviceUser) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(serviceUser);
 		return insertAction.executeAndReturnKey(params).longValue();

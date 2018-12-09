@@ -1,5 +1,8 @@
 body{
 }
+ui{
+	cursor:pointer;
+}
 .active {
     background: lightgrey;
     color: #000;

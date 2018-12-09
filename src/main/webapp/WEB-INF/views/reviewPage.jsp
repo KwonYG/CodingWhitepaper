@@ -38,9 +38,9 @@
         <div class="jumbotron" style="background-color: white; width: 1000px; position:center;  border: solid 2px;">
             <ul class="nav nav-tabs">
                 <li class="nav-item" style="font-size: 50px; position: relative; left: 10%;">
-                    <a href="#" class="nav active" style=" padding: 10px 100px">리뷰</a>
+                    <a class="nav active" style=" padding: 10px 100px">리뷰</a>
                 <li class="nav-item" style="font-size: 50px; position: relative; left: 20%;">
-                    <a href="#" class="nav" style=" padding: 10px 100px">댓글</a>
+                    <a class="nav" style=" padding: 10px 100px">댓글</a>
                 </li>
             </ul>
 

@@ -15,6 +15,8 @@ public class DaoTest {
 		
 		UserDao userDao = ac.getBean(UserDao.class);	
 		
+		System.out.println(userDao.selectCountUserByServiceId("jkljkl"));
+		
 /*
 		ServiceUser user = new ServiceUser((long) 1, "jkljkl1", "1234", "사람 1", "abc@gmail.com", 321,424, new Date());
 		userDao.insert(user);
@@ -49,23 +51,5 @@ public class DaoTest {
 		user = new ServiceUser((long) 16, "jkljkl16", "1234", "사람 15", "abc@gmail.com", 61,174, new Date());
 		userDao.insert(user);*/
 		
-		AnswerCodeDao answerCodeDao = ac.getBean(AnswerCodeDao.class);
-		
-		List<AnswerCode> list = answerCodeDao.selectAnswerCodes((long)1);
-		
-		
-		for(AnswerCode answer : list) {
-			System.out.println(answer);
-		}
-		/*UserDao userDao = ac.getBean(UserDao.class);
-		
-		ServiceUser user = new ServiceUser();
-		
-		user.setName("영근");
-		user.setEmail("yg@gmail.com");
-		user.setCreateDate(new Date());
-		Long id = userDao.insert(user);
-		
-		System.out.println(id);*/
 	}
 }

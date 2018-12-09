@@ -11,4 +11,7 @@ public class UserDaoSqls {
 	
 	public final static String UPDATE_QUESTION_COUNT_BY_ID = "UPDATE service_user SET question_count = :count WHERE id = :userId;";
 	public final static String UPDATE_ANSWER_COUNT_BY_ID = "UPDATE service_user SET answer_count = :count WHERE id = :userId;";
+	
+	public final static String GET_COUNT_USER_BY_SERVICE_ID = "SELECT COUNT(*) FROM service_user WHERE service_id = :serviceId;";
+	public final static String GET_COUNT_USER_EMAIL_BY_EMAIL = "SELECT COUNT(*) FROM service_user WHERE email = :email;";
 }

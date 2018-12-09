@@ -14,19 +14,28 @@
         <nav>
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">MAIN</a>
+                    <a class="nav-link active" href="list">MAIN</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Q&A</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">RANK</a>
+                    <a class="nav-link" href="rank">RANK</a>
                 </li>
             </ul>
         </nav>
-        <div class="login"><button type="button" class="btn btn-light">LOGIN</button></div>
+        <c:choose>
+        		<c:when test="${sessionScope.isUser == 'true'}">
+        			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='logOut'">LOGOUT</button></div>
+        		</c:when>
+        		<c:otherwise>
+        			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='loginForm'">LOGIN</button></div>
+        		</c:otherwise>
+        	</c:choose>
     </header>
-    <hr>
+    
+    <hr class="mg0">
+
 	
 	<div class="bord3 form-container" style="margin:10px;">
 	<form method="post" action="writequestion">

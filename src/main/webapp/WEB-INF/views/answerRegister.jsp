@@ -7,52 +7,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/commonStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <style>
-        body {
-					background-color: #eee;
-				}
-				
-		.CodeMirror {
+
+        .CodeMirror {
 					  border: 1px solid #eee;
 					  height: auto;
-				}
-		
+				}		
 	</style>
 </head>
 
 <body>
-    <h1>AnswerRegister TEST </h1>
-
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <c:forEach items="${codes}" var="code" varStatus="status">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="heading${status.count}">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}"
-                            aria-expanded="true" aria-controls="collapse${status.count}">
-                            코드 ${status.count}
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapse${status.count}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading${status.count}">
-                    <div class="panel-body">
-                        <textarea class="codeMirrorTargetEditor">${code.content}</textarea><br>
-                        <textarea name="editor" class="commentEditor" rows="10" cols="100"></textarea><br>
-                        <div id="commentBtn" style="background:white;width:150px;padding:8px;cursor:pointer">Add
-                            comment</div><br>
-                        <br>
+    <header class="header">
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="list">MAIN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Q&A</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="rank">RANK</a>
+                </li>
+            </ul>
+        </nav>
+        <c:choose>
+            <c:when test="${sessionScope.isUser == 'true'}">
+                <div class="login"><button type="button" class="btn btn-light" onclick="location.href='logOut'">LOGOUT</button></div>
+            </c:when>
+            <c:otherwise>
+                <div class="login"><button type="button" class="btn btn-light" onclick="location.href='loginForm'">LOGIN</button></div>
+            </c:otherwise>
+        </c:choose>
+    </header>
+    <section>
+        <div class="bord3">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <c:forEach items="${codes}" var="code" varStatus="status">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="heading${status.count}">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}"
+                                    aria-expanded="true" aria-controls="collapse${status.count}">
+                                    코드 ${status.count}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse${status.count}" class="panel-collapse collapse in" role="tabpanel"
+                            aria-labelledby="heading${status.count}">
+                            <div class="panel-body">
+                                <textarea class="codeMirrorTargetEditor">${code.content}</textarea><br>
+                                <textarea name="editor" class="commentEditor" rows="10" cols="100"></textarea><br>
+                                <div id="commentBtn" style="background:white;width:150px;padding:8px;cursor:pointer">Add
+                                    comment</div><br>
+                                <br>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </c:forEach>
             </div>
-        </c:forEach>
-    </div>
-
+        </div>
+    </section>
     <form method="post" action="writeanswer?id=${param.id}">
         <textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea><br>
 
@@ -62,7 +82,8 @@
     <form method="post" action="">
         <br>
 
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/display/autorefresh.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/selection/active-line.js"></script>
