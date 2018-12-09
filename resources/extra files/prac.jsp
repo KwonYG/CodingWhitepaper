@@ -2,23 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
     <link rel="stylesheet" type="text/css" href="resources/css/commonStyle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <style>
-
-        .CodeMirror {
-					  border: 1px solid #eee;
-					  height: auto;
-				}		
-	</style>
+    <title>Title</title>
 </head>
 
 <body>
@@ -38,138 +29,97 @@
         </nav>
         <c:choose>
             <c:when test="${sessionScope.isUser == 'true'}">
-                <div class="login"><button type="button" class="btn btn-light" onclick="location.href='logOut'">LOGOUT</button></div>
+                <div class="btn-group">
+                    <!-- 버튼태그 -->
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        메뉴버튼
+                        <!-- 버튼태그 우측 메뉴출력을 위한 화살표표시
+        (없어도 무관하나 메뉴버튼이라는것을 알려주기 위함) -->
+                        <span class="caret"></span>
+                    </button>
+                    <!--메뉴버튼 클릭시 하단 표출된 리스트 영역  -->
+                    <ul class="dropdown-menu">
+                        <!-- 메뉴1 -->
+                        <li><a href="#">메뉴1</a></li>
+                        <!-- 메뉴2 -->
+                        <li><a href="#">메뉴2</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">${sessionScope.userServiceId}
+                        님
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a href="logOut" role="menuitem" tabindex="-1">${sessionScope.userServiceId}
+                                님</a></li>
+                    </ul>
+                </div>
             </c:when>
             <c:otherwise>
                 <div class="login"><button type="button" class="btn btn-light" onclick="location.href='loginForm'">LOGIN</button></div>
             </c:otherwise>
         </c:choose>
     </header>
+
+    <hr class="mg0">
+
+    <!--<div style="background-color: dodgerblue"><br><br><br><br><br><br><br><br></div>-->
+    <img src="resources/img/main1.jpg" class="mainImg">
+
     <section>
-        <div class="bord3">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <c:forEach items="${codes}" var="code" varStatus="status">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="heading${status.count}">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}"
-                                    aria-expanded="true" aria-controls="collapse${status.count}">
-                                    코드 ${status.count}
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse${status.count}" class="panel-collapse collapse in" role="tabpanel"
-                            aria-labelledby="heading${status.count}">
-                            <div class="panel-body">
-                                <textarea class="codeMirrorTargetEditor">${code.content}</textarea><br>
-                                <textarea name="editor" class="commentEditor" rows="10" cols="100"></textarea><br>
-                                <div id="commentBtn" style="background:white;width:150px;padding:8px;cursor:pointer">Add
-                                    comment</div><br>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
+        <c:forEach items="${questionList}" var="question">
+            <article>
+                <table class="center">
+                    <tr rowspan="2">
+                        <th rowspan="2"><a href="question?id=${question.id}">${question.title}</a></th>
+                        <td> ${question.userName} </td>
+                    </tr>
+                    <tr>
+                        <td> ${question.createDate} </td>
+                    </tr>
+                </table>
+            </article>
+        </c:forEach>
+
+        <div class="right"><a class="btn btn-outline-secondary" href="qregister">글쓰기</a></div>
+
+        <div class="text-center">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <c:forEach items="${pageStartList}" var="pageIndex" varStatus="status">
+                    <li class="page-item"><a class="page-link" href="list?start=${pageIndex}">${status.index + 1}</a></li>
                 </c:forEach>
-            </div>
-            추가 설명 :
-            <div class="bord3_">
-                <form method="post" action="writeanswer?id=${param.id}">
-                    <textarea name="content" rows="8" cols="80" id="postTextArea" style="display:none;"></textarea><br>
-                    <textarea name="subContent" rows="8" cols="80"></textarea><br>
-                    <br> <input type="submit" value="등록" id="submitBtn" onclick="parsingContent()"><br>
-                </form>
-            </div>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </section>
-    <br>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/display/autorefresh.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/selection/active-line.js"></script>
+    <footer>
+        <br>
+        경성대학교 소프트웨어학과<br>
+        2018-2 프로젝트수업 성낙운교수님<br>
+        [TED] 권영근 정영훈 황선혜
+    </footer>
 
-    <script>
-        var cm = {};
-        var editors = document.getElementsByClassName("codeMirrorTargetEditor");
-        for (var i = 0; i < editors.length; i++) {
-            cm[i] = CodeMirror.fromTextArea(editors.item(i), {
-                mode: "text/x-java",
-                styleActiveLine: true,
-                lineNumbers: true,
-                lineWrapping: true,
-                readOnly: true,
-                autoRefresh: true,
-                lineWrapping: true,
-                styleActiveLine: true,
-                styleActiveSelected: true
-            });
-        }
-
-        // add코멘트 버튼 이벤트 , 이벤트 위임
-        var el = document.querySelector(".panel-group");
-        el.addEventListener('click', function (evt) {
-            if (evt.target.id === "commentBtn") {
-                commentEvent();
-            }
-        }, false);
-
-        //node를 문자열로 변환
-        var nodeToString = function (node) {
-            var tmpNode = document.createElement("div");
-            tmpNode.appendChild(node.cloneNode(true));
-            var str = tmpNode.innerHTML;
-            tmpNode = node = null;
-            return str;
-        }
-
-
-        // 댓글 등록 이벤트
-        var commentEvent = function () {
-            var commentTextArea = document.getElementsByClassName('commentEditor');
-
-            // 댓글 위젯 생성
-            var widget = document.createElement("DIV"); // Create a <p> element
-            widget.setAttribute("style", "margin: 4px 8px;height:30px; background-color: rgb(0, 255, 179);");
-
-            //댓글 위젯 생성
-            for (var i = 0; i < commentTextArea.length; i++) {
-                if (commentTextArea[i].value != "") {
-                    var contentText = document.createTextNode(commentTextArea[i].value); // Create a text node
-                    console.log(contentText)
-                    widget.appendChild(contentText); // Append the text to <p>
-                    commentTextArea[i].value = "";
-                }
-            }
-
-            // 댓글 부착
-            for (var i = 0; i < editors.length; i++) {
-                if (cm[i].getCursor().line !== 0) {
-                    cm[i].addLineWidget(cm[i].getCursor().line, widget); // 에디터 파싱 해결...
-                    cm[i].focus()
-                    cm[i].setCursor(0, 0);
-                }
-            }
-        }
-
-        // Answer 내용 파싱
-        var parsingContent = function () {
-            var temp = document.createElement("div");
-            var postContent = document.createElement("div");
-
-            var codes = document.getElementsByClassName('cm-s-default');
-            console.log(codes.length);
-
-            var codesLength = codes.length;
-            for (var i = 0; i < codesLength; i++) {
-                document.getElementById("postTextArea").value += nodeToString(codes[i]);
-            }
-            console.log(document.getElementById("postTextArea").value); // 반드시 클릭해야 파싱이됨. 어떻게 해결할지 고민
-            debugger;
-            //document.getElementById("postTextArea").value = temp.innerHTML.trim();
-        };
-
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script>$('.dropdown-toggle').dropdown();</script>
 </body>
 
 </html>

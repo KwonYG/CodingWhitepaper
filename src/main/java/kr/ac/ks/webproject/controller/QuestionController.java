@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.ks.webproject.config.HttpSessionUtils;
 import kr.ac.ks.webproject.dto.Answer;
-import kr.ac.ks.webproject.dto.AnswerCode;
 import kr.ac.ks.webproject.dto.Question;
 import kr.ac.ks.webproject.dto.ServiceUser;
 import kr.ac.ks.webproject.service.AnswerCodeService;
