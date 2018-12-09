@@ -16,25 +16,25 @@
 	  <div class="form-group">
 	    <label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="serviceId" placeholder="사용자 아이디">
+	      <input type="text" name="serviceId" placeholder="사용자 아이디" required>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 	    <div class="col-sm-10">
-	      <input type="password" name="password" placeholder="사용자 비밀번호">
+	      <input type="password" name="password" placeholder="사용자 비밀번호" required>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="inputPassword3" class="col-sm-2 control-label">name</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="name" placeholder="사용자 이름">
+	      <input type="text" name="name" placeholder="사용자 이름" required>
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="inputPassword3" class="col-sm-2 control-label">email</label>
+	    <label for="inputPassword3" class="col-sm-2 control-label" >email</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="email" placeholder="사용자 이메일">
+	      <input type="text" name="email" placeholder="사용자 이메일" required>
 	    </div>
 	  </div>
 	  <div class="form-group">

@@ -11,8 +11,8 @@
 <body>
 <h1>TEST Login Form </h1>
 	<form method="post" action="login">
-		ID : <input type="text" name="serviceId" placeholder="사용자 아이디"><br>
-        password : <input type="password" name="password" placeholder="사용자 비밀번호"><br>
+		ID : <input type="text" name="serviceId" placeholder="사용자 아이디" required><br>
+        password : <input type="password" name="password" placeholder="사용자 비밀번호" required><br>
         
         <br> <input type="submit" value="로그인">
     </form>

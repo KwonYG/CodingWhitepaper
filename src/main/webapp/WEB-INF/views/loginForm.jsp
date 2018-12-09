@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal">X</button>
+  <button type="button" class="close" data-dismiss="modal" onclick="history.back(-1);">X</button>
   <h1>Login</h1>
 </div>
 <div class="modal-body">
@@ -20,18 +20,19 @@
 	  <div class="form-group">
 	    <label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="serviceId" placeholder="사용자 아이디">
+	      <input type="text" class="form-control" name="serviceId" placeholder="사용자 아이디" required>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 	    <div class="col-sm-10">
-	      <input type="password" class="form-control" name="password" placeholder="사용자 비밀번호">
+	      <input type="password" class="form-control" name="password" placeholder="사용자 비밀번호" required>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
 	      <button type="submit" class="btn btn-default">Sign in</button>
+	      <button type="button" class="btn btn-default"onclick="location.href='joinForm'">Sign Up</a>
 	    </div>
 	  </div>
 	</form>

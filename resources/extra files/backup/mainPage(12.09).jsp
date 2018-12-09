@@ -5,51 +5,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="resources/css/commonStyle.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Title</title>
 </head>
 
 <body>
-<header class="header">
-        <nav>
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link active" href="list">MAIN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Q&A</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="rank">RANK</a>
-                </li>
-            </ul>
-        </nav>
-        <c:choose>
+<nav>
+    <ul class="nav nav-tabs">
+        <a href="#" class="main" style="color: white">PROJECT</a>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">BOARD</a>
+        </li>
+        <li class="nav-item">
+        	<c:choose>
         		<c:when test="${sessionScope.isUser == 'true'}">
-        			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='logOut'">LOGOUT</button></div>
+        			<a class="nav-link" href="logOut" style="color: white">로그아웃</a>
         		</c:when>
         		<c:otherwise>
-        			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='loginForm'">LOGIN</button></div>
+        			<a class="nav-link" style="color: white" href="loginForm" data-target="#theModal" data-toggle="modal">로그인</a>
         		</c:otherwise>
         	</c:choose>
-    </header>
-    
-    <hr class="mg0">
-
-    <!--<div style="background-color: dodgerblue"><br><br><br><br><br><br><br><br></div>-->
-    <img src="resources/img/main1.jpg" class="mainImg">
+        </li>
+        <li class="nav-item">
+        	<c:choose>
+        		<c:when test="${sessionScope.isUser == 'true'}">
+        			<a class="nav-link" href="" style="color: white">프로필 수정 넣을까?</a>
+        		</c:when>
+        		<c:otherwise>
+            		<a class="nav-link " href="joinForm" style="color: white">회원가입</a>
+        		</c:otherwise>
+        	</c:choose>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="rank" style="color: white">Rank</a>
+        </li>
+    </ul>
+</nav>
 
     <section>
       <c:forEach items="${questionList}" var="question">
-      	<article>
+        <article>
             <table class="center">
                 <tr rowspan="2">
-                    <th rowspan="2"><a href="question?id=${question.id}">${question.title}</a></th>
-                    <td> ${question.userName} </td>
+                    <td width="70%"> <a href="question?id=${question.id}">${question.title}</a> </td>
+                    <td class="text-right"> ${question.createDate} </td>
                 </tr>
                 <tr>
-                    <td> ${question.createDate} </td>
+                    <td colspan="3"> 내용 </td>
+                </tr>
+            </table>
+        </article>
+        
+        <article>
+            <table class="center">
+                <tr rowspan="2">
+                    <th width="600px" rowspan="2" style="font-size: 20px"><a href="question?id=${question.id}">${question.title}</a></th>
+                    <td width="150px" class="text-right"> ${question.userName} </td>
+                </tr>
+                <tr>
+                    <td class="text-right"> ${question.createDate} </td>
                 </tr>
             </table>
         </article>
@@ -79,10 +94,7 @@
     </section>
 
     <footer>
-        <br>
-        경성대학교 소프트웨어학과<br>
-        2018-2 프로젝트수업 성낙운교수님<br>
-        [TED] 권영근 정영훈 황선혜
+        footer
     </footer>
 </body>
 </html>
