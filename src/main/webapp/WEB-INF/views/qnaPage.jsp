@@ -54,11 +54,16 @@
             <hr>
             <div>${question.content}</div>
             <hr>
-            <div>질문내용</div>
         </div>
         <br>
-        <button type="button" class="btn btn-outline-primary" onclick="location.href='delete/question?id=${question.id}'">삭제하기</button>
-        <button type="button" class="btn btn-outline-primary" onclick="location.href='update?id=${question.id}'">질문수정</button>
+        <c:choose>
+        		<c:when test="${sessionScope.isUser == 'true' && sessionScope.userServiceId == question.userServiceId}">
+        			
+        				<button type="button" class="btn btn-outline-primary" onclick="location.href='delete/question?id=${question.id}'">삭제하기</button>
+        				<button type="button" class="btn btn-outline-primary" onclick="location.href='update?id=${question.id}'">질문수정</button>
+        			
+        		</c:when>
+        	</c:choose>
         <button type="button" class="btn btn-outline-info" onclick="location.href='aregister?id=${question.id}'">답변하기</button>
         <br><br>
         <c:forEach items="${answerList}" var="answer">
@@ -74,7 +79,7 @@
         </c:forEach>
     </article>
 
-</section>
+</section>	
 <script src="resources/prism/prism.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js"></script>
 </body>

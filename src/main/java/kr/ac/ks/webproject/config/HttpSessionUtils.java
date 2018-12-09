@@ -7,7 +7,8 @@ import kr.ac.ks.webproject.dto.ServiceUser;
 public class HttpSessionUtils {
 	public static final String USER_LOGIN_STATUS = "isUser";
 	public static final String USER_SESSION_KEY = "user";
-
+	public static final String USER_SESSION_ID_KEY = "userServiceId";
+	
 	public static boolean isLoginUser(HttpSession session) {
 		Object sessionedUser = session.getAttribute(USER_LOGIN_STATUS);
 

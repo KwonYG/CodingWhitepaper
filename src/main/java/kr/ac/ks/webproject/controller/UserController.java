@@ -44,7 +44,8 @@ public class UserController {
 		session.setAttribute(HttpSessionUtils.USER_LOGIN_STATUS, "true");
 		// 여기에 setAttribute로 유저 정보 저장해보기
 		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
-
+		session.setAttribute(HttpSessionUtils.USER_SESSION_ID_KEY, user.getServiceId());
+		
 		return "redirect:/list";
 	}
 
@@ -52,6 +53,8 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.removeAttribute(HttpSessionUtils.USER_LOGIN_STATUS);
 		session.removeAttribute(HttpSessionUtils.USER_SESSION_KEY);
+		session.removeAttribute(HttpSessionUtils.USER_SESSION_ID_KEY);
+		
 		return "redirect:/list";
 	}
 
