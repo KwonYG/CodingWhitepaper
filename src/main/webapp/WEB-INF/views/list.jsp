@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>​
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +51,7 @@
                         <td> ${question.userName} </td>
                     </tr>
                     <tr>
-                        <td> ${question.createDate} </td>
+                        <td> <fmt:formatDate value="${question.createDate}" pattern="yyyy.MM.dd" /> </td>
                     </tr>
                 </table>
             </article>

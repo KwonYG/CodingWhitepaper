@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +50,7 @@
             <div style="font-size: 14px">
                 <img src="resources/img/person1.png">
                 ${question.userName}<br>
-                ${question.createDate}
+                <fmt:formatDate value="${question.createDate}" pattern="yyyy.MM.dd hh:mm" />
             </div>
             <h3>${question.title}</h3>
             <hr>
@@ -71,7 +73,7 @@
             <div style="font-size: 14px">
                 <img src="resources/img/person2.png">
                 ${answer.userName} (${answer.userEmail})<br>
-                ${answer.createDate}
+                <fmt:formatDate value="${answer.createDate}" pattern="yyyy.MM.dd hh:mm" /> 
             </div>
             <hr>
             <div><a href="review?id=${answer.id}">리뷰 보러가기</a></div>

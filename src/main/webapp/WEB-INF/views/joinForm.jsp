@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 <body>
-    <h1>TEST Join Form </h1>
+    <h1>회원가입</h1>
     <hr>
     <div class="container">
     <form name="join" method="post" onsubmit="return validate();" action="join" class="form-horizontal">
