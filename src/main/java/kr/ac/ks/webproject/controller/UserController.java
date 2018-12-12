@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.ac.ks.webproject.config.HttpSessionUtils;
 import kr.ac.ks.webproject.dto.ServiceUser;
 import kr.ac.ks.webproject.service.UserService;
+import kr.ac.ks.webproject.utils.HttpSessionUtils;
+import kr.ac.ks.webproject.utils.SecurityUtils;
 
 @Controller
 public class UserController {
@@ -33,7 +34,7 @@ public class UserController {
 			return "redirect:/loginForm";
 		}
 
-		if (!user.isMatchPassword(password)) {
+		if (!user.isMatchPassword(SecurityUtils.encryptSHA256(password))) {
 			redirectAttr.addFlashAttribute("failMessage", "암호가 틀렸습니다.");
 			System.out.println("비밀번호 틀림");
 			return "redirect:/loginForm";
@@ -65,6 +66,8 @@ public class UserController {
 
 	@PostMapping("/join")
 	public String postJoin(@ModelAttribute ServiceUser user) {
+		String pw = user.getPassword();
+		user.setPassword(SecurityUtils.encryptSHA256(pw));
 		userService.addUser(user);
 		return "redirect:/list";
 	}

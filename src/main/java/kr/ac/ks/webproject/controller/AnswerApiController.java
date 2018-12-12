@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.ac.ks.webproject.config.HttpSessionUtils;
 import kr.ac.ks.webproject.dto.Answer;
 import kr.ac.ks.webproject.dto.AnswerCode;
 import kr.ac.ks.webproject.dto.AnswerReply;
@@ -23,6 +22,7 @@ import kr.ac.ks.webproject.dto.ServiceUser;
 import kr.ac.ks.webproject.service.AnswerCodeService;
 import kr.ac.ks.webproject.service.AnswerReplyService;
 import kr.ac.ks.webproject.service.AnswerService;
+import kr.ac.ks.webproject.utils.HttpSessionUtils;
 
 @RestController
 @RequestMapping(path = "/api/answer")

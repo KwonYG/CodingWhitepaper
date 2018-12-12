@@ -1,4 +1,4 @@
-package kr.ac.ks.webproject.config;
+package kr.ac.ks.webproject.utils;
 
 import javax.servlet.http.HttpSession;
 

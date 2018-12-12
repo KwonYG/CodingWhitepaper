@@ -17,7 +17,7 @@ drop table if exists topic;
 CREATE TABLE `service_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `service_id` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `question_count` int(11) DEFAULT '0',
