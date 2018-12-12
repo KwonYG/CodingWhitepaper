@@ -37,7 +37,7 @@
         </nav>
         <c:choose>
         		<c:when test="${sessionScope.isUser == 'true'}">
-        			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='logOut'">LOGOUT</button></div>
+        			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='logOut'">${sessionScope.userServiceId}님 LOGOUT</button></div>
         		</c:when>
         		<c:otherwise>
         			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='loginForm'">LOGIN</button></div>
