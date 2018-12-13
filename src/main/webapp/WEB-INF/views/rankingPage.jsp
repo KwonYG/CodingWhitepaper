@@ -10,18 +10,11 @@
     <link rel="stylesheet" type="text/css" href="resources/css/commonStyle.css">
     <link rel="stylesheet" type="text/css" href="resources/css/rankStyle.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
-    <style>
-        #content {
-            border: 3px solid black;
-            position: relative;
-        }
-    </style>
 </head>
 
 <body>
 
-<header class="header">
+    <header class="header">
         <nav>
             <ul class="nav justify-content-center">
                 <li class="nav-item">
@@ -36,17 +29,18 @@
             </ul>
         </nav>
         <c:choose>
-        		<c:when test="${sessionScope.isUser == 'true'}">
-        			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='logOut'">${sessionScope.userServiceId}님 LOGOUT</button></div>
-        		</c:when>
-        		<c:otherwise>
-        			<div class="login"><button type="button" class="btn btn-light" onclick="location.href='loginForm'">LOGIN</button></div>
-        		</c:otherwise>
-        	</c:choose>
-    </header>	
+            <c:when test="${sessionScope.isUser == 'true'}">
+                <div class="login"><button type="button" class="btn btn-light" onclick="location.href='logOut'">${sessionScope.userServiceId}님
+                        LOGOUT</button></div>
+            </c:when>
+            <c:otherwise>
+                <div class="login"><button type="button" class="btn btn-light" onclick="location.href='loginForm'">LOGIN</button></div>
+            </c:otherwise>
+        </c:choose>
+    </header>
 
     <hr>
-    
+
     <section>
         <h2>Ranking</h2>
         <article>

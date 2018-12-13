@@ -6,16 +6,16 @@
 <html lang="ko">
 
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    
+
     <link rel="stylesheet" type="text/css" href="resources/css/qnaStyle.css">
-    <link rel="stylesheet" href="resources/css/reviewPage/reviewPageCss.css">
+    <link rel="stylesheet" href="resources/css/reviewPageCss.css">
 </head>
 
 <body>
@@ -59,7 +59,7 @@
         <div class="code_box">
 			{{#if reviewCodes}} 
 				{{#each reviewCodes}}
-					<h3 style="text-align: left;">code 1 :</h3>
+					<h3 style="text-align: left;">code :</h3>
 					{{{content}}}
 				{{/each}}	
 			{{/if}}
@@ -109,4 +109,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="resources/js/reviewPageJs.js"></script>
 </body>
+
 </html>

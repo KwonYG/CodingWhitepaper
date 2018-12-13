@@ -79,7 +79,6 @@
         <c:choose>
         		<c:when test="${sessionScope.isUser == 'true' && sessionScope.userServiceId == answer.serviceId}">
         				<button type="button" class="btn btn-outline-primary" onclick="location.href='delete/answer?id=${answer.id}'">삭제하기</button>
-        				<button type="button" class="btn btn-outline-primary" onclick="location.href='update?id=${question.id}'">답변수정</button>
         		</c:when>
         	</c:choose>
         </c:forEach>
