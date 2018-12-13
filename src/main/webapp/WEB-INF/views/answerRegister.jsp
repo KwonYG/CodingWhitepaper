@@ -157,10 +157,13 @@
         var parsingContent = function () {
             var temp = document.createElement("div");
             var postContent = document.createElement("div");
-
+            
+            var deactivateSelectedLine = document.getElementsByClassName('CodeMirror-activeline');
+            for(var i = 0; i < deactivateSelectedLine.length; i++){
+            	deactivateSelectedLine[i].removeChild(deactivateSelectedLine[i].childNodes[0]);
+            }
+            
             var codes = document.getElementsByClassName('cm-s-default');
-            console.log(codes.length);
-
             var codesLength = codes.length;
             for (var i = 0; i < codesLength; i++) {
                 document.getElementById("postTextArea").value += nodeToString(codes[i]);
