@@ -9,4 +9,5 @@ public interface AnswerService {
 	public List<Answer> getAnswers(Long questionId);
 	public Answer getOneAnswer(Long answerId);
 	public Answer addAnswer(Answer answer, Long questionId, Long userId);
+	public int removeAnswer(Long answerId);
 }

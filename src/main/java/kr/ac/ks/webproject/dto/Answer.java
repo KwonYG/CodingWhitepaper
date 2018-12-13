@@ -11,6 +11,7 @@ public class Answer {
 	private Long questionId;
 	private Date createDate;
 
+	private String serviceId;
 	private String userName;
 	private String userEmail;
 
@@ -64,6 +65,14 @@ public class Answer {
 		this.createDate = createDate;
 	}
 
+	public String getServiceId() {
+		return serviceId;
+	}
+
+	public void setServiceId(String serviceId) {
+		this.serviceId = serviceId;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -91,8 +100,8 @@ public class Answer {
 	@Override
 	public String toString() {
 		return "Answer [id=" + id + ", userId=" + userId + ", content=" + content + ", subContent=" + subContent
-				+ ", questionId=" + questionId + ", createDate=" + createDate + ", userName=" + userName
-				+ ", userEmail=" + userEmail + ", codeList=" + codeList + "]";
+				+ ", questionId=" + questionId + ", createDate=" + createDate + ", serviceId=" + serviceId
+				+ ", userName=" + userName + ", userEmail=" + userEmail + ", codeList=" + codeList + "]";
 	}
 
 }

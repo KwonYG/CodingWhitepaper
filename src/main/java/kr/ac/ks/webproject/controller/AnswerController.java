@@ -89,10 +89,30 @@ public class AnswerController {
 
 		System.out.println(tempAnswer.getContent());
 		System.out.println(answerContent);
-		// answerCount + 1
 		userService.plusAnswerCount(user.getId());
 
 		return "redirect:question?id=" + questionId;
+	}
+	
+	@GetMapping(path = "/delete/answer")
+	public String deleteQuestion(@RequestParam(name = "id", required = true) Long answerId, HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return "loginForm";
+		}
+
+		ServiceUser user = HttpSessionUtils.getUserFromSession(session);
+		String userServiceId = user.getServiceId();
+		Answer answer = answerService.getOneAnswer(answerId);
+		String answerUserId = answer.getServiceId();
+
+		if (!userServiceId.equals(answerUserId)) {
+			System.out.println("글 작성자만 삭제 가능합니다.");
+			return "redirect:/question?id=" + answer.getQuestionId();
+		}
+
+		answerService.removeAnswer(answerId);
+		
+		return "redirect:/question?id=" + answer.getQuestionId();
 	}
 
 	// GET 리뷰 페이지

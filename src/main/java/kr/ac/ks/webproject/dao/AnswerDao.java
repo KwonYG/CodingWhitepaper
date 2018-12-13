@@ -2,6 +2,7 @@ package kr.ac.ks.webproject.dao;
 
 import static kr.ac.ks.webproject.sqls.AnswerDaoSqls.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,11 @@ public class AnswerDao {
 	public Long insert(Answer answer) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(answer);
 		return insertAction.executeAndReturnKey(params).longValue();
+	}
+	
+	public int deleteAnswerById(Long answerId) {
+		Map<String, ?> params = Collections.singletonMap("answerId", answerId);
+		return jdbc.update(DELETE_ANSWER_BY_ID, params);
 	}
 
 	public List<Answer> selectAnswers(Long questionId) {

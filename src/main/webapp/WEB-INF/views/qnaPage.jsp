@@ -60,10 +60,8 @@
         <br>
         <c:choose>
         		<c:when test="${sessionScope.isUser == 'true' && sessionScope.userServiceId == question.userServiceId}">
-        			
         				<button type="button" class="btn btn-outline-primary" onclick="location.href='delete/question?id=${question.id}'">삭제하기</button>
         				<button type="button" class="btn btn-outline-primary" onclick="location.href='update?id=${question.id}'">질문수정</button>
-        			
         		</c:when>
         	</c:choose>
         <button type="button" class="btn btn-outline-info" onclick="location.href='aregister?id=${question.id}'">답변하기</button>
@@ -78,6 +76,12 @@
             <hr>
             <div><a href="review?id=${answer.id}">리뷰 보러가기</a></div>
         </div>
+        <c:choose>
+        		<c:when test="${sessionScope.isUser == 'true' && sessionScope.userServiceId == answer.serviceId}">
+        				<button type="button" class="btn btn-outline-primary" onclick="location.href='delete/answer?id=${answer.id}'">삭제하기</button>
+        				<button type="button" class="btn btn-outline-primary" onclick="location.href='update?id=${question.id}'">답변수정</button>
+        		</c:when>
+        	</c:choose>
         </c:forEach>
     </article>
 
