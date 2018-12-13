@@ -29,6 +29,8 @@ $("#idInput").keyup(function () {
 
 });
 
+
+// 유효성 검사 결과 메세지
 var check = function (standard, what, message) {
     if (standard.test(what.value)) {
         return true;
@@ -39,6 +41,7 @@ var check = function (standard, what, message) {
     //return false;
 }
 
+// 유효성 검사
 var validate = function () {
     var idPwStandard = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드 검사 정규식
     var emailStandard = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // 이메일 검사 정규식

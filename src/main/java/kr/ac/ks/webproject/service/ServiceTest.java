@@ -1,21 +1,23 @@
 package kr.ac.ks.webproject.service;
 
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import kr.ac.ks.webproject.config.ApplicationConfig;
-import kr.ac.ks.webproject.dto.AnswerReply;
 import kr.ac.ks.webproject.dto.ServiceUser;
 
 public class ServiceTest {
 	public static void main(String[] args) {
 		// http://swlock.blogspot.com/2017/01/jericho-htmlparser.html
-		/*ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-
-		QuestionService questionService = ac.getBean(QuestionService.class);
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		
+		UserService userService = ac.getBean(UserService.class);
+		
+		ServiceUser user = userService.getOneUserByServiceId("aaaaaaaa");
+		
+		System.out.println(user);
+		
+		/*QuestionService questionService = ac.getBean(QuestionService.class);
 		Question q = questionService.getOneQuestion((long) 26);
 
 		String s = q.getContent();
@@ -61,11 +63,6 @@ public class ServiceTest {
 			System.out.println("end!!!");
 			System.out.println("============================================================");
 		}*/
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		AnswerReplyService answerReplyService = ac.getBean(AnswerReplyService.class);
-		
-		AnswerReply answerReply = new AnswerReply();
-		answerReply.setContent("되라");
-		answerReply.setCreateDate(new Date());
+	
 	}
 }

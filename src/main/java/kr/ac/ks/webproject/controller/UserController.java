@@ -4,9 +4,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ac.ks.webproject.dto.ServiceUser;
@@ -22,6 +27,31 @@ public class UserController {
 	@GetMapping("/joinForm")
 	public String getJoinForm() {
 		return "joinForm";
+	}
+
+	@PostMapping("/join")
+	public String postJoin(@ModelAttribute ServiceUser user, RedirectAttributes redirectAttr) {
+		if (userService.getOneUserByServiceId(user.getServiceId()) != null) {
+			redirectAttr.addFlashAttribute("failMessage", "이미 존재하는 아이디 입니다.");
+			return "redirect:/loginForm";
+		}
+
+		String pw = user.getPassword();
+		user.setPassword(SecurityUtils.encryptSHA256(pw));
+		userService.addUser(user);
+		return "redirect:/list";
+	}
+
+	@ResponseBody
+	@RequestMapping(path = "/idCheck", method = RequestMethod.POST)
+	public int postIdCheck(@RequestParam(name = "serviceid", required = true) String serviceId, ModelMap model){
+		int result = 0; // 중복 O, 사용 불가
+
+		if (userService.getOneUserByServiceId(serviceId) != null) {
+			result = 1; // 1이면 중복 x, 사용가능
+		}
+
+		return result;
 	}
 
 	@PostMapping("/login")
@@ -46,7 +76,7 @@ public class UserController {
 		// 여기에 setAttribute로 유저 정보 저장해보기
 		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
 		session.setAttribute(HttpSessionUtils.USER_SESSION_ID_KEY, user.getServiceId());
-		
+
 		return "redirect:/list";
 	}
 
@@ -55,21 +85,13 @@ public class UserController {
 		session.removeAttribute(HttpSessionUtils.USER_LOGIN_STATUS);
 		session.removeAttribute(HttpSessionUtils.USER_SESSION_KEY);
 		session.removeAttribute(HttpSessionUtils.USER_SESSION_ID_KEY);
-		
+
 		return "redirect:/list";
 	}
 
 	@GetMapping("/loginForm")
 	public String getLoginForm() {
 		return "loginForm";
-	}
-
-	@PostMapping("/join")
-	public String postJoin(@ModelAttribute ServiceUser user) {
-		String pw = user.getPassword();
-		user.setPassword(SecurityUtils.encryptSHA256(pw));
-		userService.addUser(user);
-		return "redirect:/list";
 	}
 
 }
