@@ -23,12 +23,14 @@ import kr.ac.ks.webproject.utils.SecurityUtils;
 public class UserController {
 	@Autowired
 	UserService userService;
-
+	
+	// 회원가입 Form
 	@GetMapping("/joinForm")
 	public String getJoinForm() {
 		return "joinForm";
 	}
-
+	
+	// POST 회원
 	@PostMapping("/join")
 	public String postJoin(@ModelAttribute ServiceUser user, RedirectAttributes redirectAttr) {
 		if (userService.getOneUserByServiceId(user.getServiceId()) != null) {
@@ -42,6 +44,7 @@ public class UserController {
 		return "redirect:/list";
 	}
 
+	// 아이디 중복 체크
 	@ResponseBody
 	@RequestMapping(path = "/idCheck", method = RequestMethod.POST)
 	public int postIdCheck(@RequestParam(name = "serviceid", required = true) String serviceId, ModelMap model){
@@ -54,26 +57,22 @@ public class UserController {
 		return result;
 	}
 
+	// 로그인 POST
 	@PostMapping("/login")
 	public String login(String serviceId, String password, HttpSession session, RedirectAttributes redirectAttr) {
 		ServiceUser user = userService.getOneUserByServiceId(serviceId);
 
 		if (user == null) {
 			redirectAttr.addFlashAttribute("failMessage", "아이디가 존재하지 않습니다.");
-			System.out.println("존재하지 않는 아이디");
 			return "redirect:/loginForm";
 		}
 
 		if (!user.isMatchPassword(SecurityUtils.encryptSHA256(password))) {
 			redirectAttr.addFlashAttribute("failMessage", "암호가 틀렸습니다.");
-			System.out.println("비밀번호 틀림");
 			return "redirect:/loginForm";
 		}
 
-		System.out.println("로그인 성공!");
-
 		session.setAttribute(HttpSessionUtils.USER_LOGIN_STATUS, "true");
-		// 여기에 setAttribute로 유저 정보 저장해보기
 		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
 		session.setAttribute(HttpSessionUtils.USER_SESSION_ID_KEY, user.getServiceId());
 

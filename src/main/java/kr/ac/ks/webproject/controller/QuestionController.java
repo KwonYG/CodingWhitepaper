@@ -37,6 +37,7 @@ public class QuestionController {
 	@Autowired
 	AnswerCodeService answerCodeService;
 
+	// GET 질문 리스트
 	@GetMapping(path = "/list")
 	public String questionList(@RequestParam(name = "start", required = false, defaultValue = "0") int start,
 			ModelMap model) {
@@ -61,14 +62,12 @@ public class QuestionController {
 		return "list";
 	}
 
+	// GET 질문 게시글
 	@GetMapping(path = "/question")
 	public String getOneQuestion(@RequestParam(name = "id", required = true) Long questionId, ModelMap model) {
 
 		Question question = questionService.getOneQuestion(questionId);
 		List<Answer> answerList = answerService.getAnswers(questionId);
-
-		// answer ID를 가져올 방안 모색
-		// List<AnswerCode> codeList = answerCodeService.getAnswerCodes()
 
 		model.addAttribute("question", question);
 		model.addAttribute("answerList", answerList);
@@ -76,6 +75,7 @@ public class QuestionController {
 		return "qnaPage";
 	}
 
+	// 질문 Form
 	@GetMapping(path = "/qregister")
 	public String getRegisterForm(HttpSession session) {
 		if (!HttpSessionUtils.isLoginUser(session)) {
@@ -85,11 +85,9 @@ public class QuestionController {
 		return "questionRegister";
 	}
 
+	//질문 POST
 	@PostMapping(path = "/writequestion")
 	public String postQuestion(@ModelAttribute Question question, HttpSession session) {
-		/* String clientIp = request.getRemoteAddr(); */
-		// ip 뽑아오는 코드, 사용여부는 의논
-		// user 부분 현재 DB 다시 고민
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "loginForm";
 		}
@@ -101,6 +99,7 @@ public class QuestionController {
 		return "redirect:list";
 	}
 
+	//질문 삭제
 	@GetMapping(path = "/delete/question")
 	public String deleteQuestion(@RequestParam(name = "id", required = true) Long questionId, HttpSession session) {
 		if (!HttpSessionUtils.isLoginUser(session)) {
@@ -122,7 +121,8 @@ public class QuestionController {
 		return "redirect:/list";
 	}
 
-	@GetMapping(path = "/update") // 수정기능, 미완
+	// 질문 수정
+	@GetMapping(path = "/update")
 	public String getUpdateEditor(@RequestParam(name = "id", required = true) Long questionId, ModelMap model) {
 		Question question = questionService.getOneQuestion(questionId);
 		model.addAttribute("question", question);
@@ -130,7 +130,7 @@ public class QuestionController {
 		return "questionUpdate";
 	}
 	
-	@PostMapping(path = "/postUpdate") // 수정기능, 미완
+	@PostMapping(path = "/postUpdate")
 	public String postUpdate(@RequestParam(name = "id", required = true) Long questionId, @ModelAttribute Question question) {
 
 		questionService.editQuestionContent(questionId, question.getTitle() ,question.getContent());

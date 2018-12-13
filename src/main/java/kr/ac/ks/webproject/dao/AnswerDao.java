@@ -34,7 +34,7 @@ public class AnswerDao {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(answer);
 		return insertAction.executeAndReturnKey(params).longValue();
 	}
-	
+
 	public int deleteAnswerById(Long answerId) {
 		Map<String, ?> params = Collections.singletonMap("answerId", answerId);
 		return jdbc.update(DELETE_ANSWER_BY_ID, params);

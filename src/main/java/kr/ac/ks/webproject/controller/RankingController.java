@@ -15,6 +15,7 @@ public class RankingController {
 	@Autowired
 	UserService userService;
 
+	// GET 랭킹 순위
 	@GetMapping(path = "/rank")
 	public String getRanking(ModelMap model) {
 

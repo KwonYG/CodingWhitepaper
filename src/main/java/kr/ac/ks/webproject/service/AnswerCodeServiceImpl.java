@@ -26,7 +26,6 @@ public class AnswerCodeServiceImpl implements AnswerCodeService {
 		return codeList;
 	}
 
-	// 여기까지함
 	@Override
 	@Transactional
 	public AnswerCode addAnswerCode(String answerCodeContent, Long answerId) {

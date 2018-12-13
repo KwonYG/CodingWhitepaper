@@ -56,7 +56,7 @@ public class QuestionDao {
 	public int selectCount() {
 		return jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
 	}
-	
+
 	public int deleteQuestionById(Long questionId) {
 		Map<String, ?> params = Collections.singletonMap("questionId", questionId);
 		return jdbc.update(DELETE_QUESTION_BY_ID, params);
@@ -67,7 +67,7 @@ public class QuestionDao {
 		params.put("questionId", questionId);
 		params.put("title", title);
 		params.put("content", content);
-		
+
 		return jdbc.update(UPDATE_QUESTION_CONTENT_BY_QUETION_ID, params);
 	}
 
