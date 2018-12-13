@@ -21,9 +21,8 @@
                 <div class="col-sm-10">
                     <input id="idInput" class="form-control" type="text" name="serviceId" placeholder="사용자 아이디"
                         required>
-                    <input type="button" class="idCheck" value="중복 체크">
                     <p class="result">
-                        <span class="msg">아이디를 확인하여 주십시오.</span>
+                        <span class="msg">아이디를 확인하여 주십시오.</span> <input type="button" class="btn btn-default idCheck" value="중복 체크" style="margin:5px;">
                     </p>
                 </div>
             </div>

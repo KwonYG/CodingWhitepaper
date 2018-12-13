@@ -71,7 +71,6 @@
 				var hljsHighlighter = new CKEDITOR.plugins.codesnippet.highlighter( {
 					languages: {
 						cpp: 'C++',
-						html: 'HTML',
 						java: 'Java',
 						python: 'Python'
 						

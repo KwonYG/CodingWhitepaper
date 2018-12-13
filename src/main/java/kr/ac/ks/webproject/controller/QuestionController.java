@@ -112,7 +112,6 @@ public class QuestionController {
 		String questionUserId = question.getUserServiceId();
 
 		if (!userServiceId.equals(questionUserId)) {
-			System.out.println("글 작성자만 삭제 가능합니다.");
 			return "redirect:/question?id=" + questionId;
 		}
 

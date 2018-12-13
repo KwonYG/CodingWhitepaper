@@ -91,7 +91,7 @@
                     <div style="font-size: 14px">
                         <img src="resources/img/person1.png">
                         {{userName}}<br>
-                        {{createDate}}
+						{{createDate}}
                     </div>
                     <hr>
                     <div>{{content}}</div>

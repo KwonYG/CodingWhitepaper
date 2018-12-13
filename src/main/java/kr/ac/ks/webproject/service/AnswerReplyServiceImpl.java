@@ -1,5 +1,6 @@
 package kr.ac.ks.webproject.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +23,12 @@ public class AnswerReplyServiceImpl implements AnswerReplyService {
 
 	@Override
 	@Transactional
-	public AnswerReply addAnswerReply(AnswerReply answerReply,Long answerId, Long userId) {
-		answerReply.setCreateDate(new Date());
+	public AnswerReply addAnswerReply(AnswerReply answerReply, Long answerId, Long userId) {
+		Date from = new Date();
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String to = transFormat.format(from);
+
+		answerReply.setCreateDate(to);
 		answerReply.setAnswerId(answerId);
 		answerReply.setUserId(userId);
 		Long id = answerReplyDao.insert(answerReply);

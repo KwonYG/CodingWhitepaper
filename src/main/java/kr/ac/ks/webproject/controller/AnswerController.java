@@ -57,7 +57,6 @@ public class AnswerController {
 		String questionContent = q.getContent();
 		Source source = new Source(questionContent);
 		List<Element> codes = source.getAllElements("code");
-		System.out.println("size : " + codes.size());
 
 		model.addAttribute("codes", codes);
 		model.addAttribute("codeCount", codes.size());
@@ -81,14 +80,10 @@ public class AnswerController {
 		String answerContent = tempAnswer.getContent();
 		Source source = new Source(answerContent);
 		List<Element> codes = source.getAllElementsByClass("cm-s-default");
-		System.out.println("size : " + codes.size());
 
 		for (int i = 0; i < codes.size(); i++) {
 			answerCodeService.addAnswerCode(codes.get(i).toString(), tempAnswer.getId());
 		}
-
-		System.out.println(tempAnswer.getContent());
-		System.out.println(answerContent);
 		userService.plusAnswerCount(user.getId());
 
 		return "redirect:question?id=" + questionId;
@@ -106,7 +101,6 @@ public class AnswerController {
 		String answerUserId = answer.getServiceId();
 
 		if (!userServiceId.equals(answerUserId)) {
-			System.out.println("글 작성자만 삭제 가능합니다.");
 			return "redirect:/question?id=" + answer.getQuestionId();
 		}
 

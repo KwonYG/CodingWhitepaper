@@ -1,13 +1,11 @@
 package kr.ac.ks.webproject.dto;
 
-import java.util.Date;
-
 public class AnswerReply {
 	private Long id;
 	private Long userId;
 	private Long answerId;
 	private String content;
-	private Date createDate;
+	private String createDate;
 
 	private String userName;
 	private String userEmail;
@@ -44,11 +42,11 @@ public class AnswerReply {
 		this.content = content;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 
