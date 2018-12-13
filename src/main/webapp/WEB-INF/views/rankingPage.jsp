@@ -53,8 +53,8 @@
                 <h3>답변 수 : <b>${winner.answerCount} 개</b></h3>
             </div>
 
-            <c:forEach items="${secondToThird}" var="semiWinner">
-                <div class="bord1">
+            <c:forEach items="${secondToThird}" var="semiWinner" varStatus="status">
+                <div class="bord1" id="semiWinner${status.count}">
                     <div style="font-size: 14px">
                         <img src="resources/img/person1.png">
                         ${semiWinner.serviceId }<br>
@@ -64,8 +64,8 @@
                 </div>
             </c:forEach>
 
-            <c:forEach items="${restRankers}" var="rest">
-                <div class="bord2">
+            <c:forEach items="${restRankers}" var="rest" varStatus="status">
+                <div class="bord2" id="other${status.count}">
                     <div style="font-size: 14px">
                         <img src="resources/img/person1.png">
                         ${rest.serviceId }<br>
